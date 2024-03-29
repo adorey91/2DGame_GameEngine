@@ -22,9 +22,6 @@ public class UIManager : MonoBehaviour
 
     [Header("Inventory")]
     [SerializeField] InventorySlotUI[] uiSlots;
-    [SerializeField] Image icon;
-    [SerializeField] TMP_Text quantityText;
-    private ItemSlot itemSlot;
 
     private void Awake()
     {

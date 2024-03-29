@@ -10,6 +10,7 @@ public class DialogueManager : MonoBehaviour
     private Queue<string> sentences;
     private GameManager _gameManager;
     private QuestManager _questManager;
+    private InventoryManager _inventoryManager;
     QuestAsset _questAsset;
 
     [Header("Dialogue UI")]
@@ -51,6 +52,9 @@ public class DialogueManager : MonoBehaviour
         isFaded = !isFaded;
 
         personTalking = dialogue;
+        _questAsset = dialogue.AssignedQuest;
+
+        _questManager.CheckActiveQuest(_questAsset);
 
         dialogueName.text = dialogue.characterName;
         dialogueButtonText.text = dialogue.continueDialogue;
@@ -116,7 +120,7 @@ public class DialogueManager : MonoBehaviour
 
     void EndDialogue()
     {
-        if (_questAsset.State == QuestAsset.QuestState.Inactive)
+        if (_questAsset != null && _questAsset.State == QuestAsset.QuestState.Inactive)
             _questManager.StartQuest(personTalking.AssignedQuest);
 
         StartCoroutine(FadeObject(canvGroup, canvGroup.alpha, isFaded ? 1 : 0));
@@ -129,20 +133,38 @@ public class DialogueManager : MonoBehaviour
 
     public void ChangeDialogue(Dialogue dialogue)
     {
-        _questAsset = dialogue.AssignedQuest;
+        
 
-        if (_questAsset.State == QuestAsset.QuestState.Inactive)
+
+        if(_questAsset == null)
         {
-            foreach (string sentence in _questAsset.InactiveQuestDialogue)
+            foreach (string sentence in dialogue.NonQuestDialogue)
             {
                 sentences.Enqueue(sentence);
             }
         }
-        else if (_questAsset.State == QuestAsset.QuestState.Active)
+        else
         {
-            foreach (string sentence in _questAsset.ActiveQuestDialogue)
+            if (_questAsset.State == QuestAsset.QuestState.Inactive)
             {
-                sentences.Enqueue(sentence);
+                foreach (string sentence in _questAsset.InactiveQuestDialogue)
+                {
+                    sentences.Enqueue(sentence);
+                }
+            }
+            else if (_questAsset.State == QuestAsset.QuestState.Active)
+            {
+                foreach (string sentence in _questAsset.ActiveQuestDialogue)
+                {
+                    sentences.Enqueue(sentence);
+                }
+            }
+            else if (_questAsset.State == QuestAsset.QuestState.Completed)
+            {
+                foreach (string sentence in _questAsset.CompletedQuestDialogue)
+                {
+                    sentences.Enqueue(sentence);
+                }
             }
         }
         DisplayNextSentence();

@@ -5301,7 +5301,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &192234795
 Transform:
   m_ObjectHideFlags: 0
@@ -5733,13 +5733,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interactType: 2
+  itemToGive: {fileID: 11400000, guid: f95ea3f275808964da4b08992e42c22b, type: 2}
+  _spriteRenderer: {fileID: 6989912956325557223}
   infoMessage: Picked up coin
   delayTime: 0.2
   infoUI: {fileID: 0}
   infoText: {fileID: 0}
-  infoDialogue: {fileID: 0}
   dialogue:
     characterName: 
+    NonQuestDialogue: []
     AssignedQuest: {fileID: 0}
     continueDialogue: 
     endDialogue: 
@@ -5890,8 +5892,9 @@ GameObject:
   - component: {fileID: 404083173}
   - component: {fileID: 404083176}
   - component: {fileID: 404083177}
+  - component: {fileID: 404083178}
   m_Layer: 0
-  m_Name: GraveyardDoors
+  m_Name: GraveyardDoors1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6003,13 +6006,15 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
---- !u!65 &404083177
-BoxCollider:
+--- !u!61 &404083177
+BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 404083172}
+  m_Enabled: 1
+  m_Density: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -6018,12 +6023,51 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
   m_IsTrigger: 0
-  m_ProvidesContacts: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1, y: 1}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0
+--- !u!114 &404083178
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 404083172}
   m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 0.2}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a4a8853d467f7e4fab873b7ba862d7a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  door1: {fileID: 404083172}
+  door2: {fileID: 1561069381}
+  door1Sprite: {fileID: 0}
+  door2Sprite: {fileID: 0}
+  newDoor: {fileID: -690710110, guid: 739bbc83ed2e3ab43939c486fd75f657, type: 3}
 --- !u!1 &552809099
 GameObject:
   m_ObjectHideFlags: 0
@@ -6293,13 +6337,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interactType: 0
+  itemToGive: {fileID: 0}
+  _spriteRenderer: {fileID: 0}
   infoMessage: Clifford's House... There's a smell coming from it..
   delayTime: 1
   infoUI: {fileID: 0}
   infoText: {fileID: 0}
-  infoDialogue: {fileID: 0}
   dialogue:
     characterName: 
+    NonQuestDialogue: []
     AssignedQuest: {fileID: 0}
     continueDialogue: 
     endDialogue: 
@@ -40419,7 +40465,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &944665150
 Transform:
   m_ObjectHideFlags: 0
@@ -40615,13 +40661,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interactType: 2
+  itemToGive: {fileID: 11400000, guid: ad9b946cc662bda4095c6a84b0fe1fac, type: 2}
+  _spriteRenderer: {fileID: 945438906}
   infoMessage: Picked up plate of food
   delayTime: 0.2
   infoUI: {fileID: 0}
   infoText: {fileID: 0}
-  infoDialogue: {fileID: 0}
   dialogue:
     characterName: 
+    NonQuestDialogue: []
     AssignedQuest: {fileID: 0}
     continueDialogue: 
     endDialogue: 
@@ -40724,13 +40772,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interactType: 2
+  itemToGive: {fileID: 11400000, guid: 6882c76441960a2418b9eafdd31fcc4b, type: 2}
+  _spriteRenderer: {fileID: 945774574}
   infoMessage: Found a key!
   delayTime: 0.2
   infoUI: {fileID: 0}
   infoText: {fileID: 0}
-  infoDialogue: {fileID: 0}
   dialogue:
     characterName: 
+    NonQuestDialogue: []
     AssignedQuest: {fileID: 0}
     continueDialogue: 
     endDialogue: 
@@ -41006,13 +41056,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interactType: 2
+  itemToGive: {fileID: 11400000, guid: f95ea3f275808964da4b08992e42c22b, type: 2}
+  _spriteRenderer: {fileID: 6989912956325557223}
   infoMessage: Picked up coin
   delayTime: 0.2
   infoUI: {fileID: 0}
   infoText: {fileID: 0}
-  infoDialogue: {fileID: 0}
   dialogue:
     characterName: 
+    NonQuestDialogue: []
     AssignedQuest: {fileID: 0}
     continueDialogue: 
     endDialogue: 
@@ -46700,7 +46752,7 @@ GameObject:
   - component: {fileID: 1561069385}
   - component: {fileID: 1561069386}
   m_Layer: 0
-  m_Name: GraveyardDoors
+  m_Name: GraveyardDoors2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -46812,13 +46864,15 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
---- !u!65 &1561069386
-BoxCollider:
+--- !u!61 &1561069386
+BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1561069381}
+  m_Enabled: 1
+  m_Density: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -46827,12 +46881,34 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
   m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 0.2}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1, y: 1}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0
 --- !u!1 &1618139679
 GameObject:
   m_ObjectHideFlags: 0
@@ -47039,7 +47115,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0.03, y: -0.15981346}
   serializedVersion: 2
-  m_Radius: 0.53981346
+  m_Radius: 0.75
 --- !u!212 &1713470065
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -47105,13 +47181,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interactType: 3
+  itemToGive: {fileID: 0}
+  _spriteRenderer: {fileID: 0}
   infoMessage: 
   delayTime: 0
   infoUI: {fileID: 0}
   infoText: {fileID: 0}
-  infoDialogue: {fileID: 0}
   dialogue:
     characterName: Clifford
+    NonQuestDialogue: []
     AssignedQuest: {fileID: 11400000, guid: 9602e90940da9724288c4d83ae2af91e, type: 2}
     continueDialogue: . . .
     endDialogue: Okay!
@@ -48382,13 +48460,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interactType: 3
+  itemToGive: {fileID: 0}
+  _spriteRenderer: {fileID: 0}
   infoMessage: 
   delayTime: 0
   infoUI: {fileID: 0}
   infoText: {fileID: 0}
-  infoDialogue: {fileID: 0}
   dialogue:
     characterName: Graveman
+    NonQuestDialogue: []
     AssignedQuest: {fileID: 11400000, guid: 65d48e15cb7769a43bfe2d3d4b8d1f18, type: 2}
     continueDialogue: . . .
     endDialogue: Hmm.. okay!
@@ -48426,7 +48506,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0.03, y: -0.15981346}
   serializedVersion: 2
-  m_Radius: 0.53981346
+  m_Radius: 0.75
 --- !u!212 &2100691447
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -48488,7 +48568,7 @@ Transform:
   m_GameObject: {fileID: 2100691442}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -14.5, y: -24, z: -0.56698847}
+  m_LocalPosition: {x: -15, y: -24, z: -0.56698847}
   m_LocalScale: {x: 1.4, y: 1.4, z: 0.93333334}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -48788,13 +48868,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interactType: 0
+  itemToGive: {fileID: 0}
+  _spriteRenderer: {fileID: 0}
   infoMessage: It's a rock.
   delayTime: 0.6
   infoUI: {fileID: 0}
   infoText: {fileID: 0}
-  infoDialogue: {fileID: 0}
   dialogue:
     characterName: 
+    NonQuestDialogue: []
     AssignedQuest: {fileID: 0}
     continueDialogue: 
     endDialogue: 
@@ -48811,13 +48893,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interactType: 2
+  itemToGive: {fileID: 11400000, guid: f95ea3f275808964da4b08992e42c22b, type: 2}
+  _spriteRenderer: {fileID: 6989912956325557223}
   infoMessage: Picked up coin
   delayTime: 0.2
   infoUI: {fileID: 0}
   infoText: {fileID: 0}
-  infoDialogue: {fileID: 0}
   dialogue:
     characterName: 
+    NonQuestDialogue: []
     AssignedQuest: {fileID: 0}
     continueDialogue: 
     endDialogue: 
@@ -49264,13 +49348,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interactType: 3
+  itemToGive: {fileID: 0}
+  _spriteRenderer: {fileID: 0}
   infoMessage: 
   delayTime: 1
   infoUI: {fileID: 0}
   infoText: {fileID: 0}
-  infoDialogue: {fileID: 0}
   dialogue:
     characterName: 
+    NonQuestDialogue:
+    - 'Path North - Main Castle
+
+      Path South - Graveyard & Treehouse'
+    - 'Path East - Colosseum
+
+      Path West - Dark Castle'
     AssignedQuest: {fileID: 0}
     continueDialogue: Alright
     endDialogue: Got It!
@@ -49287,13 +49379,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interactType: 3
+  itemToGive: {fileID: 0}
+  _spriteRenderer: {fileID: 0}
   infoMessage: 
   delayTime: 1
   infoUI: {fileID: 0}
   infoText: {fileID: 0}
-  infoDialogue: {fileID: 0}
   dialogue:
     characterName: 
+    NonQuestDialogue:
+    - No Access Currently. Come Back Later
     AssignedQuest: {fileID: 0}
     continueDialogue: 
     endDialogue: Okay

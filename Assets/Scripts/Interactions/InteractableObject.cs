@@ -21,8 +21,10 @@ public class InteractableObject : MonoBehaviour
     UIManager _uiManager;
     InventoryManager _inventoryManager;
 
-    private ItemData itemToGive;
+    [Header("Pickup Settings")]
+    [SerializeField] private ItemData itemToGive;
     [SerializeField] private SpriteRenderer _spriteRenderer;
+
     [Header("Information")]
     public string infoMessage;
     public float delayTime;
@@ -30,7 +32,6 @@ public class InteractableObject : MonoBehaviour
     [SerializeField] TMP_Text infoText;
 
     [Header("Dialogue Settings")]
-    public TMP_Text infoDialogue;
     public Dialogue dialogue;
 
 
@@ -76,11 +77,5 @@ public class InteractableObject : MonoBehaviour
 
         if (interactType == InteractType.Pickup)
             this.gameObject.SetActive(false);
-    }
-
-    public void SetItem(ItemData item)
-    {
-        itemToGive = item;
-        _spriteRenderer.sprite = item.Icon;
     }
 }

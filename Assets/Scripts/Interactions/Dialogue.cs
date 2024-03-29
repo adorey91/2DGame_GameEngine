@@ -7,6 +7,10 @@ using UnityEngine;
 public class Dialogue
 {
     public string characterName;
+
+    [TextArea(2, 10)]
+    public string[] NonQuestDialogue;
+
     public QuestAsset AssignedQuest;
     public string continueDialogue;
     public string endDialogue;

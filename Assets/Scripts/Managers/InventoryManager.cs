@@ -16,6 +16,8 @@ public class InventoryManager : MonoBehaviour
 
         for (int i = 0; i < inventorySize; i++)
             itemSlots[i] = new ItemSlot();
+
+        _uiManager.UpdateUI(itemSlots);
     }
 
     public void AddItem(ItemData item)
@@ -40,6 +42,36 @@ public class InventoryManager : MonoBehaviour
         {
             Debug.Log("Inventory Is Full");
             return;
+        }
+        _uiManager.UpdateUI(itemSlots);
+    }
+
+    public void RemoveItem(ItemData item)
+    {
+        for (int i = 0; i < itemSlots.Length; i++)
+        {
+            if (itemSlots[i].Item == item)
+            {
+                RemoveItem(itemSlots[i]);
+                return;
+            }
+        }
+    }
+
+    public void RemoveItem(ItemSlot slot)
+    {
+        if (slot == null)
+        {
+            Debug.Log("Can't remove item from inventory");
+            return;
+        }
+
+        slot.Quantity--;
+
+        if (slot.Quantity <= 0)
+        {
+            slot.Item = null;
+            slot.Quantity = 0;
         }
         _uiManager.UpdateUI(itemSlots);
     }
@@ -73,5 +105,4 @@ public class InventoryManager : MonoBehaviour
         }
         return false;
     }
-
 }

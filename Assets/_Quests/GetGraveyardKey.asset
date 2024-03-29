@@ -14,7 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: Get Graveyard Key
   Description: Graveyard keeper needs his key to unlock the graveyard
-  State: 0
+  State: 2
+  QuestItemRequired: {fileID: 11400000, guid: 6882c76441960a2418b9eafdd31fcc4b, type: 2}
   InactiveQuestDialogue:
   - "Hey there. Sorry but the graveyard is closed right now.\r"
   - "I seemed to have misplaced my key\u2026\r"
@@ -22,4 +23,5 @@ MonoBehaviour:
   ActiveQuestDialogue:
   - '<sub>Maybe it''s around the pond...</sub> '
   - '<sub>or around the tree. Hmm..</sub> '
-  CompletedQuestDialogue: []
+  CompletedQuestDialogue:
+  - THANK YOU SO MUCH.
