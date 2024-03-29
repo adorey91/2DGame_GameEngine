@@ -28,6 +28,15 @@ public class GameManager : MonoBehaviour
     public GameObject spawnPoint;
     public GameObject player;
 
+    [Header("Controls")]
+    public KeyCode interactKey = KeyCode.Space;
+    public KeyCode runKey = KeyCode.LeftShift;
+    public KeyCode rollKey = KeyCode.R;
+    public KeyCode pauseKey = KeyCode.Escape;
+    [SerializeField] TMP_Text interactText;
+    [SerializeField] TMP_Text pauseText;
+
+
     bool volumeLowered = false;
 
 
@@ -35,11 +44,14 @@ public class GameManager : MonoBehaviour
     {
         gameState = GameState.MainMenu;
         StateSwitch();
+
+        interactText.text = $"Interact: {interactKey}";
+        pauseText.text = $"Pause: {pauseKey}";
     }
 
     public void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(pauseKey))
             EscapeState();
 
         if (gameState != currentState)

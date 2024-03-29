@@ -19,7 +19,10 @@ public class InteractableObject : MonoBehaviour
     public InteractType interactType;
     GameManager _gameManager;
     UIManager _uiManager;
+    InventoryManager _inventoryManager;
 
+    private ItemData itemToGive;
+    [SerializeField] private SpriteRenderer _spriteRenderer;
     [Header("Information")]
     public string infoMessage;
     public float delayTime;
@@ -35,6 +38,7 @@ public class InteractableObject : MonoBehaviour
     {
         _gameManager = FindAnyObjectByType<GameManager>();
         _uiManager = FindAnyObjectByType<UIManager>();
+        _inventoryManager = FindAnyObjectByType<InventoryManager>();
 
         infoUI = GameObject.Find("InfoUI");
         infoText = GameObject.Find("InfoText").GetComponent<TMP_Text>();
@@ -55,7 +59,7 @@ public class InteractableObject : MonoBehaviour
     public void Pickup()
     {
         StartCoroutine(ShowInfo(infoMessage, delayTime));
-        _uiManager.AddCoinUI();
+        _inventoryManager.AddItem(itemToGive);
     }
 
     public void Dialogue()
@@ -72,5 +76,11 @@ public class InteractableObject : MonoBehaviour
 
         if (interactType == InteractType.Pickup)
             this.gameObject.SetActive(false);
+    }
+
+    public void SetItem(ItemData item)
+    {
+        itemToGive = item;
+        _spriteRenderer.sprite = item.Icon;
     }
 }

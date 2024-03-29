@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class Interaction : MonoBehaviour
@@ -7,16 +8,17 @@ public class Interaction : MonoBehaviour
     [SerializeField] GameObject interactable = null;
     [SerializeField] InteractableObject interactableObject = null;
     [SerializeField] GameObject canInteract;
-    public KeyCode interactKey = KeyCode.Space;
+    GameManager _gameManager;
 
     private void Start()
     {
+        _gameManager = FindAnyObjectByType<GameManager>();
         canInteract.SetActive(false);
     }
 
     void Update()
     {
-        if (Input.GetKeyDown(interactKey) && interactableObject != null)
+        if (Input.GetKeyDown(_gameManager.interactKey) && interactableObject != null)
             CheckInteraction();
     }
 

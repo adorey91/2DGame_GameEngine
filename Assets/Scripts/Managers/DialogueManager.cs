@@ -3,63 +3,42 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-using UnityEngine.Rendering;
 using UnityEngine.UI;
-using Object = UnityEngine.Object;
 
 public class DialogueManager : MonoBehaviour
 {
-    [SerializeField] GameObject _dialogueUI;
-    [SerializeField] TMP_Text dialogueText;
-    [SerializeField] TMP_Text dialogueName;
-    [SerializeField] TMP_Text dialogueButtonText;
-    [SerializeField] float fadeSpeed;
-    [SerializeField] GameManager _gameManager;
     private Queue<string> sentences;
+    private GameManager _gameManager;
+    private QuestManager _questManager;
+    QuestAsset _questAsset;
 
+    [Header("Dialogue UI")]
+    public GameObject dialogueUI;
+    public GameObject dialogueButton;
+    public TMP_Text dialogueName;
+    public TMP_Text dialogueText;
+    public TMP_Text dialogueButtonText;
+    Dialogue personTalking;
 
-    // Basic Typewriter Functionality
-    int _currentVisibleCharacterIndex;
-    Coroutine _typewriterCoroutine;
-    bool _readyForNewText = true;
-
-    WaitForSeconds _simpleDelay;
-    WaitForSeconds _interpunctuationDelay;
+    [Header("Dialogue Fade")]
+    [SerializeField] float fadeSpeed;
+    private string endDialogue;
+    private bool isFaded = true;
+    CanvasGroup canvGroup;
 
     [Header("Typewriter Settings")]
-    [SerializeField] float charactersPerSecond = 20;
-    [SerializeField] float interpunctuationDelay = 0.5f;
-
-    //Skipping Functionality
-    public bool CurrentlySkipping { get; private set; }
-    WaitForSeconds _skipDelay;
-
-    [Header("Skip Options")]
-    [SerializeField] bool quickSkip;
-    [SerializeField]
-    [Min(1)] int skipSpeedup = 5;
-
-    //Event Functionality
-    WaitForSeconds _textboxFullEventDelay;
-    [SerializeField]
-    [Range(0.1f, 0.5f)] float sendDoneDelay = 0.25f;
-
-    public static event Action CompleteTextRevealed;
-    public static event Action<char> CharacterRevealed;
+    [SerializeField] float typingSpeed = 0.04f;
+    private bool canContinueToNextLine = true;
+    private Coroutine displayLineCoroutine;
+    private bool isAddingRichText;
 
     public void Start()
     {
+        canvGroup = dialogueUI.GetComponent<CanvasGroup>();
+        _gameManager = FindObjectOfType<GameManager>();
+        _questManager = FindObjectOfType<QuestManager>();
         sentences = new Queue<string>();
-        _dialogueUI.SetActive(false);
-    }
-
-    public void Awake()
-    {
-        _simpleDelay = new WaitForSeconds(1 / charactersPerSecond);
-        _interpunctuationDelay = new WaitForSeconds(interpunctuationDelay);
-
-        _skipDelay = new WaitForSeconds(1 / charactersPerSecond * skipSpeedup);
-        _textboxFullEventDelay = new WaitForSeconds(sendDoneDelay);
+        dialogueUI.SetActive(false);
     }
 
 
@@ -67,114 +46,109 @@ public class DialogueManager : MonoBehaviour
     {
         _gameManager.LoadState("Dialogue");
         sentences.Clear();
-        _dialogueUI.SetActive(true);
-        //StartCoroutine(FadeObject(canvGroup, canvGroup.alpha, isFaded ? 1 : 0));
-        //isFaded = !isFaded;
+        dialogueUI.SetActive(true);
+        StartCoroutine(FadeObject(canvGroup, canvGroup.alpha, isFaded ? 1 : 0));
+        isFaded = !isFaded;
 
-        dialogueName.text = dialogue.name;
+        personTalking = dialogue;
+
+        dialogueName.text = dialogue.characterName;
         dialogueButtonText.text = dialogue.continueDialogue;
-        //endDialogue = dialogue.endDialogue;
+        endDialogue = dialogue.endDialogue;
 
-        foreach (string sentence in dialogue.sentences)
-        {
-            sentences.Enqueue(sentence);
-        }
-
-        PrepareForNewText();
+        ChangeDialogue(dialogue);
     }
 
-    private void PrepareForNewText()
+    public void DisplayNextSentence()
     {
-        if (!_readyForNewText || dialogueText.maxVisibleCharacters >= dialogueText.textInfo.characterCount)
-            return;
-
-        CurrentlySkipping = false;
-        _readyForNewText = false;
-
-        if (_typewriterCoroutine != null)
-            StopCoroutine(_typewriterCoroutine);
-
-        dialogueText.maxVisibleCharacters = 0;
-        _currentVisibleCharacterIndex = 0;
-
-        string sentence = sentences.Dequeue();
-
-        _typewriterCoroutine = StartCoroutine(Typewriter(sentence));
-    }
-
-    private IEnumerator Typewriter(string sentence)
-    {
-        dialogueText.text = sentence;
-
-        TMP_TextInfo textInfo = dialogueText.textInfo;
-
-        while (_currentVisibleCharacterIndex < textInfo.characterCount)
+        if (canContinueToNextLine)
         {
-            var lastCharacterIndex = textInfo.characterCount - 1;
-
-            if(_currentVisibleCharacterIndex >= lastCharacterIndex)
+            if (sentences.Count == 0)
             {
-                dialogueText.maxVisibleCharacters++;
-                yield return _textboxFullEventDelay;
-                CompleteTextRevealed?.Invoke();
-                _readyForNewText = true;
-                yield break;
+                EndDialogue();
+                return;
+            }
+            if (sentences.Count == 1)
+                dialogueButtonText.text = endDialogue;
+
+            if (displayLineCoroutine != null)
+                StopCoroutine(displayLineCoroutine);
+
+            string sentence = sentences.Dequeue();
+            displayLineCoroutine = StartCoroutine(DisplayLine(sentence));
+        }
+    }
+
+    private IEnumerator DisplayLine(string line)
+    {
+        //empty text
+        dialogueText.text = "";
+        dialogueButton.SetActive(false);
+
+        canContinueToNextLine = false;
+
+        foreach (char letter in line.ToCharArray())
+        {
+            //if the submit button is pressed
+            if (Input.GetKeyDown(_gameManager.interactKey))
+            {
+                dialogueText.text = line;
+                break;
             }
 
-            char character = textInfo.characterInfo[_currentVisibleCharacterIndex].character;
-            dialogueText.maxVisibleCharacters++;
-
-            if (!CurrentlySkipping &&
-                    (character == '?' || character == '.' || character == ',' || character == ':' ||
-                     character == ';' || character == '!' || character == '-'))
+            if (letter == '<' || isAddingRichText)
             {
-                yield return _interpunctuationDelay;
+                isAddingRichText = true;
+                dialogueText.text += letter;
+
+                if (letter == '>')
+                    isAddingRichText = false;
             }
             else
             {
-                yield return CurrentlySkipping ? _skipDelay : _simpleDelay;
+                dialogueText.text += letter;
+                yield return new WaitForSeconds(typingSpeed);
             }
-
-            CharacterRevealed?.Invoke(character);
-            _currentVisibleCharacterIndex++;
         }
+        canContinueToNextLine = true;
+        dialogueButton.SetActive(true);
     }
 
-    #region SkipFunctionality
-    private void Update()
+    void EndDialogue()
     {
-        if(Input.GetMouseButtonDown(1))
+        if (_questAsset.State == QuestAsset.QuestState.Inactive)
+            _questManager.StartQuest(personTalking.AssignedQuest);
+
+        StartCoroutine(FadeObject(canvGroup, canvGroup.alpha, isFaded ? 1 : 0));
+        isFaded = !isFaded;
+        sentences.Clear();
+        dialogueUI.SetActive(false);
+
+        _gameManager.LoadState("Gameplay");
+    }
+
+    public void ChangeDialogue(Dialogue dialogue)
+    {
+        _questAsset = dialogue.AssignedQuest;
+
+        if (_questAsset.State == QuestAsset.QuestState.Inactive)
         {
-            if (dialogueText.maxVisibleCharacters != dialogueText.textInfo.characterCount - 1)
-                Skip();
+            foreach (string sentence in _questAsset.InactiveQuestDialogue)
+            {
+                sentences.Enqueue(sentence);
+            }
         }
-    }
-
-    private void Skip(bool quickSkipNeeded = false)
-    {
-        if (CurrentlySkipping)
-            return;
-
-        CurrentlySkipping = true;
-
-        if (!quickSkip || !quickSkipNeeded)
+        else if (_questAsset.State == QuestAsset.QuestState.Active)
         {
-            StartCoroutine(SkipSpeedupReset());
-            return;
+            foreach (string sentence in _questAsset.ActiveQuestDialogue)
+            {
+                sentences.Enqueue(sentence);
+            }
         }
-
-        StopCoroutine(_typewriterCoroutine);
-        dialogueText.maxVisibleCharacters = dialogueText.textInfo.characterCount;
-        _readyForNewText = true;
-        CompleteTextRevealed?.Invoke();
+        DisplayNextSentence();
     }
 
-    private IEnumerator SkipSpeedupReset()
-    {
-        yield return new WaitUntil(() => dialogueText.maxVisibleCharacters == dialogueText.textInfo.characterCount - 1);
-        CurrentlySkipping = false;
-    }
-    #endregion
+
 
     IEnumerator FadeObject(CanvasGroup canvasGroup, float start, float end)
     {

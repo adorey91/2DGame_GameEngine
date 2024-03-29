@@ -12,6 +12,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Animator _animator;
     BoxCollider2D playerCollider;
 
+    GameManager _gameManager;
     private Rigidbody2D _rb;
     private float moveSpeed;
     private Vector2 _movement;
@@ -23,13 +24,9 @@ public class PlayerController : MonoBehaviour
     bool onGrass;
     bool onRoad;
 
-    [Header("Controls")]
-    public KeyCode runKey = KeyCode.LeftShift;
-    public KeyCode rollKey = KeyCode.R;
-    
-
     public void Awake()
     {
+        _gameManager = FindAnyObjectByType<GameManager>();
         playerCollider = GetComponent<BoxCollider2D>();
         _rb = GetComponent<Rigidbody2D>();
         _animator = GetComponentInChildren<Animator>();
@@ -40,7 +37,7 @@ public class PlayerController : MonoBehaviour
         _movement.x = Input.GetAxisRaw("Horizontal");
         _movement.y = Input.GetAxisRaw("Vertical");
 
-        if (Input.GetKeyDown(rollKey))
+        if (Input.GetKeyDown(_gameManager.rollKey))
             isRolling = true;
     }
 
@@ -52,7 +49,7 @@ public class PlayerController : MonoBehaviour
 
     private void HandleMove()
     {
-        if (Input.GetKey(runKey))
+        if (Input.GetKey(_gameManager.runKey))
         {
             moveSpeed = walkSpeed * 2;
             isRunning = true;
@@ -88,9 +85,6 @@ public class PlayerController : MonoBehaviour
             _animator.SetBool("Moving", false);
     }
 
-
-    
-
     public void WalkingAudio()
     {
         if (onGrass)
@@ -103,7 +97,6 @@ public class PlayerController : MonoBehaviour
         if(audioSource.clip != null)
             audioSource.Play();
     }
-
 
     void OnTriggerEnter2D(Collider2D other)
     {

@@ -5,12 +5,11 @@ TagManager:
   serializedVersion: 2
   tags:
   - SpawnPoint
-  - Interactable
-  - Nothing
-  - InfoDialogue
-  - Thought
   - Road
   - Grass
+  - Coin
+  - Food
+  - GraveKey
   layers:
   - Default
   - TransparentFX
@@ -56,4 +55,7 @@ TagManager:
     locked: 0
   - name: Player
     uniqueID: 3907191273
+    locked: 0
+  - name: opening
+    uniqueID: 3824164283
     locked: 0

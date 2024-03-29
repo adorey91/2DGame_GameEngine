@@ -2,11 +2,11 @@ using UnityEngine;
 using System;
 using TMPro;
 using System.Linq;
+using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
     public GameManager _gameManager;
-
     [Header("UI Objects")]
     public GameObject menuUI;
     public GameObject pauseUI;
@@ -20,16 +20,15 @@ public class UIManager : MonoBehaviour
     public GameObject playerSprite;
     private PlayerController playerController;
 
-    [Header("CoinHolder")]
-    [SerializeField] GameObject coinUISprite;
-    [SerializeField] GameObject uiParent;
+    [Header("Inventory")]
+    [SerializeField] InventorySlotUI[] uiSlots;
+    [SerializeField] Image icon;
+    [SerializeField] TMP_Text quantityText;
+    private ItemSlot itemSlot;
 
     private void Awake()
     {
         playerController = player.GetComponent<PlayerController>();
-
-        if (uiParent == null)
-            uiParent = GameObject.Find("CoinHolder");
     }
 
     public void UI_MainMenu()
@@ -98,9 +97,11 @@ public class UIManager : MonoBehaviour
         Time.timeScale = time;
     }
 
-    public void AddCoinUI()
+    public void UpdateUI(ItemSlot[] items)
     {
-        GameObject NewUIGem = Instantiate(coinUISprite);
-        NewUIGem.transform.SetParent(uiParent.transform);
+        for (int i = 0; i < uiSlots.Length; i++)
+        {
+            uiSlots[i].SetItemSlot(items[i]);
+        }
     }
 }

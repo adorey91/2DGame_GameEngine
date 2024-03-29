@@ -6,10 +6,8 @@ using UnityEngine;
 [Serializable]
 public class Dialogue
 {
-    public string name;
-
-    [TextArea(3,10)]
-    public string[] sentences;
+    public string characterName;
+    public QuestAsset AssignedQuest;
     public string continueDialogue;
     public string endDialogue;
 }
