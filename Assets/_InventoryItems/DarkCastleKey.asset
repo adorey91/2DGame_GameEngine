@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7b2c84880fb2b414aa1a93e59a0d7c26, type: 3}
-  m_Name: Food
+  m_Name: DarkCastleKey
   m_EditorClassIdentifier: 
-  Icon: {fileID: 1697416438, guid: ac36e9458382b9d40931954d70515d29, type: 3}
-  Description: Plate of mush..
-  MaxStackSize: 5
+  Icon: {fileID: 21300000, guid: b01f9e7b183ab8b43abfdb135ad380ab, type: 3}
+  Description: Dark Castle Key
+  MaxStackSize: 1

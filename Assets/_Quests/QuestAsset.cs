@@ -9,6 +9,7 @@ public class QuestAsset : ScriptableObject
     public string Description;
     public QuestState State;
     public ItemData QuestItemRequired;
+    public ItemData GivenAfterCompleted;
 
     [TextArea(2, 10)]
     public string[] InactiveQuestDialogue;

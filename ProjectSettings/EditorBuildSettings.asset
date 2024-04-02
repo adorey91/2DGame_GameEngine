@@ -12,7 +12,7 @@ EditorBuildSettings:
     path: Assets/_Scenes/Gameplay_field.unity
     guid: 2cda990e2423bbf4892e6590ba056729
   - enabled: 1
-    path: Assets/_Scenes/Gameplay_Scene2.unity
+    path: Assets/_Scenes/Gameplay_DarkCastle.unity
     guid: c11f6494015a19f4685bda76c4d8a90a
   - enabled: 1
     path: Assets/_Scenes/GameEnd.unity

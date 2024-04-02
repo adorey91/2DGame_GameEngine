@@ -80,7 +80,7 @@ public class InventoryManager : MonoBehaviour
     {
         for (int i = 0; i < itemSlots.Length; i++)
         {
-            if (itemSlots[i].Item == item)
+            if (itemSlots[i].Item == item && itemSlots[i].Quantity < item.MaxStackSize)
                 return itemSlots[i];
         }
         return null;

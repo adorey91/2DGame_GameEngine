@@ -16,6 +16,7 @@ MonoBehaviour:
   Description: 'Cliffords hungry and will give you something in return '
   State: 0
   QuestItemRequired: {fileID: 11400000, guid: ad9b946cc662bda4095c6a84b0fe1fac, type: 2}
+  GivenAfterCompleted: {fileID: 11400000, guid: f95ea3f275808964da4b08992e42c22b, type: 2}
   InactiveQuestDialogue:
   - "Sup nerd\r"
   - "The name's Clifford, ford for short\r\r"

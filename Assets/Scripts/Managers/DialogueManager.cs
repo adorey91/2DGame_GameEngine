@@ -54,7 +54,8 @@ public class DialogueManager : MonoBehaviour
         personTalking = dialogue;
         _questAsset = dialogue.AssignedQuest;
 
-        _questManager.CheckActiveQuest(_questAsset);
+        if(_questAsset != null)
+            _questManager.CheckActiveQuest(_questAsset);
 
         dialogueName.text = dialogue.characterName;
         dialogueButtonText.text = dialogue.continueDialogue;
@@ -133,9 +134,6 @@ public class DialogueManager : MonoBehaviour
 
     public void ChangeDialogue(Dialogue dialogue)
     {
-        
-
-
         if(_questAsset == null)
         {
             foreach (string sentence in dialogue.NonQuestDialogue)

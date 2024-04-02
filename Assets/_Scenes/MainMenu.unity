@@ -1245,7 +1245,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 200.10962, y: 116.86694}
-  m_SizeDelta: {x: 300, y: 170.1957}
+  m_SizeDelta: {x: 350, y: 170.1957}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &332759932
 MonoBehaviour:
@@ -6773,6 +6773,9 @@ MonoBehaviour:
   quests:
   - {fileID: 11400000, guid: 9602e90940da9724288c4d83ae2af91e, type: 2}
   - {fileID: 11400000, guid: 65d48e15cb7769a43bfe2d3d4b8d1f18, type: 2}
+  - {fileID: 11400000, guid: ad7d5de21ef50f0419a9dec1d7e44d30, type: 2}
+  graveyardDoor: {fileID: 0}
+  darkCastleDoor: {fileID: 0}
 --- !u!1 &1892191097
 GameObject:
   m_ObjectHideFlags: 0
