@@ -113,7 +113,7 @@ public class GameManager : MonoBehaviour
     public void EndGame()
     {
         Application.Quit();
-        Debug.Log("Quittin Game");
+        Debug.Log("Quitting Game");
     }
     #endregion
 
@@ -170,9 +170,13 @@ public class GameManager : MonoBehaviour
     }
     #endregion
 
-    public void MovePlayerToSpawnLocation()
+    public void MovePlayerToSpawnLocation(string spawn)
     {
-        spawnPoint = GameObject.FindGameObjectWithTag("SpawnPoint");
+        if(spawn != "Gameplay_DarkCastle")
+            spawnPoint = GameObject.Find("SpawnPoint");
+        else
+            spawnPoint = GameObject.Find("SpawnPoint_ReturnFromDarkCastle");
+
         player.transform.position = spawnPoint.transform.position;
     }
 }

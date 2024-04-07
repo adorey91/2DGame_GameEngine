@@ -9,6 +9,7 @@ public class LevelManager : MonoBehaviour
     [Header("Manager")]
     public GameManager _gameManager;
     public Animator _animator;
+    string priorScene;
 
 
     // Callback function to be invoked after fade animation completes
@@ -21,6 +22,7 @@ public class LevelManager : MonoBehaviour
 
     public void LoadScene(string sceneName)
     {
+        priorScene = SceneManager.GetActiveScene().name;
         Fade("FadeOut", () =>
         {
             SceneManager.sceneLoaded += OnSceneLoaded;
@@ -48,7 +50,7 @@ public class LevelManager : MonoBehaviour
 
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        _gameManager.MovePlayerToSpawnLocation();
+        _gameManager.MovePlayerToSpawnLocation(priorScene);
         Fade("FadeIn"); // Start fade in after scene is loaded
         SceneManager.sceneLoaded -= OnSceneLoaded;
     }

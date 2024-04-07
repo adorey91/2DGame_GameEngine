@@ -5824,7 +5824,7 @@ SpriteRenderer:
   m_SortingLayerID: 1585666415
   m_SortingLayer: 1
   m_SortingOrder: 0
-  m_Sprite: {fileID: 1020027494, guid: 739bbc83ed2e3ab43939c486fd75f657, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 07273006849c66a4cb9845834cfc2466, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -5908,6 +5908,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a4a8853d467f7e4fab873b7ba862d7a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  quest: {fileID: 11400000, guid: ad7d5de21ef50f0419a9dec1d7e44d30, type: 2}
   door1: {fileID: 124865139}
   door2: {fileID: 793381272}
   door1Sprite: {fileID: 124865140}
@@ -6207,6 +6208,37 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 251577786}
   m_CullTransparentMesh: 1
+--- !u!1 &290336061
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 290336062}
+  m_Layer: 0
+  m_Name: SpawnPoint_ReturnFromDarkCastle
+  m_TagString: SpawnPoint
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &290336062
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 290336061}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -24.496, y: 6.462, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &304004696
 GameObject:
   m_ObjectHideFlags: 0
@@ -6372,9 +6404,9 @@ MonoBehaviour:
   dialogue:
     characterName: 
     NonQuestDialogue: []
-    AssignedQuest: {fileID: 0}
     continueDialogue: 
     endDialogue: 
+    AssignedQuest: {fileID: 0}
 --- !u!212 &311489017
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -6816,6 +6848,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a4a8853d467f7e4fab873b7ba862d7a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  quest: {fileID: 11400000, guid: 65d48e15cb7769a43bfe2d3d4b8d1f18, type: 2}
   door1: {fileID: 404083172}
   door2: {fileID: 1561069381}
   door1Sprite: {fileID: 0}
@@ -7099,9 +7132,9 @@ MonoBehaviour:
   dialogue:
     characterName: 
     NonQuestDialogue: []
-    AssignedQuest: {fileID: 0}
     continueDialogue: 
     endDialogue: 
+    AssignedQuest: {fileID: 0}
 --- !u!95 &712917115
 Animator:
   serializedVersion: 5
@@ -7327,7 +7360,7 @@ SpriteRenderer:
   m_SortingLayerID: 1585666415
   m_SortingLayer: 1
   m_SortingOrder: 0
-  m_Sprite: {fileID: 1020027494, guid: 739bbc83ed2e3ab43939c486fd75f657, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 07273006849c66a4cb9845834cfc2466, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -41547,16 +41580,16 @@ MonoBehaviour:
   interactType: 2
   itemToGive: {fileID: 11400000, guid: ad9b946cc662bda4095c6a84b0fe1fac, type: 2}
   _spriteRenderer: {fileID: 945438906}
-  infoMessage: Picked up plate of food
-  delayTime: 0.2
+  infoMessage: Picked up plate of mush
+  delayTime: 0.4
   infoUI: {fileID: 0}
   infoText: {fileID: 0}
   dialogue:
     characterName: 
     NonQuestDialogue: []
-    AssignedQuest: {fileID: 0}
     continueDialogue: 
     endDialogue: 
+    AssignedQuest: {fileID: 0}
 --- !u!1 &945774573
 GameObject:
   m_ObjectHideFlags: 0
@@ -41659,15 +41692,15 @@ MonoBehaviour:
   itemToGive: {fileID: 11400000, guid: 6882c76441960a2418b9eafdd31fcc4b, type: 2}
   _spriteRenderer: {fileID: 945774574}
   infoMessage: Found a key!
-  delayTime: 0.2
+  delayTime: 0.4
   infoUI: {fileID: 0}
   infoText: {fileID: 0}
   dialogue:
     characterName: 
     NonQuestDialogue: []
-    AssignedQuest: {fileID: 0}
     continueDialogue: 
     endDialogue: 
+    AssignedQuest: {fileID: 0}
 --- !u!58 &945774577
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -41949,9 +41982,9 @@ MonoBehaviour:
   dialogue:
     characterName: 
     NonQuestDialogue: []
-    AssignedQuest: {fileID: 0}
     continueDialogue: 
     endDialogue: 
+    AssignedQuest: {fileID: 0}
 --- !u!212 &971419199
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -42129,9 +42162,9 @@ MonoBehaviour:
   dialogue:
     characterName: Dark Castle Guard
     NonQuestDialogue: []
-    AssignedQuest: {fileID: 11400000, guid: ad7d5de21ef50f0419a9dec1d7e44d30, type: 2}
     continueDialogue: . . .
     endDialogue: Okay
+    AssignedQuest: {fileID: 0}
 --- !u!58 &997084804
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -48312,9 +48345,9 @@ MonoBehaviour:
   dialogue:
     characterName: Clifford
     NonQuestDialogue: []
-    AssignedQuest: {fileID: 11400000, guid: 9602e90940da9724288c4d83ae2af91e, type: 2}
     continueDialogue: . . .
     endDialogue: Okay!
+    AssignedQuest: {fileID: 0}
 --- !u!114 &1713470067
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -48849,15 +48882,15 @@ MonoBehaviour:
   itemToGive: {fileID: 11400000, guid: ac68b7bb6bfa6d0408e129a7313f3e36, type: 2}
   _spriteRenderer: {fileID: 1900166855}
   infoMessage: Found a dark key!
-  delayTime: 0.2
+  delayTime: 0.4
   infoUI: {fileID: 0}
   infoText: {fileID: 0}
   dialogue:
     characterName: 
     NonQuestDialogue: []
-    AssignedQuest: {fileID: 0}
     continueDialogue: 
     endDialogue: 
+    AssignedQuest: {fileID: 0}
 --- !u!58 &1900166854
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -49223,31 +49256,11 @@ Tilemap:
       m_TileObjectToInstantiateIndex: 65535
       dummyAlignment: 0
       m_AllTileFlags: 1073741825
-  - first: {x: -25, y: 7, z: 0}
-    second:
-      serializedVersion: 2
-      m_TileIndex: 25
-      m_TileSpriteIndex: 25
-      m_TileMatrixIndex: 0
-      m_TileColorIndex: 0
-      m_TileObjectToInstantiateIndex: 65535
-      dummyAlignment: 0
-      m_AllTileFlags: 1073741825
-  - first: {x: -24, y: 7, z: 0}
-    second:
-      serializedVersion: 2
-      m_TileIndex: 24
-      m_TileSpriteIndex: 24
-      m_TileMatrixIndex: 0
-      m_TileColorIndex: 0
-      m_TileObjectToInstantiateIndex: 65535
-      dummyAlignment: 0
-      m_AllTileFlags: 1073741825
   - first: {x: -25, y: 8, z: 0}
     second:
       serializedVersion: 2
-      m_TileIndex: 23
-      m_TileSpriteIndex: 23
+      m_TileIndex: 21
+      m_TileSpriteIndex: 21
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
@@ -49256,8 +49269,8 @@ Tilemap:
   - first: {x: -24, y: 8, z: 0}
     second:
       serializedVersion: 2
-      m_TileIndex: 22
-      m_TileSpriteIndex: 22
+      m_TileIndex: 20
+      m_TileSpriteIndex: 20
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
@@ -49286,8 +49299,8 @@ Tilemap:
   - first: {x: -25, y: 9, z: 0}
     second:
       serializedVersion: 2
-      m_TileIndex: 21
-      m_TileSpriteIndex: 21
+      m_TileIndex: 23
+      m_TileSpriteIndex: 23
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
@@ -49296,8 +49309,8 @@ Tilemap:
   - first: {x: -24, y: 9, z: 0}
     second:
       serializedVersion: 2
-      m_TileIndex: 20
-      m_TileSpriteIndex: 20
+      m_TileIndex: 22
+      m_TileSpriteIndex: 22
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
@@ -49338,6 +49351,26 @@ Tilemap:
       serializedVersion: 2
       m_TileIndex: 15
       m_TileSpriteIndex: 15
+      m_TileMatrixIndex: 0
+      m_TileColorIndex: 0
+      m_TileObjectToInstantiateIndex: 65535
+      dummyAlignment: 0
+      m_AllTileFlags: 1073741825
+  - first: {x: -25, y: 10, z: 0}
+    second:
+      serializedVersion: 2
+      m_TileIndex: 25
+      m_TileSpriteIndex: 25
+      m_TileMatrixIndex: 0
+      m_TileColorIndex: 0
+      m_TileObjectToInstantiateIndex: 65535
+      dummyAlignment: 0
+      m_AllTileFlags: 1073741825
+  - first: {x: -24, y: 10, z: 0}
+    second:
+      serializedVersion: 2
+      m_TileIndex: 24
+      m_TileSpriteIndex: 24
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
@@ -49506,17 +49539,17 @@ Tilemap:
   - m_RefCount: 1
     m_Data: {fileID: 11400000, guid: 1e9e45a2912c3bc489eb2845ec764928, type: 2}
   - m_RefCount: 1
-    m_Data: {fileID: 11400000, guid: 9bbaeb254d2e4f24eabd55282dd8ed87, type: 2}
+    m_Data: {fileID: 11400000, guid: 10a9603eebe9f5a4e8f9e97c55175dc4, type: 2}
   - m_RefCount: 1
-    m_Data: {fileID: 11400000, guid: 62e7105683146c943babcb03b0e64b72, type: 2}
+    m_Data: {fileID: 11400000, guid: 96bc54dfe8f1c1240bfe5b8a683a3f59, type: 2}
   - m_RefCount: 1
     m_Data: {fileID: 11400000, guid: 23466eae19f63ff4c9bc3392c71895a7, type: 2}
   - m_RefCount: 1
     m_Data: {fileID: 11400000, guid: bd9a98a159163454ab813d8848c7c638, type: 2}
   - m_RefCount: 1
-    m_Data: {fileID: 11400000, guid: 10a9603eebe9f5a4e8f9e97c55175dc4, type: 2}
+    m_Data: {fileID: 11400000, guid: 9bbaeb254d2e4f24eabd55282dd8ed87, type: 2}
   - m_RefCount: 1
-    m_Data: {fileID: 11400000, guid: 96bc54dfe8f1c1240bfe5b8a683a3f59, type: 2}
+    m_Data: {fileID: 11400000, guid: 62e7105683146c943babcb03b0e64b72, type: 2}
   - m_RefCount: 1
     m_Data: {fileID: 11400000, guid: ef0983e7ffc17b4479f7321febe5745d, type: 2}
   - m_RefCount: 1
@@ -49571,17 +49604,17 @@ Tilemap:
   - m_RefCount: 1
     m_Data: {fileID: 95848255, guid: 739bbc83ed2e3ab43939c486fd75f657, type: 3}
   - m_RefCount: 1
-    m_Data: {fileID: -825186985, guid: 739bbc83ed2e3ab43939c486fd75f657, type: 3}
+    m_Data: {fileID: 1827982362, guid: 739bbc83ed2e3ab43939c486fd75f657, type: 3}
   - m_RefCount: 1
-    m_Data: {fileID: 528443780, guid: 739bbc83ed2e3ab43939c486fd75f657, type: 3}
+    m_Data: {fileID: 1653596258, guid: 739bbc83ed2e3ab43939c486fd75f657, type: 3}
   - m_RefCount: 1
     m_Data: {fileID: -2011420726, guid: 739bbc83ed2e3ab43939c486fd75f657, type: 3}
   - m_RefCount: 1
     m_Data: {fileID: 1783683919, guid: 739bbc83ed2e3ab43939c486fd75f657, type: 3}
   - m_RefCount: 1
-    m_Data: {fileID: 1827982362, guid: 739bbc83ed2e3ab43939c486fd75f657, type: 3}
+    m_Data: {fileID: -825186985, guid: 739bbc83ed2e3ab43939c486fd75f657, type: 3}
   - m_RefCount: 1
-    m_Data: {fileID: 1653596258, guid: 739bbc83ed2e3ab43939c486fd75f657, type: 3}
+    m_Data: {fileID: 528443780, guid: 739bbc83ed2e3ab43939c486fd75f657, type: 3}
   - m_RefCount: 1
     m_Data: {fileID: -1248253520, guid: 739bbc83ed2e3ab43939c486fd75f657, type: 3}
   - m_RefCount: 1
@@ -49665,7 +49698,7 @@ Transform:
   m_GameObject: {fileID: 1981278626}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 23.98, y: 0, z: 0}
+  m_LocalPosition: {x: 0.18, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -49814,9 +49847,9 @@ MonoBehaviour:
   dialogue:
     characterName: Graveman
     NonQuestDialogue: []
-    AssignedQuest: {fileID: 11400000, guid: 65d48e15cb7769a43bfe2d3d4b8d1f18, type: 2}
     continueDialogue: . . .
     endDialogue: Hmm.. okay!
+    AssignedQuest: {fileID: 0}
 --- !u!58 &2100691446
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -50222,9 +50255,9 @@ MonoBehaviour:
   dialogue:
     characterName: 
     NonQuestDialogue: []
-    AssignedQuest: {fileID: 0}
     continueDialogue: 
     endDialogue: 
+    AssignedQuest: {fileID: 0}
 --- !u!114 &3231815427474685475
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -50247,9 +50280,9 @@ MonoBehaviour:
   dialogue:
     characterName: 
     NonQuestDialogue: []
-    AssignedQuest: {fileID: 0}
     continueDialogue: 
     endDialogue: 
+    AssignedQuest: {fileID: 0}
 --- !u!212 &3369396792831532073
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -50708,9 +50741,9 @@ MonoBehaviour:
     - 'Path East - Colosseum
 
       Path West - Dark Castle'
-    AssignedQuest: {fileID: 0}
     continueDialogue: Alright
     endDialogue: Got It!
+    AssignedQuest: {fileID: 0}
 --- !u!114 &7141054547157772468
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -50734,9 +50767,9 @@ MonoBehaviour:
     characterName: 
     NonQuestDialogue:
     - No Access Currently. Come Back Later
-    AssignedQuest: {fileID: 0}
     continueDialogue: 
     endDialogue: Okay
+    AssignedQuest: {fileID: 0}
 --- !u!212 &7231874474260367886
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -50831,7 +50864,7 @@ SpriteRenderer:
   m_SortingLayer: 1
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 0, g: 1, b: 0.092921734, a: 0.34901962}
+  m_Color: {r: 0, g: 1, b: 0.092921734, a: 0.07058824}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -50939,8 +50972,8 @@ Transform:
   m_GameObject: {fileID: 2938092185615228452}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -23.985, y: 7.066, z: 0}
-  m_LocalScale: {x: 1, y: 0.76413953, z: 1}
+  m_LocalPosition: {x: -23.985, y: 7.6986, z: 0}
+  m_LocalScale: {x: 1, y: 0.539024, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -51000,6 +51033,7 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 1981278627}
+  - {fileID: 290336062}
   - {fileID: 1019128814}
   - {fileID: 8489361948924435868}
   - {fileID: 825831725}

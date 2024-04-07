@@ -85,7 +85,7 @@ public class UIManager : MonoBehaviour
         activeUI.SetActive(true);
     }
 
-    void PlayerNGame(bool art, bool controller, CursorLockMode lockMode, bool visable, float time)
+    void PlayerNGame(bool art, bool controller, CursorLockMode lockMode, bool visible, float time)
     {
         playerSprite.SetActive(art);
         playerController.enabled = controller;

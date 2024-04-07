@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Doors : MonoBehaviour
 {
+    public QuestAsset quest;
+
     [SerializeField] GameObject door1;
     [SerializeField] GameObject door2;
     [SerializeField] SpriteRenderer door1Sprite;
@@ -18,6 +20,11 @@ public class Doors : MonoBehaviour
         door2Sprite = door2.GetComponent<SpriteRenderer>();
         door1collider = door1.GetComponent<BoxCollider2D>();
         door2collider = door2.GetComponent<BoxCollider2D>();
+
+        if(quest.State == QuestAsset.QuestState.Completed)
+        {
+            OpenDoor();
+        }
     }
 
     public void OpenDoor()
