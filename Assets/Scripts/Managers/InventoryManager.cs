@@ -6,7 +6,7 @@ public class InventoryManager : MonoBehaviour
 {
 
     [SerializeField] private ItemSlot[] itemSlots;
-    [SerializeField] int inventorySize = 4;
+    [SerializeField] int inventorySize = 5;
     UIManager _uiManager;
 
     public void Start()
@@ -96,13 +96,15 @@ public class InventoryManager : MonoBehaviour
         return null;
     }
 
-    public bool HasItem(ItemData item)
+    public int GetItemQuantity(ItemData item)
     {
         for (int i = 0; i < itemSlots.Length; i++)
         {
-            if (itemSlots[i].Item == item && itemSlots[i].Quantity > 0)
-                return true;
+            if (itemSlots[i].Item == item)
+            {
+                return itemSlots[i].Quantity;
+            }
         }
-        return false;
+        return 0; // If the item is not found in any slot, return 0 quantity
     }
 }

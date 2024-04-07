@@ -9,6 +9,7 @@ public class QuestAsset : ScriptableObject
     public string Description;
     public QuestState State;
     public ItemData QuestItemRequired;
+    public int QuestAmountReq;
     public ItemData GivenAfterCompleted;
 
     [TextArea(2, 10)]

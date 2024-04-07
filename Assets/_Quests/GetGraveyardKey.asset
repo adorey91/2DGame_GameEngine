@@ -16,6 +16,8 @@ MonoBehaviour:
   Description: Graveyard keeper needs his key to unlock the graveyard
   State: 2
   QuestItemRequired: {fileID: 11400000, guid: 6882c76441960a2418b9eafdd31fcc4b, type: 2}
+  QuestAmountReq: 1
+  GivenAfterCompleted: {fileID: 0}
   InactiveQuestDialogue:
   - "Hey there. Sorry but the graveyard is closed right now.\r"
   - "I seemed to have misplaced my key\u2026\r"

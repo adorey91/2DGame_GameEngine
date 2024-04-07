@@ -90,7 +90,7 @@ public class UIManager : MonoBehaviour
         playerSprite.SetActive(art);
         playerController.enabled = controller;
         Cursor.lockState = lockMode;
-        Cursor.visible = visable;
+        Cursor.visible = visible;
         Time.timeScale = time;
     }
 

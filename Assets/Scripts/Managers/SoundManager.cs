@@ -19,28 +19,28 @@ public class SoundManager : MonoBehaviour
     {
         audioSource.clip = mainMenu;
         audioSource.loop = true;
-        audioSource.volume = 0.02f;
+        audioSource.volume = 0.1f;
         audioSource.Play();
     }
 
     public void MainMenuAudio()
     {
-        ChangeAudio(0.01f, mainMenu);
+        ChangeAudio(0.1f, mainMenu);
     }
 
     public void GameplayAudio()
     {
-        ChangeAudio(0.02f, gamePlay);
+        ChangeAudio(0.1f, gamePlay);
     }
 
     public void GameWinAudio()
     {
-        ChangeAudio(0.03f, gameWin);
+        ChangeAudio(0.1f, gameWin);
     }
 
     public void GameOverAudio()
     {
-        ChangeAudio(0.02f, gameOver);
+        ChangeAudio(0.1f, gameOver);
         audioSource.pitch = -1.2f;
     }
 

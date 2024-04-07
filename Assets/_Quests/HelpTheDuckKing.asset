@@ -10,13 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 717a0e7ee0dc60d4ea61e13b1f61a210, type: 3}
-  m_Name: BreakIntoCastle
+  m_Name: HelpTheDuckKing
   m_EditorClassIdentifier: 
   Name: Break Into Castle
   Description: Break into the main castle
   State: 0
-  QuestItemRequired: {fileID: 0}
+  QuestItemRequired: {fileID: 11400000, guid: 8813d63282369af4a8d9c6995e6cf4b7, type: 2}
+  QuestAmountReq: 1
   GivenAfterCompleted: {fileID: 0}
-  InactiveQuestDialogue: []
-  ActiveQuestDialogue: []
-  CompletedQuestDialogue: []
+  InactiveQuestDialogue:
+  - <I>QUACK</i>
+  ActiveQuestDialogue:
+  - <I>QUACK QUACK QUACK</i>
+  CompletedQuestDialogue:
+  - Quack quack

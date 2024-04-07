@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 717a0e7ee0dc60d4ea61e13b1f61a210, type: 3}
+  m_Name: BringTheWitchFrogs
+  m_EditorClassIdentifier: 
+  Name: BringTheWitchFrogs
+  Description: The witch needs frogs to complete her spell
+  State: 0
+  QuestItemRequired: {fileID: 11400000, guid: fdb1ad0762ebfe047b411d71cb432fbc, type: 2}
+  QuestAmountReq: 5
+  GivenAfterCompleted: {fileID: 11400000, guid: 8813d63282369af4a8d9c6995e6cf4b7, type: 2}
+  InactiveQuestDialogue:
+  - There's a war a brewing.. The duck king wants his castle back and will do anything
+    it takes to do so..
+  - 'I''m making this potion to calm him down. All I need are some frogs. '
+  ActiveQuestDialogue:
+  - Have you found me 5 frogs yet?
+  - You might find them at the pond
+  CompletedQuestDialogue:
+  - Thanks for this. Here's the potion to give to the duck king

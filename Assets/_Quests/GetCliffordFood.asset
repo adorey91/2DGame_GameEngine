@@ -14,9 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: 'Get Clifford Food '
   Description: 'Cliffords hungry and will give you something in return '
-  State: 0
+  State: 2
   QuestItemRequired: {fileID: 11400000, guid: ad9b946cc662bda4095c6a84b0fe1fac, type: 2}
-  GivenAfterCompleted: {fileID: 11400000, guid: f95ea3f275808964da4b08992e42c22b, type: 2}
+  QuestAmountReq: 1
+  GivenAfterCompleted: {fileID: 11400000, guid: ac68b7bb6bfa6d0408e129a7313f3e36, type: 2}
   InactiveQuestDialogue:
   - "Sup nerd\r"
   - "The name's Clifford, ford for short\r\r"
@@ -30,6 +31,6 @@ MonoBehaviour:
   - 'Have you found any food yet? '
   - 'I''m starving! '
   CompletedQuestDialogue:
-  - 'I''m actually not starving '
+  - Well. Here's your shiny thing, but I'm actually not hungry.
   - 'I''m going to hide this in my home for later. '
   - "<sub> No one will find it there\u2026 </sub> "
