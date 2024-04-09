@@ -12,8 +12,8 @@ public class UIManager : MonoBehaviour
     public GameObject pauseUI;
     public GameObject gameUI;
     public GameObject optionsUI;
-    public GameObject gameOverUI;
-    public GameObject gameWinUI;
+    public GameObject creditsUI;
+    public GameObject gameCompletedUI;
 
     [Header("Player Settings")]
     public GameObject player;
@@ -48,16 +48,16 @@ public class UIManager : MonoBehaviour
         SetUIActive(pauseUI);
     }
 
-    public void UI_GameOver()
+    public void UI_Credits()
     {
         PlayerNGame(false, false, CursorLockMode.None, true, 0f);
-        SetUIActive(gameOverUI);
+        SetUIActive(creditsUI);
     }
 
-    public void UI_GameWin()
+    public void UI_GameCompleted()
     {
         PlayerNGame(false, false, CursorLockMode.None, true, 0f);
-        SetUIActive(gameWinUI);
+        SetUIActive(gameCompletedUI);
     }
 
     public void UI_Options()
@@ -79,8 +79,8 @@ public class UIManager : MonoBehaviour
         pauseUI.SetActive(false);
         gameUI.SetActive(false);
         optionsUI.SetActive(false);
-        gameOverUI.SetActive(false);
-        gameWinUI.SetActive(false);
+        creditsUI.SetActive(false);
+        gameCompletedUI.SetActive(false);
 
         activeUI.SetActive(true);
     }

@@ -1236,8 +1236,8 @@ MonoBehaviour:
   interactType: 0
   itemToGive: {fileID: 0}
   _spriteRenderer: {fileID: 0}
-  infoMessage: It's a goldfish, he looks bored
-  delayTime: 0.8
+  infoMessage: It's a goldfish.. Does he have a help sign?!
+  delayTime: 1.5
   infoUI: {fileID: 0}
   infoText: {fileID: 0}
   dialogue:

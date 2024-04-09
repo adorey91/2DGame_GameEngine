@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -7,6 +8,7 @@ public class QuestManager : MonoBehaviour
 {
     public QuestAsset[] quests;
     private InventoryManager _inventoryManager;
+    private GameManager _gameManager;
     private GameObject graveyardDoorObject;
     private GameObject darkCastleDoorObject;
     [SerializeField] Doors graveyardDoor;
@@ -15,6 +17,7 @@ public class QuestManager : MonoBehaviour
     void Start()
     {
         _inventoryManager = FindObjectOfType<InventoryManager>();
+        _gameManager = FindObjectOfType<GameManager>();
 
         foreach (QuestAsset quest in quests)
         {
@@ -36,6 +39,13 @@ public class QuestManager : MonoBehaviour
                 darkCastleDoorObject = GameObject.Find("DarkCastleDoors1");
                 darkCastleDoor = darkCastleDoorObject.GetComponent<Doors>();
             }
+        }
+
+        bool allQuestsCompleted = quests.All(quest => quest.State == QuestAsset.QuestState.Completed);
+        if(allQuestsCompleted)
+        {
+            Debug.Log("All quests completed");
+            _gameManager.LoadState("GameComplete");
         }
     }
 
@@ -68,4 +78,6 @@ public class QuestManager : MonoBehaviour
         if (quest.name == "GetDarkCastleKey" && quest.State == QuestAsset.QuestState.Completed)
             darkCastleDoor.OpenDoor();
     }
+
+    
 }

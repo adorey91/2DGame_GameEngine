@@ -16,9 +16,9 @@ public class CameraBackground : MonoBehaviour
     public void Start()
     {
         playerCamera = GetComponent<Camera>();
-        redSlider.value = 0.5f;
-        greenSlider.value = 0.7f;
-        blueSlider.value = 1f;
+        redSlider.value = 0.3962264f;
+        greenSlider.value = 0.3962264f;
+        blueSlider.value = 0.3962264f;
     }
 
     public void Update()

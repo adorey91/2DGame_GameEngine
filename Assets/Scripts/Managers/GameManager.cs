@@ -11,8 +11,8 @@ public class GameManager : MonoBehaviour
         Gameplay,
         Pause,
         Options,
-        GameOver,
-        GameWin,
+        Credits,
+        GameComplete,
         Dialogue,
     }
 
@@ -67,8 +67,8 @@ public class GameManager : MonoBehaviour
             case GameState.Gameplay: GamePlay(); break;
             case GameState.Pause: Pause(); break;
             case GameState.Options: Options(); break;
-            case GameState.GameWin: GameWin(); break;
-            case GameState.GameOver: GameOver(); break;
+            case GameState.GameComplete: GameComplete(); break;
+            case GameState.Credits: Credits(); break;
             case GameState.Dialogue: Dialogue(); break;
         }
         currentState = gameState;
@@ -98,10 +98,10 @@ public class GameManager : MonoBehaviour
             gameState = GameState.Pause;
         else if (state == "Gameplay")
             gameState = GameState.Gameplay;
-        else if (state == "GameOver")
-            gameState = GameState.GameOver;
-        else if (state == "GameWin")
-            gameState = GameState.GameWin;
+        else if (state == "Credits")
+            gameState = GameState.Credits;
+        else if (state == "GameComplete")
+            gameState = GameState.GameComplete;
         else if (state == "BeforeOptions")
             gameState = stateBeforeOptions;
         else if (state == "Dialogue")
@@ -142,16 +142,15 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    void GameWin()
+    void GameComplete()
     {
-        _uiManager.UI_GameWin();
+        _uiManager.UI_GameCompleted();
         _soundManager.GameWinAudio();
     }
 
-    void GameOver()
+    void Credits()
     {
-        _uiManager.UI_GameOver();
-        _soundManager.GameOverAudio();
+        _uiManager.UI_Credits();
     }
 
     void Options()

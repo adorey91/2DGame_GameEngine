@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: Break Into Castle
   Description: Break into the main castle
-  State: 0
+  State: 2
   QuestItemRequired: {fileID: 11400000, guid: 8813d63282369af4a8d9c6995e6cf4b7, type: 2}
   QuestAmountReq: 1
   GivenAfterCompleted: {fileID: 0}
