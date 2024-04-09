@@ -22,10 +22,7 @@ public class QuestManager : MonoBehaviour
         _inventoryManager = FindObjectOfType<InventoryManager>();
         _gameManager = FindObjectOfType<GameManager>();
 
-        foreach (QuestAsset quest in quests) // sets all quests to inactive on start
-        {
-            quest.State = QuestAsset.QuestState.Inactive;
-        }
+        ResetAllQuests();
     }
 
     public void Update()
@@ -61,6 +58,14 @@ public class QuestManager : MonoBehaviour
         {
             Debug.Log("All quests completed");
             _gameManager.LoadState("GameComplete");
+        }
+    }
+
+    public void ResetAllQuests()
+    {
+        foreach (QuestAsset quest in quests) // sets all quests to inactive on start
+        {
+            quest.State = QuestAsset.QuestState.Inactive;
         }
     }
 

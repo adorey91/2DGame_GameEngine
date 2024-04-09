@@ -12,7 +12,7 @@ public class Interaction : MonoBehaviour
 
     private void Start()
     {
-        _gameManager = FindAnyObjectByType<GameManager>();
+        _gameManager = FindObjectOfType<GameManager>();
         canInteract.SetActive(false);
     }
 

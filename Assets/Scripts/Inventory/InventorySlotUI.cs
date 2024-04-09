@@ -13,7 +13,7 @@ public class InventorySlotUI : MonoBehaviour
     public void SetItemSlot(ItemSlot slot)
     {
         itemSlot = slot;
-        if (slot.Item == null)
+        if (itemSlot.Item == null)
         {
             icon.enabled = false;
             quantityText.text = string.Empty;
@@ -22,7 +22,7 @@ public class InventorySlotUI : MonoBehaviour
         {
             icon.enabled = true;
             icon.sprite = slot.Item.Icon;
-            quantityText.text = slot.Quantity > 1 ? slot.Quantity.ToString() : string.Empty;
+            quantityText.text = itemSlot.Quantity > 1 ? itemSlot.Quantity.ToString() : string.Empty;
         }
     }
 }

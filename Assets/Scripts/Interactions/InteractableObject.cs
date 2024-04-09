@@ -17,6 +17,7 @@ public class InteractableObject : MonoBehaviour
 
     public InteractType interactType;
     InventoryManager _inventoryManager;
+    ItemManager _itemManager;
 
     [Header("Pickup Settings")]
     [SerializeField] private ItemData itemToGive;
@@ -33,26 +34,21 @@ public class InteractableObject : MonoBehaviour
 
     public void Awake()
     {
-        _inventoryManager = FindAnyObjectByType<InventoryManager>();
+        _inventoryManager = FindObjectOfType<InventoryManager>();
+        _itemManager = FindObjectOfType<ItemManager>();
 
         infoUI = GameObject.Find("InfoUI");
         infoText = GameObject.Find("InfoText").GetComponent<TMP_Text>();
         bubble = GameObject.Find("Bubble").GetComponent<Image>();
+       
         bubble.enabled = false;
         infoText.text = null;
+
+        //if (itemToGive != null && _itemManager.IsItemCollected(itemToGive))
+        if (itemToGive != null && itemToGive.isCollected)
+            gameObject.SetActive(false);
     }
 
-    private void Start()
-    {
-        if (itemToGive != null)
-        {
-            if (itemToGive.itemState == ItemData.State.Collected)
-            {
-                this.gameObject.SetActive(false);
-                Debug.Log($"{this} disabled");
-            }
-        }
-    }
 
 
     public void Info()
@@ -64,6 +60,7 @@ public class InteractableObject : MonoBehaviour
     {
         StartCoroutine(ShowInfo(infoMessage, delayTime));
         _inventoryManager.AddItem(itemToGive);
+        //_itemManager.CollectItem(itemToGive);
     }
 
     public void Dialogue()

@@ -11,11 +11,5 @@ public class ItemData : ScriptableObject
     public Sprite Icon;
     public string Description;
     public int MaxStackSize;
-    public State itemState;
-
-    public enum State
-    {
-        Available,
-        Collected,
-    }
+    public bool isCollected;
 }

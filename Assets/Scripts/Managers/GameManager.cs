@@ -14,6 +14,7 @@ public class GameManager : MonoBehaviour
         Credits,
         GameComplete,
         Dialogue,
+        Confirmation,
     }
 
     public GameState gameState;
@@ -24,6 +25,8 @@ public class GameManager : MonoBehaviour
     public UIManager _uiManager;
     public LevelManager _levelManager;
     public SoundManager _soundManager;
+    public ItemManager _itemManager;
+    public QuestManager _questManager;
 
     public GameObject spawnPoint;
     public GameObject player;
@@ -70,6 +73,7 @@ public class GameManager : MonoBehaviour
             case GameState.GameComplete: GameComplete(); break;
             case GameState.Credits: Credits(); break;
             case GameState.Dialogue: Dialogue(); break;
+            case GameState.Confirmation: Confirmation(); break;
         }
         currentState = gameState;
     }
@@ -104,6 +108,8 @@ public class GameManager : MonoBehaviour
             gameState = GameState.GameComplete;
         else if (state == "BeforeOptions")
             gameState = stateBeforeOptions;
+        else if (state == "Confirmation")
+            gameState = GameState.Confirmation;
         else if (state == "Dialogue")
             gameState = GameState.Dialogue;
         else
@@ -121,6 +127,8 @@ public class GameManager : MonoBehaviour
     void MainMenu()
     {
         _uiManager.UI_MainMenu();
+        _itemManager.ResetAllItems();
+        _questManager.ResetAllQuests();
         _soundManager.MainMenuAudio();
         volumeLowered = false;
     }
@@ -141,6 +149,12 @@ public class GameManager : MonoBehaviour
             volumeLowered = true;
         }
     }
+
+    void Confirmation()
+    {
+        _uiManager.UI_Confirmation();
+    }
+
 
     void GameComplete()
     {

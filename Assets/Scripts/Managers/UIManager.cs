@@ -16,6 +16,7 @@ public class UIManager : MonoBehaviour
     public GameObject creditsUI;
     public GameObject gameCompletedUI;
     public GameObject dialogueUI;
+    public GameObject confirmationUI;
 
     [Header("Player Settings")]
     public GameObject player;
@@ -32,7 +33,6 @@ public class UIManager : MonoBehaviour
     private void Awake()
     {
         playerController = player.GetComponent<PlayerController>();
-
         canvGroup = dialogueUI.GetComponent<CanvasGroup>();
     }
 
@@ -60,6 +60,11 @@ public class UIManager : MonoBehaviour
     {
         PlayerNGame(false, false, CursorLockMode.None, true, 0f);
         SetUIActive(creditsUI);
+    }
+
+    public void UI_Confirmation()
+    {
+        SetUIActive(confirmationUI);
     }
 
     public void UI_GameCompleted()
@@ -94,6 +99,7 @@ public class UIManager : MonoBehaviour
         creditsUI.SetActive(false);
         gameCompletedUI.SetActive(false);
         dialogueUI.SetActive(false);
+        confirmationUI.SetActive(false);
 
         activeUI.SetActive(true);
     }
