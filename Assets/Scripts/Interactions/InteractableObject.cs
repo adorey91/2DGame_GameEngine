@@ -31,7 +31,6 @@ public class InteractableObject : MonoBehaviour
     [Header("Dialogue Settings")]
     public Dialogue dialogue;
 
-
     public void Awake()
     {
         _inventoryManager = FindAnyObjectByType<InventoryManager>();
@@ -47,8 +46,11 @@ public class InteractableObject : MonoBehaviour
     {
         if (itemToGive != null)
         {
-            if (itemToGive.collected == true)
-                Destroy(this.gameObject);
+            if (itemToGive.itemState == ItemData.State.Collected)
+            {
+                this.gameObject.SetActive(false);
+                Debug.Log($"{this} disabled");
+            }
         }
     }
 

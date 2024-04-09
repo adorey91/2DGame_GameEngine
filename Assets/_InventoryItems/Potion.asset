@@ -15,3 +15,4 @@ MonoBehaviour:
   Icon: {fileID: 21300000, guid: 9b42449108511a34cb8372543691ccd3, type: 3}
   Description: Potion for the duck king
   MaxStackSize: 1
+  collected: 0

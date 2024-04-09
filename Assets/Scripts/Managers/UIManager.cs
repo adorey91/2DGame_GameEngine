@@ -25,10 +25,6 @@ public class UIManager : MonoBehaviour
     [Header("Inventory")]
     [SerializeField] InventorySlotUI[] itemUISlots;
 
-    [Header("Quests")]
-    [SerializeField]
-    QuestSlotUI[] questUISlots;
-
     [Header("DialogueFade")]
     [SerializeField] float fadeSpeed;
     private CanvasGroup canvGroup;
@@ -116,14 +112,6 @@ public class UIManager : MonoBehaviour
         for (int i = 0; i < itemUISlots.Length; i++)
         {
             itemUISlots[i].SetItemSlot(items[i]);
-        }
-    }
-
-    public void UpdateQuestUI(QuestSlot[] quests)
-    {
-        for(int i = 0; i < questUISlots.Length; i++)
-        {
-            questUISlots[i].SetQuestSlots(quests[i]);
         }
     }
 

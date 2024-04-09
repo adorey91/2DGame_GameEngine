@@ -7,9 +7,6 @@ using UnityEngine.SceneManagement;
 public class QuestManager : MonoBehaviour
 {
     public QuestAsset[] quests;
-    public QuestSlot[] questSlots;
-    [SerializeField] int questAmount = 5;
-    private UIManager _uiManager;
     private InventoryManager _inventoryManager;
     private GameManager _gameManager;
     private GameObject graveyardDoorObject;
@@ -24,12 +21,6 @@ public class QuestManager : MonoBehaviour
     {
         _inventoryManager = FindObjectOfType<InventoryManager>();
         _gameManager = FindObjectOfType<GameManager>();
-        _uiManager = FindObjectOfType<UIManager>();
-            questSlots = new QuestSlot[questAmount];
-
-        for(int i = 0; i < questAmount; i++)
-            questSlots[i] = new QuestSlot();
-
 
         foreach (QuestAsset quest in quests) // sets all quests to inactive on start
         {
@@ -112,34 +103,5 @@ public class QuestManager : MonoBehaviour
             graveyardDoor.OpenDoor();
         if (quest.name == "GetDarkCastleKey" && quest.State == QuestAsset.QuestState.Completed)
             darkCastleDoor.OpenDoor();
-    }
-
-    public void AddQuest(QuestAsset quest)
-    {
-        QuestSlot slot = FindAvailableQuestSlot(quest);
-
-        slot = GetEmptySlot();
-
-        _uiManager.UpdateQuestUI(questSlots);
-    }
-
-    QuestSlot FindAvailableQuestSlot(QuestAsset quest)
-    {
-        for(int i = 0; i < questSlots.Length; i++)
-        {
-            return questSlots[i];
-        }
-
-        return null;
-    }
-
-    QuestSlot GetEmptySlot()
-    {
-        for(int i = 0; i < questSlots.Length;i++)
-        {
-            if (questSlots[i] == null)
-                return questSlots[i];
-        }
-        return null;
     }
 }

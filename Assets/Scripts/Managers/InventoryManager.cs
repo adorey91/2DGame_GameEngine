@@ -28,7 +28,7 @@ public class InventoryManager : MonoBehaviour
     {
         ItemSlot slot = FindAvailableItemSlot(item);
 
-        item.collected = true;
+        item.itemState = ItemData.State.Collected;
 
         if (slot != null)
         {

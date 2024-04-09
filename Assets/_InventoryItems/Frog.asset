@@ -13,5 +13,6 @@ MonoBehaviour:
   m_Name: Frog
   m_EditorClassIdentifier: 
   Icon: {fileID: 21300000, guid: 094f385b0fba1894dabb2a25ff0d2517, type: 3}
-  Description: It's something like a frog?
+  Description: It's something like a frog
   MaxStackSize: 5
+  collected: 0
