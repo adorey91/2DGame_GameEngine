@@ -3,6 +3,7 @@ using System;
 using TMPro;
 using System.Linq;
 using UnityEngine.UI;
+using System.Collections;
 
 public class UIManager : MonoBehaviour
 {
@@ -14,6 +15,7 @@ public class UIManager : MonoBehaviour
     public GameObject optionsUI;
     public GameObject creditsUI;
     public GameObject gameCompletedUI;
+    public GameObject dialogueUI;
 
     [Header("Player Settings")]
     public GameObject player;
@@ -23,9 +25,15 @@ public class UIManager : MonoBehaviour
     [Header("Inventory")]
     [SerializeField] InventorySlotUI[] uiSlots;
 
+    [Header("DialogueFade")]
+    [SerializeField] float fadeSpeed;
+    private CanvasGroup canvGroup;
+
     private void Awake()
     {
         playerController = player.GetComponent<PlayerController>();
+
+        canvGroup = dialogueUI.GetComponent<CanvasGroup>();
     }
 
     public void UI_MainMenu()
@@ -48,7 +56,7 @@ public class UIManager : MonoBehaviour
         SetUIActive(pauseUI);
     }
 
-    public void UI_Credits()
+      public void UI_Credits()
     {
         PlayerNGame(false, false, CursorLockMode.None, true, 0f);
         SetUIActive(creditsUI);
@@ -69,6 +77,10 @@ public class UIManager : MonoBehaviour
     public void UI_Dialogue()
     {
         PlayerNGame(true, false, CursorLockMode.None, true, 1f);
+        canvGroup.alpha = 0f;
+        SetUIActive(dialogueUI);
+        StartCoroutine(FadeObject(canvGroup, 0f, 1f));
+
         player.GetComponent<Interaction>().enabled = false;
         playerSprite.GetComponent<Animator>().enabled = false;
     }
@@ -81,6 +93,7 @@ public class UIManager : MonoBehaviour
         optionsUI.SetActive(false);
         creditsUI.SetActive(false);
         gameCompletedUI.SetActive(false);
+        dialogueUI.SetActive(false);
 
         activeUI.SetActive(true);
     }
@@ -99,6 +112,19 @@ public class UIManager : MonoBehaviour
         for (int i = 0; i < uiSlots.Length; i++)
         {
             uiSlots[i].SetItemSlot(items[i]);
+        }
+    }
+
+    IEnumerator FadeObject(CanvasGroup canvasGroup, float start, float end)
+    {
+        float counter = 0f;
+
+        while (counter < fadeSpeed)
+        {
+            counter += Time.deltaTime;
+            canvasGroup.alpha = Mathf.Lerp(start, end, counter / fadeSpeed);
+
+            yield return null;
         }
     }
 }

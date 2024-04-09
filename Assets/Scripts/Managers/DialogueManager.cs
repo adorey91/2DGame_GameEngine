@@ -10,52 +10,50 @@ public class DialogueManager : MonoBehaviour
     private Queue<string> sentences;
     private GameManager _gameManager;
     private QuestManager _questManager;
-    private InventoryManager _inventoryManager;
     QuestAsset _questAsset;
 
     [Header("Dialogue UI")]
-    public GameObject dialogueUI;
     public GameObject dialogueButton;
     public TMP_Text dialogueName;
     public TMP_Text dialogueText;
     public TMP_Text dialogueButtonText;
+    private string endDialogue;
     Dialogue personTalking;
 
-    [Header("Dialogue Fade")]
-    [SerializeField] float fadeSpeed;
-    private string endDialogue;
-    private bool isFaded = true;
-    CanvasGroup canvGroup;
 
     [Header("Typewriter Settings")]
     [SerializeField] float typingSpeed = 0.04f;
     private bool canContinueToNextLine = true;
     private Coroutine displayLineCoroutine;
     private bool isAddingRichText;
+    bool NPCTalking = false;
 
     public void Start()
     {
-        canvGroup = dialogueUI.GetComponent<CanvasGroup>();
         _gameManager = FindObjectOfType<GameManager>();
         _questManager = FindObjectOfType<QuestManager>();
+
         sentences = new Queue<string>();
-        dialogueUI.SetActive(false);
     }
 
-
+    /// <summary>
+    /// Loads dialogue state. 
+    /// </summary>
+    /// <param name="dialogue"></param>
     public void StartDialogue(Dialogue dialogue)
     {
         _gameManager.LoadState("Dialogue");
         sentences.Clear();
-        dialogueUI.SetActive(true);
-        StartCoroutine(FadeObject(canvGroup, canvGroup.alpha, isFaded ? 1 : 0));
-        isFaded = !isFaded;
+        NPCTalking = false;
 
         personTalking = dialogue;
         _questAsset = dialogue.AssignedQuest;
 
-        if(_questAsset != null)
+        if (_questAsset != null)
+        {
             _questManager.CheckActiveQuest(_questAsset);
+            NPCTalking = true;
+        }
 
         dialogueName.text = dialogue.characterName;
         dialogueButtonText.text = dialogue.continueDialogue;
@@ -94,8 +92,7 @@ public class DialogueManager : MonoBehaviour
 
         foreach (char letter in line.ToCharArray())
         {
-            //if the submit button is pressed
-            if (Input.GetKeyDown(_gameManager.interactKey))
+            if (Input.GetKey(KeyCode.Mouse0) || NPCTalking == false)
             {
                 dialogueText.text = line;
                 break;
@@ -124,18 +121,18 @@ public class DialogueManager : MonoBehaviour
         if (_questAsset != null && _questAsset.State == QuestAsset.QuestState.Inactive)
             _questManager.StartQuest(personTalking.AssignedQuest);
 
-        StartCoroutine(FadeObject(canvGroup, canvGroup.alpha, isFaded ? 1 : 0));
-        isFaded = !isFaded;
         sentences.Clear();
-        dialogueUI.SetActive(false);
 
         _gameManager.LoadState("Gameplay");
     }
 
     public void ChangeDialogue(Dialogue dialogue)
     {
-        if(_questAsset == null)
+        sentences.Clear();
+
+        if (_questAsset == null)
         {
+            // adds non quest related dialogue
             foreach (string sentence in dialogue.NonQuestDialogue)
             {
                 sentences.Enqueue(sentence);
@@ -143,43 +140,14 @@ public class DialogueManager : MonoBehaviour
         }
         else
         {
-            if (_questAsset.State == QuestAsset.QuestState.Inactive)
+            // adds quest related dialogue
+            var dialogueLines = _questAsset.GetDialogueLines();
+            foreach (string sentence in dialogueLines)
             {
-                foreach (string sentence in _questAsset.InactiveQuestDialogue)
-                {
-                    sentences.Enqueue(sentence);
-                }
-            }
-            else if (_questAsset.State == QuestAsset.QuestState.Active)
-            {
-                foreach (string sentence in _questAsset.ActiveQuestDialogue)
-                {
-                    sentences.Enqueue(sentence);
-                }
-            }
-            else if (_questAsset.State == QuestAsset.QuestState.Completed)
-            {
-                foreach (string sentence in _questAsset.CompletedQuestDialogue)
-                {
-                    sentences.Enqueue(sentence);
-                }
+                sentences.Enqueue(sentence);
             }
         }
+
         DisplayNextSentence();
-    }
-
-
-
-    IEnumerator FadeObject(CanvasGroup canvasGroup, float start, float end)
-    {
-        float counter = 0f;
-
-        while (counter < fadeSpeed)
-        {
-            counter += Time.deltaTime;
-            canvasGroup.alpha = Mathf.Lerp(start, end, counter / fadeSpeed);
-
-            yield return null;
-        }
     }
 }

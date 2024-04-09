@@ -45,8 +45,8 @@ public class GameManager : MonoBehaviour
         gameState = GameState.MainMenu;
         StateSwitch();
 
-        interactText.text = $"Interact: {interactKey}";
-        pauseText.text = $"Pause: {pauseKey}";
+        interactText.text = $"{interactKey}";
+        pauseText.text = $"{pauseKey}";
     }
 
     public void Update()

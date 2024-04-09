@@ -9,16 +9,12 @@ public class InteractableObject : MonoBehaviour
 {
     public enum InteractType
     {
-        Nothing,
         Info,
         Pickup,
         Dialogue,
-        Signs,
     }
 
     public InteractType interactType;
-    GameManager _gameManager;
-    UIManager _uiManager;
     InventoryManager _inventoryManager;
 
     [Header("Pickup Settings")]
@@ -37,8 +33,6 @@ public class InteractableObject : MonoBehaviour
 
     public void Awake()
     {
-        _gameManager = FindAnyObjectByType<GameManager>();
-        _uiManager = FindAnyObjectByType<UIManager>();
         _inventoryManager = FindAnyObjectByType<InventoryManager>();
 
         infoUI = GameObject.Find("InfoUI");
@@ -47,10 +41,6 @@ public class InteractableObject : MonoBehaviour
         infoText.text = null;
     }
 
-    public void Nothing()
-    {
-        StartCoroutine(ShowInfo(infoMessage, delayTime));
-    }
 
     public void Info()
     {

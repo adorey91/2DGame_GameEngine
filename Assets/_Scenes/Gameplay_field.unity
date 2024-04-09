@@ -170,7 +170,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5792e7110612844089b11494783126c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  interactType: 2
+  interactType: 1
   itemToGive: {fileID: 11400000, guid: fdb1ad0762ebfe047b411d71cb432fbc, type: 2}
   _spriteRenderer: {fileID: 11271242}
   infoMessage: Picked up frog?
@@ -180,9 +180,8 @@ MonoBehaviour:
   dialogue:
     characterName: 
     NonQuestDialogue: []
-    continueDialogue: 
-    endDialogue: 
     AssignedQuest: {fileID: 0}
+    endDialogue: 
 --- !u!212 &11271242
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -6622,7 +6621,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5792e7110612844089b11494783126c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  interactType: 2
+  interactType: 1
   itemToGive: {fileID: 11400000, guid: f95ea3f275808964da4b08992e42c22b, type: 2}
   _spriteRenderer: {fileID: 6989912956325557223}
   infoMessage: Picked up coin
@@ -6632,9 +6631,8 @@ MonoBehaviour:
   dialogue:
     characterName: 
     NonQuestDialogue: []
-    continueDialogue: 
-    endDialogue: 
     AssignedQuest: {fileID: 0}
+    endDialogue: 
 --- !u!212 &311489017
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -7179,7 +7177,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5792e7110612844089b11494783126c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  interactType: 3
+  interactType: 2
   itemToGive: {fileID: 0}
   _spriteRenderer: {fileID: 0}
   infoMessage: 
@@ -7190,9 +7188,8 @@ MonoBehaviour:
     characterName: 
     NonQuestDialogue:
     - Here lies someone who doesn't doesnt deserve more than a rock for a mark
-    continueDialogue: 
-    endDialogue: 
     AssignedQuest: {fileID: 0}
+    endDialogue: 
 --- !u!1 &652167527
 GameObject:
   m_ObjectHideFlags: 0
@@ -7240,7 +7237,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5792e7110612844089b11494783126c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  interactType: 2
+  interactType: 1
   itemToGive: {fileID: 11400000, guid: fdb1ad0762ebfe047b411d71cb432fbc, type: 2}
   _spriteRenderer: {fileID: 652167532}
   infoMessage: Picked up frog?
@@ -7250,9 +7247,8 @@ MonoBehaviour:
   dialogue:
     characterName: 
     NonQuestDialogue: []
-    continueDialogue: 
-    endDialogue: 
     AssignedQuest: {fileID: 0}
+    endDialogue: 
 --- !u!212 &652167532
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -7494,9 +7490,8 @@ MonoBehaviour:
   dialogue:
     characterName: 
     NonQuestDialogue: []
-    continueDialogue: 
-    endDialogue: 
     AssignedQuest: {fileID: 0}
+    endDialogue: 
 --- !u!95 &712917115
 Animator:
   serializedVersion: 5
@@ -41779,7 +41774,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5792e7110612844089b11494783126c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  interactType: 2
+  interactType: 1
   itemToGive: {fileID: 11400000, guid: ad9b946cc662bda4095c6a84b0fe1fac, type: 2}
   _spriteRenderer: {fileID: 945438906}
   infoMessage: Picked up plate of mush
@@ -41789,9 +41784,8 @@ MonoBehaviour:
   dialogue:
     characterName: 
     NonQuestDialogue: []
-    continueDialogue: 
-    endDialogue: 
     AssignedQuest: {fileID: 0}
+    endDialogue: 
 --- !u!1 &945774573
 GameObject:
   m_ObjectHideFlags: 0
@@ -41890,7 +41884,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5792e7110612844089b11494783126c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  interactType: 2
+  interactType: 1
   itemToGive: {fileID: 11400000, guid: 6882c76441960a2418b9eafdd31fcc4b, type: 2}
   _spriteRenderer: {fileID: 945774574}
   infoMessage: Found a key!
@@ -41900,9 +41894,8 @@ MonoBehaviour:
   dialogue:
     characterName: 
     NonQuestDialogue: []
-    continueDialogue: 
-    endDialogue: 
     AssignedQuest: {fileID: 0}
+    endDialogue: 
 --- !u!58 &945774577
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -42174,7 +42167,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5792e7110612844089b11494783126c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  interactType: 2
+  interactType: 1
   itemToGive: {fileID: 11400000, guid: f95ea3f275808964da4b08992e42c22b, type: 2}
   _spriteRenderer: {fileID: 6989912956325557223}
   infoMessage: Picked up coin
@@ -42184,9 +42177,8 @@ MonoBehaviour:
   dialogue:
     characterName: 
     NonQuestDialogue: []
-    continueDialogue: 
-    endDialogue: 
     AssignedQuest: {fileID: 0}
+    endDialogue: 
 --- !u!212 &971419199
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -42300,7 +42292,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5792e7110612844089b11494783126c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  interactType: 3
+  interactType: 2
   itemToGive: {fileID: 0}
   _spriteRenderer: {fileID: 0}
   infoMessage: 
@@ -42311,9 +42303,8 @@ MonoBehaviour:
     characterName: 
     NonQuestDialogue:
     - Here lies someone who took others food. At least he was well fed
-    continueDialogue: 
-    endDialogue: 
     AssignedQuest: {fileID: 0}
+    endDialogue: 
 --- !u!212 &979132327
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -42465,7 +42456,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5792e7110612844089b11494783126c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  interactType: 3
+  interactType: 2
   itemToGive: {fileID: 0}
   _spriteRenderer: {fileID: 0}
   infoMessage: 
@@ -42475,9 +42466,8 @@ MonoBehaviour:
   dialogue:
     characterName: Dark Castle Guard
     NonQuestDialogue: []
-    continueDialogue: '>>'
-    endDialogue: Okay
     AssignedQuest: {fileID: 11400000, guid: ad7d5de21ef50f0419a9dec1d7e44d30, type: 2}
+    endDialogue: Okay
 --- !u!58 &997084804
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -42847,7 +42837,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5792e7110612844089b11494783126c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  interactType: 3
+  interactType: 2
   itemToGive: {fileID: 0}
   _spriteRenderer: {fileID: 0}
   infoMessage: 
@@ -42858,9 +42848,8 @@ MonoBehaviour:
     characterName: 
     NonQuestDialogue:
     - Beware of the witch to the north.
-    continueDialogue: 
-    endDialogue: '>>'
     AssignedQuest: {fileID: 0}
+    endDialogue: '>>'
 --- !u!212 &1147013237
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -44849,7 +44838,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5792e7110612844089b11494783126c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  interactType: 2
+  interactType: 1
   itemToGive: {fileID: 11400000, guid: fdb1ad0762ebfe047b411d71cb432fbc, type: 2}
   _spriteRenderer: {fileID: 1306030783}
   infoMessage: Picked up frog?
@@ -44859,9 +44848,8 @@ MonoBehaviour:
   dialogue:
     characterName: 
     NonQuestDialogue: []
-    continueDialogue: 
-    endDialogue: 
     AssignedQuest: {fileID: 0}
+    endDialogue: 
 --- !u!212 &1306030783
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -48583,7 +48571,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5792e7110612844089b11494783126c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  interactType: 2
+  interactType: 1
   itemToGive: {fileID: 11400000, guid: fdb1ad0762ebfe047b411d71cb432fbc, type: 2}
   _spriteRenderer: {fileID: 1338493463}
   infoMessage: Picked up frog?
@@ -48593,9 +48581,8 @@ MonoBehaviour:
   dialogue:
     characterName: 
     NonQuestDialogue: []
-    continueDialogue: 
-    endDialogue: 
     AssignedQuest: {fileID: 0}
+    endDialogue: 
 --- !u!212 &1338493463
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -49007,7 +48994,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5792e7110612844089b11494783126c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  interactType: 3
+  interactType: 2
   itemToGive: {fileID: 0}
   _spriteRenderer: {fileID: 0}
   infoMessage: 
@@ -49017,9 +49004,8 @@ MonoBehaviour:
   dialogue:
     characterName: Witch
     NonQuestDialogue: []
-    continueDialogue: '>>'
-    endDialogue: Okay
     AssignedQuest: {fileID: 11400000, guid: 589cad120d5dace4096a7f1132ae6820, type: 2}
+    endDialogue: Okay
 --- !u!1 &1452575039
 GameObject:
   m_ObjectHideFlags: 0
@@ -49144,7 +49130,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5792e7110612844089b11494783126c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  interactType: 2
+  interactType: 1
   itemToGive: {fileID: 11400000, guid: fdb1ad0762ebfe047b411d71cb432fbc, type: 2}
   _spriteRenderer: {fileID: 1492270977}
   infoMessage: Picked up frog?
@@ -49154,9 +49140,8 @@ MonoBehaviour:
   dialogue:
     characterName: 
     NonQuestDialogue: []
-    continueDialogue: 
-    endDialogue: 
     AssignedQuest: {fileID: 0}
+    endDialogue: 
 --- !u!212 &1492270977
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -49699,7 +49684,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5792e7110612844089b11494783126c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  interactType: 3
+  interactType: 2
   itemToGive: {fileID: 0}
   _spriteRenderer: {fileID: 0}
   infoMessage: 
@@ -49709,9 +49694,8 @@ MonoBehaviour:
   dialogue:
     characterName: Clifford
     NonQuestDialogue: []
-    continueDialogue: '>>'
-    endDialogue: Okay
     AssignedQuest: {fileID: 11400000, guid: 9602e90940da9724288c4d83ae2af91e, type: 2}
+    endDialogue: Okay
 --- !u!114 &1713470067
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -51132,7 +51116,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5792e7110612844089b11494783126c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  interactType: 3
+  interactType: 2
   itemToGive: {fileID: 0}
   _spriteRenderer: {fileID: 0}
   infoMessage: 
@@ -51142,9 +51126,8 @@ MonoBehaviour:
   dialogue:
     characterName: Graveman
     NonQuestDialogue: []
-    continueDialogue: '>>'
-    endDialogue: Hmm.. okay!
     AssignedQuest: {fileID: 11400000, guid: 65d48e15cb7769a43bfe2d3d4b8d1f18, type: 2}
+    endDialogue: Hmm.. okay!
 --- !u!58 &2100691446
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -51177,9 +51160,9 @@ CircleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.03, y: -0.15981346}
+  m_Offset: {x: 0.03, y: -0.31}
   serializedVersion: 2
-  m_Radius: 0.75
+  m_Radius: 0.8
 --- !u!212 &2100691447
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -51347,7 +51330,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5792e7110612844089b11494783126c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  interactType: 3
+  interactType: 2
   itemToGive: {fileID: 0}
   _spriteRenderer: {fileID: 0}
   infoMessage: 
@@ -51359,9 +51342,8 @@ MonoBehaviour:
     NonQuestDialogue:
     - "If you're looking for something that was here. I have it. \nIt had a weird
       taste but it's mine now!"
-    continueDialogue: 
-    endDialogue: 
     AssignedQuest: {fileID: 0}
+    endDialogue: 
 --- !u!58 &2125727363
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -51605,7 +51587,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8319359661070036972}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 4.21, y: 4.61, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -51693,15 +51675,14 @@ MonoBehaviour:
   itemToGive: {fileID: 0}
   _spriteRenderer: {fileID: 0}
   infoMessage: It's a rock.
-  delayTime: 0.6
+  delayTime: 0.8
   infoUI: {fileID: 0}
   infoText: {fileID: 0}
   dialogue:
     characterName: 
     NonQuestDialogue: []
-    continueDialogue: 
-    endDialogue: 
     AssignedQuest: {fileID: 0}
+    endDialogue: 
 --- !u!114 &3231815427474685475
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -51714,7 +51695,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5792e7110612844089b11494783126c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  interactType: 2
+  interactType: 1
   itemToGive: {fileID: 11400000, guid: f95ea3f275808964da4b08992e42c22b, type: 2}
   _spriteRenderer: {fileID: 6989912956325557223}
   infoMessage: Picked up coin
@@ -51724,9 +51705,8 @@ MonoBehaviour:
   dialogue:
     characterName: 
     NonQuestDialogue: []
-    continueDialogue: 
-    endDialogue: 
     AssignedQuest: {fileID: 0}
+    endDialogue: 
 --- !u!212 &3369396792831532073
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -52169,7 +52149,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5792e7110612844089b11494783126c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  interactType: 3
+  interactType: 2
   itemToGive: {fileID: 0}
   _spriteRenderer: {fileID: 0}
   infoMessage: 
@@ -52186,9 +52166,8 @@ MonoBehaviour:
 
       Path West - Dark Castle &
       path to the pond'
-    continueDialogue: Alright
-    endDialogue: Got It!
     AssignedQuest: {fileID: 0}
+    endDialogue: Got It!
 --- !u!114 &7141054547157772468
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -52201,7 +52180,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5792e7110612844089b11494783126c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  interactType: 3
+  interactType: 2
   itemToGive: {fileID: 0}
   _spriteRenderer: {fileID: 0}
   infoMessage: 
@@ -52212,9 +52191,8 @@ MonoBehaviour:
     characterName: 
     NonQuestDialogue:
     - No Access Currently. Come Back Later
-    continueDialogue: 
-    endDialogue: Okay
     AssignedQuest: {fileID: 0}
+    endDialogue: Okay
 --- !u!212 &7231874474260367886
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -52367,7 +52345,7 @@ GameObject:
   - component: {fileID: 2991613128278476746}
   - component: {fileID: 8073603079687374171}
   m_Layer: 0
-  m_Name: Interactable - NothingRock
+  m_Name: Interactable - Rock
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

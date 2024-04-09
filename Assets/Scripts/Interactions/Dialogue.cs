@@ -11,7 +11,7 @@ public class Dialogue
     [TextArea(2, 10)]
     public string[] NonQuestDialogue;
 
-    public string continueDialogue;
-    public string endDialogue;
     public QuestAsset AssignedQuest;
+    public string endDialogue;
+    internal string continueDialogue = ">>";
 }

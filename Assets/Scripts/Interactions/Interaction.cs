@@ -24,9 +24,7 @@ public class Interaction : MonoBehaviour
 
     void CheckInteraction()
     {
-        if (interactableObject.interactType == InteractableObject.InteractType.Nothing)
-            interactableObject.Nothing();
-        else if (interactableObject.interactType == InteractableObject.InteractType.Pickup)
+        if (interactableObject.interactType == InteractableObject.InteractType.Pickup)
             interactableObject.Pickup();
         else if (interactableObject.interactType == InteractableObject.InteractType.Info)
             interactableObject.Info();
@@ -34,7 +32,7 @@ public class Interaction : MonoBehaviour
             interactableObject.Dialogue();
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerStay2D(Collider2D collision)
     {
         interactable = collision.gameObject;
         interactableObject = interactable.GetComponent<InteractableObject>();

@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class InventoryManager : MonoBehaviour
 {
-
     [SerializeField] private ItemSlot[] itemSlots;
     [SerializeField] int inventorySize = 5;
     UIManager _uiManager;
@@ -12,14 +11,19 @@ public class InventoryManager : MonoBehaviour
     public void Start()
     {
         _uiManager = FindAnyObjectByType<UIManager>();
-        itemSlots = new ItemSlot[inventorySize];
+        itemSlots = new ItemSlot[inventorySize]; //initializes the inventory slots
 
         for (int i = 0; i < inventorySize; i++)
             itemSlots[i] = new ItemSlot();
 
-        _uiManager.UpdateUI(itemSlots);
+        _uiManager.UpdateUI(itemSlots); // Updates them so they're empty on the first load.
     }
 
+
+    /// <summary>
+    /// Adds the item either to the spot that there currently is one of that type or puts it into a new spot.
+    /// </summary>
+    /// <param name="item"></param>
     public void AddItem(ItemData item)
     {
         ItemSlot slot = FindAvailableItemSlot(item);
@@ -46,6 +50,10 @@ public class InventoryManager : MonoBehaviour
         _uiManager.UpdateUI(itemSlots);
     }
 
+    /// <summary>
+    /// Removes the item from the spot it's in if there is an item there.
+    /// </summary>
+    /// <param name="item"></param>
     public void RemoveItem(ItemData item)
     {
         for (int i = 0; i < itemSlots.Length; i++)
@@ -76,6 +84,7 @@ public class InventoryManager : MonoBehaviour
         _uiManager.UpdateUI(itemSlots);
     }
 
+    // Finds available itemslot
     ItemSlot FindAvailableItemSlot(ItemData item)
     {
         for (int i = 0; i < itemSlots.Length; i++)
@@ -86,6 +95,7 @@ public class InventoryManager : MonoBehaviour
         return null;
     }
 
+    // finds an empty slot
     ItemSlot GetEmptySlot()
     {
         for (int i = 0; i < itemSlots.Length; i++)
@@ -96,6 +106,7 @@ public class InventoryManager : MonoBehaviour
         return null;
     }
 
+    // Returns the item quantity - Using for quests
     public int GetItemQuantity(ItemData item)
     {
         for (int i = 0; i < itemSlots.Length; i++)
