@@ -23,7 +23,11 @@ public class UIManager : MonoBehaviour
     private PlayerController playerController;
 
     [Header("Inventory")]
-    [SerializeField] InventorySlotUI[] uiSlots;
+    [SerializeField] InventorySlotUI[] itemUISlots;
+
+    [Header("Quests")]
+    [SerializeField]
+    QuestSlotUI[] questUISlots;
 
     [Header("DialogueFade")]
     [SerializeField] float fadeSpeed;
@@ -107,11 +111,19 @@ public class UIManager : MonoBehaviour
         Time.timeScale = time;
     }
 
-    public void UpdateUI(ItemSlot[] items)
+    public void UpdateItemsUI(ItemSlot[] items)
     {
-        for (int i = 0; i < uiSlots.Length; i++)
+        for (int i = 0; i < itemUISlots.Length; i++)
         {
-            uiSlots[i].SetItemSlot(items[i]);
+            itemUISlots[i].SetItemSlot(items[i]);
+        }
+    }
+
+    public void UpdateQuestUI(QuestSlot[] quests)
+    {
+        for(int i = 0; i < questUISlots.Length; i++)
+        {
+            questUISlots[i].SetQuestSlots(quests[i]);
         }
     }
 

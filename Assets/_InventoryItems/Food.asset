@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Icon: {fileID: 1697416438, guid: ac36e9458382b9d40931954d70515d29, type: 3}
   Description: Plate of mush..
-  MaxStackSize: 5
+  MaxStackSize: 1

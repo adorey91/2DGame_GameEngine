@@ -19,7 +19,10 @@ public class Interaction : MonoBehaviour
     void Update()
     {
         if (Input.GetKeyDown(_gameManager.interactKey) && interactableObject != null)
+        {
+            Debug.Log("Checking Interaction");
             CheckInteraction();
+        }
     }
 
     void CheckInteraction()
@@ -32,13 +35,14 @@ public class Interaction : MonoBehaviour
             interactableObject.Dialogue();
     }
 
-    private void OnTriggerStay2D(Collider2D collision)
+    private void OnTriggerEnter2D(Collider2D other)
     {
-        interactable = collision.gameObject;
+        interactable = other.gameObject;
         interactableObject = interactable.GetComponent<InteractableObject>();
         if (interactableObject != null)
             canInteract.SetActive(true);
     }
+
 
     public void OnTriggerExit2D(Collider2D collision)
     {

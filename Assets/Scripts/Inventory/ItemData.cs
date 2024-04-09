@@ -11,4 +11,5 @@ public class ItemData : ScriptableObject
     public Sprite Icon;
     public string Description;
     public int MaxStackSize;
+    public bool collected = false;
 }

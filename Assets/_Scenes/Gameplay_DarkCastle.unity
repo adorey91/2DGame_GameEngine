@@ -985,17 +985,17 @@ MonoBehaviour:
   interactType: 2
   itemToGive: {fileID: 0}
   _spriteRenderer: {fileID: 0}
-  infoMessage: 
-  delayTime: 0
+  infoMessage: New Quest Started
+  delayTime: 1
   infoUI: {fileID: 0}
   infoText: {fileID: 0}
+  bubble: {fileID: 0}
   dialogue:
     characterName: Duck King
     NonQuestDialogue:
     - 
-    continueDialogue: '>>'
-    endDialogue: '. . . '
     AssignedQuest: {fileID: 11400000, guid: 98eabd42f1caa554d9c0f7acef193649, type: 2}
+    endDialogue: '. . . '
 --- !u!114 &785998429
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1240,12 +1240,12 @@ MonoBehaviour:
   delayTime: 1.5
   infoUI: {fileID: 0}
   infoText: {fileID: 0}
+  bubble: {fileID: 0}
   dialogue:
     characterName: 
     NonQuestDialogue: []
-    continueDialogue: 
-    endDialogue: 
     AssignedQuest: {fileID: 0}
+    endDialogue: 
 --- !u!58 &1225500758
 CircleCollider2D:
   m_ObjectHideFlags: 0

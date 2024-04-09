@@ -174,9 +174,10 @@ MonoBehaviour:
   itemToGive: {fileID: 11400000, guid: fdb1ad0762ebfe047b411d71cb432fbc, type: 2}
   _spriteRenderer: {fileID: 11271242}
   infoMessage: Picked up frog?
-  delayTime: 0.6
+  delayTime: 1
   infoUI: {fileID: 0}
   infoText: {fileID: 0}
+  bubble: {fileID: 0}
   dialogue:
     characterName: 
     NonQuestDialogue: []
@@ -6625,9 +6626,10 @@ MonoBehaviour:
   itemToGive: {fileID: 11400000, guid: f95ea3f275808964da4b08992e42c22b, type: 2}
   _spriteRenderer: {fileID: 6989912956325557223}
   infoMessage: Picked up coin
-  delayTime: 0.2
+  delayTime: 0.5
   infoUI: {fileID: 0}
   infoText: {fileID: 0}
+  bubble: {fileID: 0}
   dialogue:
     characterName: 
     NonQuestDialogue: []
@@ -6768,6 +6770,161 @@ CircleCollider2D:
   m_Offset: {x: -0.05625677, y: -0.15838623}
   serializedVersion: 2
   m_Radius: 0.31824684
+--- !u!1 &373093652
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 373093653}
+  - component: {fileID: 373093656}
+  - component: {fileID: 373093655}
+  - component: {fileID: 373093654}
+  m_Layer: 0
+  m_Name: Interactable - NoteFromWitch
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &373093653
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 373093652}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -16.22, y: -3.583, z: -0.056342237}
+  m_LocalScale: {x: 0.5625, y: 0.5625, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 540836698}
+  m_Father: {fileID: 1690413451}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!58 &373093654
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 373093652}
+  m_Enabled: 0
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 1
+--- !u!114 &373093655
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 373093652}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c5792e7110612844089b11494783126c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interactType: 2
+  itemToGive: {fileID: 0}
+  _spriteRenderer: {fileID: 0}
+  infoMessage: 
+  delayTime: 0
+  infoUI: {fileID: 0}
+  infoText: {fileID: 0}
+  bubble: {fileID: 0}
+  dialogue:
+    characterName: Note
+    NonQuestDialogue:
+    - 'Bubble, bubble, cauldron''s song, frogs croak loud, feather floats along.
+
+      Mad
+      duck king, lost in dismay, this potion''s magic will show the way.'
+    - 'Frogs and feathers, stir and swirl, in this brew, serenity unfurl.
+
+      Mad
+      duck king, no longer wild, with this potion, be reconciled.'
+    AssignedQuest: {fileID: 0}
+    endDialogue: 
+--- !u!212 &373093656
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 373093652}
+  m_Enabled: 0
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 85442763
+  m_SortingLayer: 2
+  m_SortingOrder: 0
+  m_Sprite: {fileID: 2059384593, guid: ac36e9458382b9d40931954d70515d29, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 0.16, y: 0.16}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
 --- !u!1 &386046763
 GameObject:
   m_ObjectHideFlags: 0
@@ -7091,6 +7248,7 @@ GameObject:
   - component: {fileID: 487058511}
   - component: {fileID: 487058510}
   - component: {fileID: 487058512}
+  - component: {fileID: 487058513}
   m_Layer: 0
   m_Name: InteractableSign - Gravemark
   m_TagString: Untagged
@@ -7162,7 +7320,8 @@ Transform:
   m_LocalPosition: {x: -10.103727, y: -24.491163, z: -0.056342237}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1576351663}
   m_Father: {fileID: 1690413451}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &487058512
@@ -7184,12 +7343,125 @@ MonoBehaviour:
   delayTime: 0
   infoUI: {fileID: 0}
   infoText: {fileID: 0}
+  bubble: {fileID: 0}
   dialogue:
     characterName: 
     NonQuestDialogue:
     - Here lies someone who doesn't doesnt deserve more than a rock for a mark
     AssignedQuest: {fileID: 0}
     endDialogue: 
+--- !u!58 &487058513
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 487058509}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.06, y: -0.67}
+  serializedVersion: 2
+  m_Radius: 0.5
+--- !u!1 &540836697
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 540836698}
+  - component: {fileID: 540836699}
+  m_Layer: 0
+  m_Name: collider
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &540836698
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 540836697}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 373093653}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!61 &540836699
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 540836697}
+  m_Enabled: 0
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.0025435388, y: -0.1449555}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.56250757, y: 0.5091447}
+  m_EdgeRadius: 0
 --- !u!1 &652167527
 GameObject:
   m_ObjectHideFlags: 0
@@ -7241,9 +7513,10 @@ MonoBehaviour:
   itemToGive: {fileID: 11400000, guid: fdb1ad0762ebfe047b411d71cb432fbc, type: 2}
   _spriteRenderer: {fileID: 652167532}
   infoMessage: Picked up frog?
-  delayTime: 0.6
+  delayTime: 1
   infoUI: {fileID: 0}
   infoText: {fileID: 0}
+  bubble: {fileID: 0}
   dialogue:
     characterName: 
     NonQuestDialogue: []
@@ -7487,6 +7760,7 @@ MonoBehaviour:
   delayTime: 1
   infoUI: {fileID: 0}
   infoText: {fileID: 0}
+  bubble: {fileID: 0}
   dialogue:
     characterName: 
     NonQuestDialogue: []
@@ -41720,7 +41994,7 @@ Transform:
   m_GameObject: {fileID: 945438905}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 2.44, y: -0.54, z: 0}
+  m_LocalPosition: {x: -2.576, y: -0.54, z: 0}
   m_LocalScale: {x: 0.75, y: 0.75, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -41778,9 +42052,10 @@ MonoBehaviour:
   itemToGive: {fileID: 11400000, guid: ad9b946cc662bda4095c6a84b0fe1fac, type: 2}
   _spriteRenderer: {fileID: 945438906}
   infoMessage: Picked up plate of mush
-  delayTime: 0.4
+  delayTime: 0.6
   infoUI: {fileID: 0}
   infoText: {fileID: 0}
+  bubble: {fileID: 0}
   dialogue:
     characterName: 
     NonQuestDialogue: []
@@ -41888,9 +42163,10 @@ MonoBehaviour:
   itemToGive: {fileID: 11400000, guid: 6882c76441960a2418b9eafdd31fcc4b, type: 2}
   _spriteRenderer: {fileID: 945774574}
   infoMessage: Found a key!
-  delayTime: 0.4
+  delayTime: 1
   infoUI: {fileID: 0}
   infoText: {fileID: 0}
+  bubble: {fileID: 0}
   dialogue:
     characterName: 
     NonQuestDialogue: []
@@ -42171,9 +42447,10 @@ MonoBehaviour:
   itemToGive: {fileID: 11400000, guid: f95ea3f275808964da4b08992e42c22b, type: 2}
   _spriteRenderer: {fileID: 6989912956325557223}
   infoMessage: Picked up coin
-  delayTime: 0.2
+  delayTime: 0.5
   infoUI: {fileID: 0}
   infoText: {fileID: 0}
+  bubble: {fileID: 0}
   dialogue:
     characterName: 
     NonQuestDialogue: []
@@ -42258,6 +42535,7 @@ GameObject:
   - component: {fileID: 979132325}
   - component: {fileID: 979132327}
   - component: {fileID: 979132326}
+  - component: {fileID: 979132328}
   m_Layer: 0
   m_Name: InteractableSign - Gravemark2
   m_TagString: Untagged
@@ -42277,7 +42555,8 @@ Transform:
   m_LocalPosition: {x: -13.17, y: -26.48, z: -0.056342237}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1571950659}
   m_Father: {fileID: 1690413451}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &979132326
@@ -42299,6 +42578,7 @@ MonoBehaviour:
   delayTime: 0
   infoUI: {fileID: 0}
   infoText: {fileID: 0}
+  bubble: {fileID: 0}
   dialogue:
     characterName: 
     NonQuestDialogue:
@@ -42357,6 +42637,41 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!58 &979132328
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 979132324}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.05, y: -0.57}
+  serializedVersion: 2
+  m_Radius: 0.5
 --- !u!1 &997084800
 GameObject:
   m_ObjectHideFlags: 0
@@ -42459,10 +42774,11 @@ MonoBehaviour:
   interactType: 2
   itemToGive: {fileID: 0}
   _spriteRenderer: {fileID: 0}
-  infoMessage: 
-  delayTime: 0
+  infoMessage: New Quest Started
+  delayTime: 1
   infoUI: {fileID: 0}
   infoText: {fileID: 0}
+  bubble: {fileID: 0}
   dialogue:
     characterName: Dark Castle Guard
     NonQuestDialogue: []
@@ -42844,6 +43160,7 @@ MonoBehaviour:
   delayTime: 1
   infoUI: {fileID: 0}
   infoText: {fileID: 0}
+  bubble: {fileID: 0}
   dialogue:
     characterName: 
     NonQuestDialogue:
@@ -44842,9 +45159,10 @@ MonoBehaviour:
   itemToGive: {fileID: 11400000, guid: fdb1ad0762ebfe047b411d71cb432fbc, type: 2}
   _spriteRenderer: {fileID: 1306030783}
   infoMessage: Picked up frog?
-  delayTime: 0.6
+  delayTime: 1
   infoUI: {fileID: 0}
   infoText: {fileID: 0}
+  bubble: {fileID: 0}
   dialogue:
     characterName: 
     NonQuestDialogue: []
@@ -48575,9 +48893,10 @@ MonoBehaviour:
   itemToGive: {fileID: 11400000, guid: fdb1ad0762ebfe047b411d71cb432fbc, type: 2}
   _spriteRenderer: {fileID: 1338493463}
   infoMessage: Picked up frog?
-  delayTime: 0.6
+  delayTime: 1
   infoUI: {fileID: 0}
   infoText: {fileID: 0}
+  bubble: {fileID: 0}
   dialogue:
     characterName: 
     NonQuestDialogue: []
@@ -48679,83 +48998,6 @@ BoxCollider2D:
   m_AutoTiling: 0
   serializedVersion: 2
   m_Size: {x: 1, y: 2.0374584}
-  m_EdgeRadius: 0
---- !u!1 &1356543026
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1356543027}
-  - component: {fileID: 1356543028}
-  m_Layer: 0
-  m_Name: collider
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1356543027
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1356543026}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.041, y: -0.162, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 2125727361}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!61 &1356543028
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1356543026}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: -0.0025435388, y: 0.005899653}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 0.56250757, y: 0.5448278}
   m_EdgeRadius: 0
 --- !u!1 &1381073913
 GameObject:
@@ -48997,10 +49239,11 @@ MonoBehaviour:
   interactType: 2
   itemToGive: {fileID: 0}
   _spriteRenderer: {fileID: 0}
-  infoMessage: 
-  delayTime: 0
+  infoMessage: New Quest Started
+  delayTime: 1
   infoUI: {fileID: 0}
   infoText: {fileID: 0}
+  bubble: {fileID: 0}
   dialogue:
     characterName: Witch
     NonQuestDialogue: []
@@ -49134,9 +49377,10 @@ MonoBehaviour:
   itemToGive: {fileID: 11400000, guid: fdb1ad0762ebfe047b411d71cb432fbc, type: 2}
   _spriteRenderer: {fileID: 1492270977}
   infoMessage: Picked up frog?
-  delayTime: 0.6
+  delayTime: 1
   infoUI: {fileID: 0}
   infoText: {fileID: 0}
+  bubble: {fileID: 0}
   dialogue:
     characterName: 
     NonQuestDialogue: []
@@ -49476,6 +49720,150 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!1 &1571950658
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1571950659}
+  - component: {fileID: 1571950660}
+  m_Layer: 0
+  m_Name: collider
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1571950659
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1571950658}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 979132325}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!61 &1571950660
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1571950658}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.040991783, y: -0.31768513}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.2712574, y: 0.36462975}
+  m_EdgeRadius: 0
+--- !u!1 &1576351662
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1576351663}
+  - component: {fileID: 1576351664}
+  m_Layer: 0
+  m_Name: collider
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1576351663
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1576351662}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 487058511}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!58 &1576351664
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1576351662}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.025102139, y: -0.31935596}
+  serializedVersion: 2
+  m_Radius: 0.20574617
 --- !u!1 &1596057127
 GameObject:
   m_ObjectHideFlags: 0
@@ -49540,12 +49928,12 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 373093653}
   - {fileID: 487058511}
   - {fileID: 979132325}
   - {fileID: 6283510615179797901}
   - {fileID: 6283510615307230420}
   - {fileID: 1147013234}
-  - {fileID: 2125727361}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1713470062
@@ -49687,10 +50075,11 @@ MonoBehaviour:
   interactType: 2
   itemToGive: {fileID: 0}
   _spriteRenderer: {fileID: 0}
-  infoMessage: 
-  delayTime: 0
+  infoMessage: New Quest Started
+  delayTime: 1
   infoUI: {fileID: 0}
   infoText: {fileID: 0}
+  bubble: {fileID: 0}
   dialogue:
     characterName: Clifford
     NonQuestDialogue: []
@@ -51119,15 +51508,16 @@ MonoBehaviour:
   interactType: 2
   itemToGive: {fileID: 0}
   _spriteRenderer: {fileID: 0}
-  infoMessage: 
-  delayTime: 0
+  infoMessage: New Quest Started
+  delayTime: 1
   infoUI: {fileID: 0}
   infoText: {fileID: 0}
+  bubble: {fileID: 0}
   dialogue:
     characterName: Graveman
     NonQuestDialogue: []
     AssignedQuest: {fileID: 11400000, guid: 65d48e15cb7769a43bfe2d3d4b8d1f18, type: 2}
-    endDialogue: Hmm.. okay!
+    endDialogue: Okay
 --- !u!58 &2100691446
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -51231,154 +51621,6 @@ Transform:
   - {fileID: 1079669878}
   m_Father: {fileID: 1596057128}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &2125727359
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2125727361}
-  - component: {fileID: 2125727360}
-  - component: {fileID: 2125727362}
-  - component: {fileID: 2125727363}
-  m_Layer: 0
-  m_Name: Interactable_Sign - Note
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!212 &2125727360
-SpriteRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2125727359}
-  m_Enabled: 1
-  m_CastShadows: 0
-  m_ReceiveShadows: 0
-  m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 0
-  m_RayTraceProcedural: 0
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 0
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 85442763
-  m_SortingLayer: 2
-  m_SortingOrder: 0
-  m_Sprite: {fileID: 2059384593, guid: ac36e9458382b9d40931954d70515d29, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 0
-  m_FlipY: 0
-  m_DrawMode: 0
-  m_Size: {x: 0.16, y: 0.16}
-  m_AdaptiveModeThreshold: 0.5
-  m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
-  m_MaskInteraction: 0
-  m_SpriteSortPoint: 0
---- !u!4 &2125727361
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2125727359}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -18.943727, y: 12.588837, z: -0.056342237}
-  m_LocalScale: {x: 0.75, y: 0.75, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 1356543027}
-  m_Father: {fileID: 1690413451}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2125727362
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2125727359}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c5792e7110612844089b11494783126c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  interactType: 2
-  itemToGive: {fileID: 0}
-  _spriteRenderer: {fileID: 0}
-  infoMessage: 
-  delayTime: 0
-  infoUI: {fileID: 0}
-  infoText: {fileID: 0}
-  dialogue:
-    characterName: Note
-    NonQuestDialogue:
-    - "If you're looking for something that was here. I have it. \nIt had a weird
-      taste but it's mine now!"
-    AssignedQuest: {fileID: 0}
-    endDialogue: 
---- !u!58 &2125727363
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2125727359}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 1
 --- !u!1 &2147050379
 GameObject:
   m_ObjectHideFlags: 0
@@ -51678,6 +51920,7 @@ MonoBehaviour:
   delayTime: 0.8
   infoUI: {fileID: 0}
   infoText: {fileID: 0}
+  bubble: {fileID: 0}
   dialogue:
     characterName: 
     NonQuestDialogue: []
@@ -51699,9 +51942,10 @@ MonoBehaviour:
   itemToGive: {fileID: 11400000, guid: f95ea3f275808964da4b08992e42c22b, type: 2}
   _spriteRenderer: {fileID: 6989912956325557223}
   infoMessage: Picked up coin
-  delayTime: 0.2
+  delayTime: 0.5
   infoUI: {fileID: 0}
   infoText: {fileID: 0}
+  bubble: {fileID: 0}
   dialogue:
     characterName: 
     NonQuestDialogue: []
@@ -52156,6 +52400,7 @@ MonoBehaviour:
   delayTime: 1
   infoUI: {fileID: 0}
   infoText: {fileID: 0}
+  bubble: {fileID: 0}
   dialogue:
     characterName: 
     NonQuestDialogue:
@@ -52187,6 +52432,7 @@ MonoBehaviour:
   delayTime: 1
   infoUI: {fileID: 0}
   infoText: {fileID: 0}
+  bubble: {fileID: 0}
   dialogue:
     characterName: 
     NonQuestDialogue:

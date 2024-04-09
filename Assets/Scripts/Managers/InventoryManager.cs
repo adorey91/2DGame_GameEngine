@@ -11,12 +11,12 @@ public class InventoryManager : MonoBehaviour
     public void Start()
     {
         _uiManager = FindAnyObjectByType<UIManager>();
-        itemSlots = new ItemSlot[inventorySize]; //initializes the inventory slots
+        itemSlots = new ItemSlot[inventorySize];
 
         for (int i = 0; i < inventorySize; i++)
             itemSlots[i] = new ItemSlot();
 
-        _uiManager.UpdateUI(itemSlots); // Updates them so they're empty on the first load.
+        _uiManager.UpdateItemsUI(itemSlots); // Updates them so they're empty on the first load.
     }
 
 
@@ -28,10 +28,12 @@ public class InventoryManager : MonoBehaviour
     {
         ItemSlot slot = FindAvailableItemSlot(item);
 
+        item.collected = true;
+
         if (slot != null)
         {
             slot.Quantity++;
-            _uiManager.UpdateUI(itemSlots);
+            _uiManager.UpdateItemsUI(itemSlots);
             return;
         }
 
@@ -47,7 +49,7 @@ public class InventoryManager : MonoBehaviour
             Debug.Log("Inventory Is Full");
             return;
         }
-        _uiManager.UpdateUI(itemSlots);
+        _uiManager.UpdateItemsUI(itemSlots);
     }
 
     /// <summary>
@@ -81,7 +83,7 @@ public class InventoryManager : MonoBehaviour
             slot.Item = null;
             slot.Quantity = 0;
         }
-        _uiManager.UpdateUI(itemSlots);
+        _uiManager.UpdateItemsUI(itemSlots);
     }
 
     // Finds available itemslot

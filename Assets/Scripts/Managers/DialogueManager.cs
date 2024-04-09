@@ -10,6 +10,7 @@ public class DialogueManager : MonoBehaviour
     private Queue<string> sentences;
     private GameManager _gameManager;
     private QuestManager _questManager;
+    private InteractableObject _interactableObject;
     QuestAsset _questAsset;
 
     [Header("Dialogue UI")]
@@ -40,11 +41,12 @@ public class DialogueManager : MonoBehaviour
     /// Loads dialogue state. 
     /// </summary>
     /// <param name="dialogue"></param>
-    public void StartDialogue(Dialogue dialogue)
+    public void StartDialogue(Dialogue dialogue, InteractableObject interactableObject)
     {
         _gameManager.LoadState("Dialogue");
         sentences.Clear();
         NPCTalking = false;
+        _interactableObject = interactableObject;
 
         personTalking = dialogue;
         _questAsset = dialogue.AssignedQuest;
@@ -119,7 +121,10 @@ public class DialogueManager : MonoBehaviour
     void EndDialogue()
     {
         if (_questAsset != null && _questAsset.State == QuestAsset.QuestState.Inactive)
+        {
+            _interactableObject.Info();
             _questManager.StartQuest(personTalking.AssignedQuest);
+        }
 
         sentences.Clear();
 
