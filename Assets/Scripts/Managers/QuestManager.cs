@@ -9,16 +9,15 @@ public class QuestManager : MonoBehaviour
     public QuestAsset[] quests;
     private InventoryManager _inventoryManager;
     private GameManager _gameManager;
-    private GameObject graveyardDoorObject;
-    private GameObject darkCastleDoorObject;
-    [SerializeField] Doors graveyardDoor;
-    [SerializeField] Doors darkCastleDoor;
+
+    [Header("Hints/QuestNPCs")]
     [SerializeField] GameObject noteFromWitch;
     [SerializeField] GameObject noteFromClifford;
     [SerializeField] GameObject witch;
 
     bool activateNoteFromWitch = false;
 
+    //When game is started it looks for the game manager, inventory manager and makes sure that all quests have been reset to Inactive
     void Start()
     {
         _inventoryManager = FindObjectOfType<InventoryManager>();
@@ -29,26 +28,17 @@ public class QuestManager : MonoBehaviour
 
     public void Update()
     {
-        // when it reloads into this scene it needs to find these objects in order for the quests to work properly.
+        // When this scene is loaded the quest manager needs to find these objects or quests won't work properly.
         if (SceneManager.GetActiveScene().name == "Gameplay_field")
         {
-            if (graveyardDoorObject == null)
-            {
-                graveyardDoorObject = GameObject.Find("GraveyardDoors1");
-                graveyardDoor = graveyardDoorObject.GetComponent<Doors>();
-            }
-            else if (darkCastleDoorObject == null)
-            {
-                darkCastleDoorObject = GameObject.Find("DarkCastleDoors1");
-                darkCastleDoor = darkCastleDoorObject.GetComponent<Doors>();
-            }
-            else if (noteFromWitch == null)
+            if (noteFromWitch == null)
                 noteFromWitch = GameObject.Find("Interactable - NoteFromWitch");
             else if (witch == null)
                 witch = GameObject.Find("Interactable - Dialogue - Witch");
             else if (noteFromClifford == null)
                 noteFromClifford = GameObject.Find("Interactable - NoteFromClifford");
-            else if(activateNoteFromWitch)
+            else if (activateNoteFromWitch)
+                ActivateQuestHints(noteFromWitch, witch);
 
         }
 
@@ -61,6 +51,7 @@ public class QuestManager : MonoBehaviour
         }
     }
 
+    // Resets all quests
     public void ResetAllQuests()
     {
         foreach (QuestAsset quest in quests) // sets all quests to inactive on start
@@ -70,17 +61,17 @@ public class QuestManager : MonoBehaviour
     }
 
 
-    // This starts the quest
+    // This starts the quest and will deactivate certain hints or activate NPC's
     public void StartQuest(QuestAsset quest)
     {
         quest.State = QuestAsset.QuestState.InProgress;
 
         if (quest.name == "HelpTheDuckKing")
-            quest.ActivateQuestHints(witch, noteFromWitch);
+            activateNoteFromWitch = true;
         if (quest.name == "GetCliffordFood")
-            quest.DeactivateQuestHints(noteFromClifford);
+            DeactivateQuestHints(noteFromClifford);
         if (quest.name == "BringTheWitchFrogs")
-            quest.DeactivateQuestHints(noteFromWitch);
+            DeactivateQuestHints(noteFromWitch);
     }
    
     // Checks if you have the items required to finish the active quest
@@ -91,7 +82,8 @@ public class QuestManager : MonoBehaviour
     }
 
     
-    // If you complete a quest, this can happen. 
+    // When the quest is complete, it will run this. if an item is required it will remove the item from the player's inventory
+    // Or it will place an item in the player's inventory.
     public void CompleteQuest(QuestAsset quest)
     {
         quest.State = QuestAsset.QuestState.Completed;
@@ -105,10 +97,24 @@ public class QuestManager : MonoBehaviour
 
         if(quest.State == QuestAsset.QuestState.Completed && quest.GivenAfterCompleted != null)
             _inventoryManager.AddItem(quest.GivenAfterCompleted);
+    }
 
-        if (quest.name == "GetGraveyardKey" && quest.State == QuestAsset.QuestState.Completed)
-            graveyardDoor.OpenDoor();
-        if (quest.name == "GetDarkCastleKey" && quest.State == QuestAsset.QuestState.Completed)
-            darkCastleDoor.OpenDoor();
+    // used to activate hints. You can put in a number of Game objects that you want activated or just one.
+    public void ActivateQuestHints(params GameObject[] hints)
+    {
+        foreach (GameObject hint in hints)
+        {
+            hint.GetComponent<SpriteRenderer>().enabled = true;
+            hint.GetComponent<CircleCollider2D>().enabled = true;
+            hint.GetComponentInChildren<BoxCollider2D>().enabled = true;
+        }
+    }
+
+    // Deactivates quest hints. Only one is needed or I'd use the same function as above.
+    public void DeactivateQuestHints(GameObject hint)
+    {
+        hint.GetComponent<SpriteRenderer>().enabled = false;
+        hint.GetComponent<CircleCollider2D>().enabled = false;
+        hint.GetComponentInChildren<BoxCollider2D>().enabled = false;
     }
 }

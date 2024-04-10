@@ -6413,6 +6413,7 @@ MonoBehaviour:
   _soundManager: {fileID: 395451662}
   _itemManager: {fileID: 622780335}
   _questManager: {fileID: 1891289501}
+  _inventoryManager: {fileID: 2070416269}
   spawnPoint: {fileID: 1197566148}
   player: {fileID: 748770489524771611}
   interactKey: 32
@@ -9670,9 +9671,9 @@ MonoBehaviour:
   - {fileID: 11400000, guid: ad7d5de21ef50f0419a9dec1d7e44d30, type: 2}
   - {fileID: 11400000, guid: 589cad120d5dace4096a7f1132ae6820, type: 2}
   - {fileID: 11400000, guid: 98eabd42f1caa554d9c0f7acef193649, type: 2}
-  graveyardDoor: {fileID: 0}
-  darkCastleDoor: {fileID: 0}
   noteFromWitch: {fileID: 0}
+  noteFromClifford: {fileID: 0}
+  witch: {fileID: 0}
 --- !u!1 &1892191097
 GameObject:
   m_ObjectHideFlags: 0
@@ -13806,7 +13807,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+  m_Sprite: {fileID: 0}
   m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -15712,7 +15713,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'Congrats!!
 
-    You Win!'
+    You''ve completed all the quests!'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: b53a836cf8f938e47a16cf86dd03f6d6, type: 2}
   m_sharedMaterial: {fileID: -8050737118302375833, guid: b53a836cf8f938e47a16cf86dd03f6d6, type: 2}

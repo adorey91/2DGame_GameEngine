@@ -8,8 +8,8 @@ public class Doors : MonoBehaviour
 
     [SerializeField] GameObject door1;
     [SerializeField] GameObject door2;
-    [SerializeField] SpriteRenderer door1Sprite;
-    [SerializeField] SpriteRenderer door2Sprite;
+    private SpriteRenderer door1Sprite;
+    private SpriteRenderer door2Sprite;
     [SerializeField] Sprite newDoor;
     BoxCollider2D door1collider;
     BoxCollider2D door2collider;
@@ -20,8 +20,11 @@ public class Doors : MonoBehaviour
         door2Sprite = door2.GetComponent<SpriteRenderer>();
         door1collider = door1.GetComponent<BoxCollider2D>();
         door2collider = door2.GetComponent<BoxCollider2D>();
+    }
 
-        if(quest.State == QuestAsset.QuestState.Completed)
+    public void Update()
+    {
+        if (quest.State == QuestAsset.QuestState.Completed)
         {
             OpenDoor();
         }
@@ -35,7 +38,7 @@ public class Doors : MonoBehaviour
         door2Sprite.sortingLayerName = "opening";
         door1collider.enabled = false;
         door2collider.enabled = false;
-        door1.gameObject.transform.GetChild(0).gameObject.SetActive(true);
-        door2.gameObject.transform.GetChild(0).gameObject.SetActive(true);
+        door1.transform.GetChild(0).gameObject.SetActive(true);
+        door2.transform.GetChild(0).gameObject.SetActive(true);
     }
 }

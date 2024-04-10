@@ -19,10 +19,7 @@ public class Interaction : MonoBehaviour
     void Update()
     {
         if ((Input.GetKeyDown(_gameManager.interactKey) && interactableObject != null) && _gameManager.isPaused == false)
-        {
-            Debug.Log("Checking Interaction");
             CheckInteraction();
-        }
     }
 
     void CheckInteraction()

@@ -27,6 +27,7 @@ public class GameManager : MonoBehaviour
     public SoundManager _soundManager;
     public ItemManager _itemManager;
     public QuestManager _questManager;
+    public InventoryManager _inventoryManager;
 
     public GameObject spawnPoint;
     public GameObject player;
@@ -129,6 +130,7 @@ public class GameManager : MonoBehaviour
         _uiManager.UI_MainMenu();
         _itemManager.ResetAllItems();
         _questManager.ResetAllQuests();
+        _inventoryManager.EmptyInventory();
         _soundManager.MainMenuAudio();
         volumeLowered = false;
     }

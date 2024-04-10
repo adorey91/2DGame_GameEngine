@@ -23,7 +23,7 @@ public class DialogueManager : MonoBehaviour
 
 
     [Header("Typewriter Settings")]
-    [SerializeField] float typingSpeed = 0.04f;
+    [SerializeField] float typingSpeed = 0.06f;
     private bool canContinueToNextLine = true;
     private Coroutine displayLineCoroutine;
     private bool isAddingRichText;
