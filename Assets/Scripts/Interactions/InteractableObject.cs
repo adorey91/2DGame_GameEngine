@@ -27,8 +27,8 @@ public class InteractableObject : MonoBehaviour
     public string infoMessage;
     public float delayTime;
     public GameObject infoUI;
-    [SerializeField] TMP_Text infoText;
-    [SerializeField] Image bubble;
+    [SerializeField] TMP_Text infoText; // player information text
+    [SerializeField] Image bubble; //player information bubble
     [Header("Dialogue Settings")]
     public Dialogue dialogue;
 

@@ -37,10 +37,8 @@ public class DialogueManager : MonoBehaviour
         sentences = new Queue<string>();
     }
 
-    /// <summary>
-    /// Loads dialogue state. 
-    /// </summary>
-    /// <param name="dialogue"></param>
+   
+    // Starts dialogue, clears the previous sentences
     public void StartDialogue(Dialogue dialogue, InteractableObject interactableObject)
     {
         _gameManager.LoadState("Dialogue");
@@ -94,7 +92,7 @@ public class DialogueManager : MonoBehaviour
 
         foreach (char letter in line.ToCharArray())
         {
-            if (Input.GetKey(KeyCode.Mouse0) || NPCTalking == false)
+            if ((Input.GetKey(KeyCode.Mouse0) || NPCTalking == false) && _gameManager.isPaused == false)
             {
                 dialogueText.text = line;
                 break;

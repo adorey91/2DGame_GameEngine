@@ -173,7 +173,7 @@ MonoBehaviour:
   interactType: 1
   itemToGive: {fileID: 11400000, guid: fdb1ad0762ebfe047b411d71cb432fbc, type: 2}
   _spriteRenderer: {fileID: 11271242}
-  infoMessage: Picked up frog?
+  infoMessage: Picked up frog
   delayTime: 1
   infoUI: {fileID: 0}
   infoText: {fileID: 0}
@@ -7512,7 +7512,7 @@ MonoBehaviour:
   interactType: 1
   itemToGive: {fileID: 11400000, guid: fdb1ad0762ebfe047b411d71cb432fbc, type: 2}
   _spriteRenderer: {fileID: 652167532}
-  infoMessage: Picked up frog?
+  infoMessage: Picked up frog
   delayTime: 1
   infoUI: {fileID: 0}
   infoText: {fileID: 0}
@@ -45180,7 +45180,7 @@ MonoBehaviour:
   interactType: 1
   itemToGive: {fileID: 11400000, guid: fdb1ad0762ebfe047b411d71cb432fbc, type: 2}
   _spriteRenderer: {fileID: 1306030783}
-  infoMessage: Picked up frog?
+  infoMessage: Picked up frog
   delayTime: 1
   infoUI: {fileID: 0}
   infoText: {fileID: 0}
@@ -48914,7 +48914,7 @@ MonoBehaviour:
   interactType: 1
   itemToGive: {fileID: 11400000, guid: fdb1ad0762ebfe047b411d71cb432fbc, type: 2}
   _spriteRenderer: {fileID: 1338493463}
-  infoMessage: Picked up frog?
+  infoMessage: Picked up frog
   delayTime: 1
   infoUI: {fileID: 0}
   infoText: {fileID: 0}
@@ -49398,7 +49398,7 @@ MonoBehaviour:
   interactType: 1
   itemToGive: {fileID: 11400000, guid: fdb1ad0762ebfe047b411d71cb432fbc, type: 2}
   _spriteRenderer: {fileID: 1492270977}
-  infoMessage: Picked up frog?
+  infoMessage: Picked up frog
   delayTime: 1
   infoUI: {fileID: 0}
   infoText: {fileID: 0}

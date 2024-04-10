@@ -15,7 +15,7 @@ public class QuestManager : MonoBehaviour
     [SerializeField] Doors darkCastleDoor;
     [SerializeField] GameObject noteFromWitch;
 
-    bool ActivateNote = false;
+    bool activateNoteFromWitch = false;
 
     void Start()
     {
@@ -27,7 +27,7 @@ public class QuestManager : MonoBehaviour
 
     public void Update()
     {
-        // when it reloads into this scene it needs to find these two objects in order for 2 of the quests to work properly.
+        // when it reloads into this scene it needs to find these objects in order for the quests to work properly.
         if (SceneManager.GetActiveScene().name == "Gameplay_field")
         {
             if (graveyardDoorObject == null)
@@ -44,7 +44,7 @@ public class QuestManager : MonoBehaviour
             {
                 noteFromWitch = GameObject.Find("Interactable - NoteFromWitch");
             }
-            else if(noteFromWitch != null && ActivateNote == true)
+            else if(noteFromWitch != null && activateNoteFromWitch == true)
             {
                 noteFromWitch.GetComponent<SpriteRenderer>().enabled = true;
                 noteFromWitch.GetComponent<CircleCollider2D>().enabled = true;
@@ -76,7 +76,7 @@ public class QuestManager : MonoBehaviour
         quest.State = QuestAsset.QuestState.InProgress;
 
         if (quest.name == "HelpTheDuckKing")
-            ActivateNote = true;
+            activateNoteFromWitch = true;
     }
    
     // Checks if you have the items required to finish the active quest
@@ -86,10 +86,8 @@ public class QuestManager : MonoBehaviour
             CompleteQuest(quest);
     }
 
-    /// <summary>
-    /// If you complete a quest, this can happen. 
-    /// </summary>
-    /// <param name="quest"></param>
+    
+    // If you complete a quest, this can happen. 
     public void CompleteQuest(QuestAsset quest)
     {
         quest.State = QuestAsset.QuestState.Completed;

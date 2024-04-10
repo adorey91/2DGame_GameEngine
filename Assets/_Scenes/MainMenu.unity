@@ -7129,6 +7129,8 @@ MonoBehaviour:
   confirmationUI: {fileID: 405963148}
   player: {fileID: 748770489524771611}
   playerSprite: {fileID: 7985938589642976912}
+  playerThought: {fileID: 1493954825}
+  playerThoughtText: {fileID: 332759932}
   itemUISlots:
   - {fileID: 1538368397}
   - {fileID: 1696214726}

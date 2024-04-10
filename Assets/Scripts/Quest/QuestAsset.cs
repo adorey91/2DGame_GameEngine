@@ -11,15 +11,12 @@ public class QuestAsset : ScriptableObject
     public ItemData QuestItemRequired;
     public int QuestAmountReq;
     public ItemData GivenAfterCompleted;
-
-    /// <summary>
-    /// This is being used so that I can change the quest dialogue without having to find the character the quest is tied to.
-    /// </summary>
+    
+    // This is being used so that I can change the quest dialogue without having to find the character the quest is tied to.
     [TextArea(2, 10)]
     public string[] InactiveQuestDialogue;
     public string[] ActiveQuestDialogue;
     public string[] CompletedQuestDialogue;
-
 
     // holds each state of the quests
     public enum QuestState
@@ -29,6 +26,7 @@ public class QuestAsset : ScriptableObject
         Completed,
     }
 
+    // This returns the dialogue lines to the dialogueManager depending on the quest state
     public string[] GetDialogueLines()
     {
         switch (State)

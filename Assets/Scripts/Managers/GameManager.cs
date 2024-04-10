@@ -39,7 +39,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] TMP_Text interactText;
     [SerializeField] TMP_Text pauseText;
 
-
+    internal bool isPaused = false;
     bool volumeLowered = false;
 
 
@@ -135,6 +135,7 @@ public class GameManager : MonoBehaviour
 
     void GamePlay()
     {
+        isPaused = false;
         _uiManager.UI_GamePlay();
         _soundManager.GameplayAudio();
         volumeLowered = false;
@@ -142,6 +143,7 @@ public class GameManager : MonoBehaviour
 
     void Pause()
     {
+        isPaused = true;
         _uiManager.UI_Pause();
         if (volumeLowered == false)
         {
@@ -152,12 +154,14 @@ public class GameManager : MonoBehaviour
 
     void Confirmation()
     {
+        isPaused = true; // using this here to make sure player can't interact with things while on this screen
         _uiManager.UI_Confirmation();
     }
 
 
     void GameComplete()
     {
+        isPaused = true; // using this here to make sure player can't interact with things while on this screen
         _uiManager.UI_GameCompleted();
         _soundManager.GameWinAudio();
     }
@@ -169,6 +173,7 @@ public class GameManager : MonoBehaviour
 
     void Options()
     {
+        isPaused = true; // using this here to make sure player can't interact with things while on this screen
         _uiManager.UI_Options();
     }
 

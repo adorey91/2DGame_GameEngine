@@ -21,7 +21,10 @@ public class UIManager : MonoBehaviour
     [Header("Player Settings")]
     public GameObject player;
     public GameObject playerSprite;
+    public Image playerThought;
+    public TMP_Text playerThoughtText;
     private PlayerController playerController;
+    bool isThoughtEnabled;
 
     [Header("Inventory")]
     [SerializeField] InventorySlotUI[] itemUISlots;
@@ -39,11 +42,20 @@ public class UIManager : MonoBehaviour
     public void UI_MainMenu()
     {
         PlayerNGame(false, false, CursorLockMode.None, true, 0f);
+        playerThought.enabled = false;
+        playerThoughtText.enabled = false;
         SetUIActive(menuUI);
     }
 
     public void UI_GamePlay()
     {
+        if (isThoughtEnabled == true)
+        {
+            playerThought.enabled = true;
+            playerThoughtText.enabled = true;
+            isThoughtEnabled = false;
+        }
+
         player.GetComponent<Interaction>().enabled = true;
         playerSprite.GetComponent<Animator>().enabled = true;
         PlayerNGame(true, true, CursorLockMode.Locked, false, 1f);
@@ -52,6 +64,13 @@ public class UIManager : MonoBehaviour
 
     public void UI_Pause()
     {
+        if (playerThought.enabled == true)
+        {
+            isThoughtEnabled = true;
+            playerThought.enabled = false;
+            playerThoughtText.enabled = false;
+        }
+
         PlayerNGame(false, false, CursorLockMode.None, true, 0f);
         SetUIActive(pauseUI);
     }
@@ -59,6 +78,8 @@ public class UIManager : MonoBehaviour
       public void UI_Credits()
     {
         PlayerNGame(false, false, CursorLockMode.None, true, 0f);
+        playerThought.enabled = false;
+        playerThoughtText.enabled = false;
         SetUIActive(creditsUI);
     }
 
@@ -70,6 +91,8 @@ public class UIManager : MonoBehaviour
     public void UI_GameCompleted()
     {
         PlayerNGame(false, false, CursorLockMode.None, true, 0f);
+        playerThought.enabled = false;
+        playerThoughtText.enabled = false;
         SetUIActive(gameCompletedUI);
     }
 
