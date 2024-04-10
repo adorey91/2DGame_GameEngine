@@ -15,7 +15,7 @@ MonoBehaviour:
   Name: Get Dark Castle Key
   Description: Get the key for the castle guard. There might be something cool in
     there.
-  State: 2
+  State: 0
   QuestItemRequired: {fileID: 11400000, guid: ac68b7bb6bfa6d0408e129a7313f3e36, type: 2}
   QuestAmountReq: 1
   GivenAfterCompleted: {fileID: 0}

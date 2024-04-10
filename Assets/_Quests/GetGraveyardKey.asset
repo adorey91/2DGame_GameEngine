@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: Get Graveyard Key
   Description: Graveyard keeper needs his key to unlock the graveyard
-  State: 2
+  State: 0
   QuestItemRequired: {fileID: 11400000, guid: 6882c76441960a2418b9eafdd31fcc4b, type: 2}
   QuestAmountReq: 1
   GivenAfterCompleted: {fileID: 0}
@@ -23,7 +23,8 @@ MonoBehaviour:
   - "I seemed to have misplaced my key\u2026\r"
   - "<sub>Hopefully my boss doesn't find out</sub>\r"
   ActiveQuestDialogue:
-  - '<sub>Maybe it''s around the pond...</sub> '
-  - '<sub>or around the tree. Hmm..</sub> '
+  - You haven't found it have you?
+  - '<sub>Maybe it''s around the tree...</sub> '
   CompletedQuestDialogue:
-  - THANK YOU SO MUCH.
+  - Thank you, someone left food in there if you want it?
+  - <sub> it's not really food</b>

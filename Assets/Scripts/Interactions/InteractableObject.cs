@@ -44,7 +44,9 @@ public class InteractableObject : MonoBehaviour
         bubble.enabled = false;
         infoText.text = null;
 
-        //if (itemToGive != null && _itemManager.IsItemCollected(itemToGive))
+        if(this.gameObject.GetComponent<SpriteRenderer>()  != null)
+            _spriteRenderer = this.gameObject.GetComponent<SpriteRenderer>();
+
         if (itemToGive != null && itemToGive.isCollected)
             gameObject.SetActive(false);
     }
@@ -58,9 +60,13 @@ public class InteractableObject : MonoBehaviour
 
     public void Pickup()
     {
+        if (this.GetComponent<CircleCollider2D>() != null)
+            this.gameObject.GetComponent<CircleCollider2D>().enabled = false;
+        
+        _spriteRenderer.enabled = false;
+
         StartCoroutine(ShowInfo(infoMessage, delayTime));
         _inventoryManager.AddItem(itemToGive);
-        //_itemManager.CollectItem(itemToGive);
     }
 
     public void Dialogue()
@@ -71,7 +77,10 @@ public class InteractableObject : MonoBehaviour
     IEnumerator ShowInfo(string message, float delay)
     {
         bubble.enabled = true;
+        infoText.enabled = true;
         infoText.text = message;
+        
+
         yield return new WaitForSeconds(delay);
 
         infoText.text = null;

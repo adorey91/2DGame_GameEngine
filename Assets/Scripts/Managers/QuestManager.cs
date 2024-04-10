@@ -14,6 +14,8 @@ public class QuestManager : MonoBehaviour
     [SerializeField] Doors graveyardDoor;
     [SerializeField] Doors darkCastleDoor;
     [SerializeField] GameObject noteFromWitch;
+    [SerializeField] GameObject noteFromClifford;
+    [SerializeField] GameObject witch;
 
     bool activateNoteFromWitch = false;
 
@@ -40,21 +42,19 @@ public class QuestManager : MonoBehaviour
                 darkCastleDoorObject = GameObject.Find("DarkCastleDoors1");
                 darkCastleDoor = darkCastleDoorObject.GetComponent<Doors>();
             }
-            else if(noteFromWitch == null)
-            {
+            else if (noteFromWitch == null)
                 noteFromWitch = GameObject.Find("Interactable - NoteFromWitch");
-            }
-            else if(noteFromWitch != null && activateNoteFromWitch == true)
-            {
-                noteFromWitch.GetComponent<SpriteRenderer>().enabled = true;
-                noteFromWitch.GetComponent<CircleCollider2D>().enabled = true;
-                noteFromWitch.GetComponentInChildren<BoxCollider2D>().enabled = true;
-            }
+            else if (witch == null)
+                witch = GameObject.Find("Interactable - Dialogue - Witch");
+            else if (noteFromClifford == null)
+                noteFromClifford = GameObject.Find("Interactable - NoteFromClifford");
+            else if(activateNoteFromWitch)
+
         }
 
-        // If all quests are completed it will load the Game Complete state when the game is in gameplay only.
+        // If all quests are completed it will load the Game Complete state when the game is in gameplay only, NOT IN THE CASTLE.
         bool allQuestsCompleted = quests.All(quest => quest.State == QuestAsset.QuestState.Completed);
-        if(allQuestsCompleted && _gameManager.gameState == GameManager.GameState.Gameplay)
+        if(allQuestsCompleted && _gameManager.gameState == GameManager.GameState.Gameplay && SceneManager.GetActiveScene().name != "Gameplay_DarkCastle")
         {
             Debug.Log("All quests completed");
             _gameManager.LoadState("GameComplete");
@@ -76,7 +76,11 @@ public class QuestManager : MonoBehaviour
         quest.State = QuestAsset.QuestState.InProgress;
 
         if (quest.name == "HelpTheDuckKing")
-            activateNoteFromWitch = true;
+            quest.ActivateQuestHints(witch, noteFromWitch);
+        if (quest.name == "GetCliffordFood")
+            quest.DeactivateQuestHints(noteFromClifford);
+        if (quest.name == "BringTheWitchFrogs")
+            quest.DeactivateQuestHints(noteFromWitch);
     }
    
     // Checks if you have the items required to finish the active quest

@@ -51,6 +51,7 @@ public class LevelManager : MonoBehaviour
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         _gameManager.MovePlayerToSpawnLocation(priorScene);
+
         Fade("FadeIn"); // Start fade in after scene is loaded
         SceneManager.sceneLoaded -= OnSceneLoaded;
     }

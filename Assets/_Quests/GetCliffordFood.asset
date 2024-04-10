@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: 'Get Clifford Food '
   Description: 'Cliffords hungry and will give you something in return '
-  State: 2
+  State: 0
   QuestItemRequired: {fileID: 11400000, guid: ad9b946cc662bda4095c6a84b0fe1fac, type: 2}
   QuestAmountReq: 1
   GivenAfterCompleted: {fileID: 11400000, guid: ac68b7bb6bfa6d0408e129a7313f3e36, type: 2}

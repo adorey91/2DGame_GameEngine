@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: BringTheWitchFrogs
   Description: The witch needs frogs to complete her spell
-  State: 2
+  State: 0
   QuestItemRequired: {fileID: 11400000, guid: fdb1ad0762ebfe047b411d71cb432fbc, type: 2}
   QuestAmountReq: 5
   GivenAfterCompleted: {fileID: 11400000, guid: 8813d63282369af4a8d9c6995e6cf4b7, type: 2}
