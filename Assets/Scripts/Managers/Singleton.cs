@@ -4,11 +4,11 @@ public class Singleton : MonoBehaviour
 {
     static Singleton instance;
 
-    private void Start()
+    private void Awake()
     {
         if(instance != null)
         {
-            GameObject.Destroy(this.gameObject);
+            GameObject.Destroy(gameObject);
         }
         else
         {
