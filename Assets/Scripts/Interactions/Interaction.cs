@@ -2,25 +2,29 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class Interaction : MonoBehaviour
 {
     [SerializeField] GameObject interactable = null;
     [SerializeField] InteractableObject interactableObject = null;
-    [SerializeField] GameObject canInteract;
+    [SerializeField] GameObject interactAnimation;
     GameManager _gameManager;
+    bool _canInteract = false;
 
     private void Start()
     {
         _gameManager = FindObjectOfType<GameManager>();
-        canInteract.SetActive(false);
+        interactAnimation.SetActive(false);
     }
 
-    void Update()
+
+    public void Interact(InputAction.CallbackContext context)
     {
-        if ((Input.GetKeyDown(_gameManager.interactKey) && interactableObject != null) && _gameManager.isPaused == false)
+        if (_canInteract && context.performed && _gameManager.isPaused == false && interactableObject != null)
             CheckInteraction();
     }
+
 
     void CheckInteraction()
     {
@@ -32,18 +36,20 @@ public class Interaction : MonoBehaviour
             interactableObject.Dialogue();
     }
 
+
     private void OnTriggerEnter2D(Collider2D other)
     {
+        _canInteract = true;
         interactable = other.gameObject;
         interactableObject = interactable.GetComponent<InteractableObject>();
         if (interactableObject != null)
-            canInteract.SetActive(true);
+            interactAnimation.SetActive(true);
     }
 
 
     public void OnTriggerExit2D(Collider2D collision)
     {
-        canInteract.SetActive(false);
+        interactAnimation.SetActive(false);
         interactable = null;
         interactableObject = null;
     }

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
+using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
@@ -10,7 +11,6 @@ public class PlayerController : MonoBehaviour
     [SerializeField] AudioClip gravelFootsteps;
     [SerializeField] private float walkSpeed = 5f;
     [SerializeField] private Animator _animator;
-    BoxCollider2D playerCollider;
 
     GameManager _gameManager;
     private Rigidbody2D _rb;
@@ -19,28 +19,12 @@ public class PlayerController : MonoBehaviour
     private bool isRunning;
     private bool isRolling;
 
-    public LayerMask roadLayer;
-    public LayerMask grassLayer;
-    bool onGrass;
-    bool onRoad;
-
     public void Awake()
     {
         _gameManager = FindAnyObjectByType<GameManager>();
-        playerCollider = GetComponent<BoxCollider2D>();
         _rb = GetComponent<Rigidbody2D>();
         _animator = GetComponentInChildren<Animator>();
     }
-
-    public void Update()
-    {
-        _movement.x = Input.GetAxisRaw("Horizontal");
-        _movement.y = Input.GetAxisRaw("Vertical");
-
-        if (Input.GetKeyDown(_gameManager.rollKey))
-            isRolling = true;
-    }
-
     public void FixedUpdate()
     {
         HandleMove();
@@ -49,22 +33,16 @@ public class PlayerController : MonoBehaviour
 
     private void HandleMove()
     {
-        if (Input.GetKey(_gameManager.runKey))
-        {
+        if (isRunning)
             moveSpeed = walkSpeed * 2;
-            isRunning = true;
-        }
         else
-        {
             moveSpeed = walkSpeed;
-            isRunning = false;
-        }
+        
         _rb.MovePosition(_rb.position + _movement.normalized * moveSpeed * Time.fixedDeltaTime);
     }
 
     private void HandleAnimation()
     {
-
         if (_movement != Vector2.zero)
         {
             _animator.SetFloat("MoveInputX", _movement.x);
@@ -85,46 +63,29 @@ public class PlayerController : MonoBehaviour
             _animator.SetBool("Moving", false);
     }
 
-    public void WalkingAudio()
+    public void Move(InputAction.CallbackContext context)
     {
-        if (onGrass)
-            audioSource.clip = grassFootsteps;
-        else if (onRoad)
-            audioSource.clip = gravelFootsteps;
-        else
-            audioSource.clip = null;
-
-        if(audioSource.clip != null)
-            audioSource.Play();
+        _movement = context.ReadValue<Vector2>();
     }
 
-    void OnTriggerEnter2D(Collider2D other)
+    public void Run(InputAction.CallbackContext context)
     {
-        if (other.CompareTag("Grass"))
-        {
-            onGrass = true;
-            onRoad = false;
-            Debug.Log("Player entered grass!");
-        }
-        else if (other.CompareTag("Road"))
-        {
-            onRoad = true;
-            onGrass = false;
-            Debug.Log("Player entered road!");
-        }
+        if(context.performed)
+            isRunning = true;
+        if (context.canceled)
+            isRunning = false;
     }
 
-    void OnTriggerExit2D(Collider2D other)
+
+    public void Roll(InputAction.CallbackContext context)
     {
-        if (other.CompareTag("Grass"))
-        {
-            onGrass = false;
-            Debug.Log("Player left grass!");
-        }
-        else if (other.CompareTag("Road"))
-        {
-            onRoad = false;
-            Debug.Log("Player left road!");
-        }
+        if(context.performed)
+            isRolling = true;
+    }
+
+    public void Pause(InputAction.CallbackContext context)
+    {
+        if(context.performed)
+            _gameManager.EscapeState();
     }
 }

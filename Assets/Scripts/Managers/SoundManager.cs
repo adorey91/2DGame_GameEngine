@@ -5,22 +5,20 @@ using UnityEngine.SceneManagement;
 
 public class SoundManager : MonoBehaviour
 {
-    public AudioSource audioSource;
+    public AudioSource mainAudioSource;
 
-    [SerializeField] AudioClip mainMenu;
-    [SerializeField] AudioClip gamePlay;
-    [SerializeField] AudioClip gameOver;
-    [SerializeField] AudioClip gameWin;
+    [SerializeField] private AudioClip mainMenu;
+    [SerializeField] private AudioClip gamePlay;
+    [SerializeField] private AudioClip gameOver;
+    [SerializeField] private AudioClip gameWin;
 
-
-    string previousLevel;
 
     public void Start()
     {
-        audioSource.clip = mainMenu;
-        audioSource.loop = true;
-        audioSource.volume = 0.1f;
-        audioSource.Play();
+        mainAudioSource.clip = mainMenu;
+        mainAudioSource.loop = true;
+        mainAudioSource.volume = 0.1f;
+        mainAudioSource.Play();
     }
 
     public void MainMenuAudio()
@@ -41,21 +39,19 @@ public class SoundManager : MonoBehaviour
     public void GameOverAudio()
     {
         ChangeAudio(0.1f, gameOver);
-        audioSource.pitch = -1.2f;
+        mainAudioSource.pitch = -1.2f;
     }
 
     void ChangeAudio(float volume, AudioClip clipName)
     {
-        audioSource.volume = volume;
-        audioSource.pitch = 1f;
+        mainAudioSource.volume = volume;
+        mainAudioSource.pitch = 1f;
 
-        if (audioSource.clip != clipName)
+        if (mainAudioSource.clip != clipName)
         {
-            audioSource.Stop();
-            audioSource.clip = clipName;
-            audioSource.Play();
+            mainAudioSource.Stop();
+            mainAudioSource.clip = clipName;
+            mainAudioSource.Play();
         }
     }
-
-
 }

@@ -5,7 +5,7 @@ using UnityEngine;
 public class InventoryManager : MonoBehaviour
 {
     [SerializeField] private ItemSlot[] itemSlots;
-    [SerializeField] int inventorySize = 5;
+    [SerializeField] private int inventorySize = 5;
     private UIManager _uiManager;
 
     public void Start()

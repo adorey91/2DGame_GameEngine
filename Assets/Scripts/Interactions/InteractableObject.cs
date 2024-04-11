@@ -65,7 +65,7 @@ public class InteractableObject : MonoBehaviour
         StartCoroutine(ShowInfo(infoMessage, delayTime));
     }
 
-    // will turn off all colliders and the sprite renderer
+    // will turn off all colliders and the currentSprite renderer
     public void Pickup()
     {
         _triggerCollider.enabled = false;

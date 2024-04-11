@@ -7,7 +7,8 @@ using System.Collections;
 
 public class UIManager : MonoBehaviour
 {
-    public GameManager _gameManager;
+    private GameManager _gameManager;
+
     [Header("UI Objects")]
     public GameObject menuUI;
     public GameObject pauseUI;
@@ -35,13 +36,13 @@ public class UIManager : MonoBehaviour
 
     private void Awake()
     {
-        playerController = player.GetComponent<PlayerController>();
+        _gameManager = FindObjectOfType<GameManager>();
         canvGroup = dialogueUI.GetComponent<CanvasGroup>();
     }
 
     public void UI_MainMenu()
     {
-        PlayerNGame(false, false, CursorLockMode.None, true, 0f);
+        PlayerNGame(false, CursorLockMode.None, true, 0f);
         playerThought.enabled = false;
         playerThoughtText.enabled = false;
         SetUIActive(menuUI);
@@ -58,7 +59,7 @@ public class UIManager : MonoBehaviour
 
         player.GetComponent<Interaction>().enabled = true;
         playerSprite.GetComponent<Animator>().enabled = true;
-        PlayerNGame(true, true, CursorLockMode.Locked, false, 1f);
+        PlayerNGame(true, CursorLockMode.Locked, false, 1f);
         SetUIActive(gameUI);
     }
 
@@ -71,13 +72,13 @@ public class UIManager : MonoBehaviour
             playerThoughtText.enabled = false;
         }
 
-        PlayerNGame(false, false, CursorLockMode.None, true, 0f);
+        PlayerNGame(false, CursorLockMode.None, true, 0f);
         SetUIActive(pauseUI);
     }
 
       public void UI_Credits()
     {
-        PlayerNGame(false, false, CursorLockMode.None, true, 0f);
+        PlayerNGame(false, CursorLockMode.None, true, 0f);
         playerThought.enabled = false;
         playerThoughtText.enabled = false;
         SetUIActive(creditsUI);
@@ -90,7 +91,7 @@ public class UIManager : MonoBehaviour
 
     public void UI_GameCompleted()
     {
-        PlayerNGame(false, false, CursorLockMode.None, true, 0f);
+        PlayerNGame(false, CursorLockMode.None, true, 0f);
         playerThought.enabled = false;
         playerThoughtText.enabled = false;
         SetUIActive(gameCompletedUI);
@@ -98,13 +99,13 @@ public class UIManager : MonoBehaviour
 
     public void UI_Options()
     {
-        PlayerNGame(false, false, CursorLockMode.None, true, 0f);
+        PlayerNGame(false, CursorLockMode.None, true, 0f);
         SetUIActive(optionsUI);
     }
 
     public void UI_Dialogue()
     {
-        PlayerNGame(true, false, CursorLockMode.None, true, 1f);
+        PlayerNGame(true, CursorLockMode.None, true, 1f);
         canvGroup.alpha = 0f;
         SetUIActive(dialogueUI);
         StartCoroutine(FadeObject(canvGroup, 0f, 1f));
@@ -127,10 +128,9 @@ public class UIManager : MonoBehaviour
         activeUI.SetActive(true);
     }
 
-    void PlayerNGame(bool art, bool controller, CursorLockMode lockMode, bool visible, float time)
+    void PlayerNGame(bool art, CursorLockMode lockMode, bool visible, float time)
     {
         playerSprite.SetActive(art);
-        playerController.enabled = controller;
         Cursor.lockState = lockMode;
         Cursor.visible = visible;
         Time.timeScale = time;

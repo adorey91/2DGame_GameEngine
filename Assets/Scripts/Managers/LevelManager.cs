@@ -9,7 +9,7 @@ public class LevelManager : MonoBehaviour
     [Header("Manager")]
     public GameManager _gameManager;
     public Animator _animator;
-    string priorScene;
+    private string priorScene;
 
 
     // Callback function to be invoked after fade animation completes
@@ -17,9 +17,10 @@ public class LevelManager : MonoBehaviour
 
     public void Start()
     {
-        _animator.updateMode = AnimatorUpdateMode.UnscaledTime;
+        _animator.updateMode = AnimatorUpdateMode.UnscaledTime; // So animator works when timescale is set to 0
     }
 
+    // Loads Scene depending on the sceneName.
     public void LoadScene(string sceneName)
     {
         priorScene = SceneManager.GetActiveScene().name;
@@ -43,11 +44,11 @@ public class LevelManager : MonoBehaviour
 
                 sceneName = "GameEnd";
             }
-
             SceneManager.LoadScene(sceneName);
         });
     }
 
+    // Moves player to the spawn location of the prior scene or to the main location in game.
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         _gameManager.MovePlayerToSpawnLocation(priorScene);
@@ -56,6 +57,7 @@ public class LevelManager : MonoBehaviour
         SceneManager.sceneLoaded -= OnSceneLoaded;
     }
 
+    // Controls the game scene fade in and out
     public void Fade(string fadeDir, System.Action callback = null)
     {
         _fadeCallback = callback; // Set the callback

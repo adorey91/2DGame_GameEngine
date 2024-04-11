@@ -11,11 +11,11 @@ public class QuestManager : MonoBehaviour
     private GameManager _gameManager;
 
     [Header("Hints/QuestNPCs")]
-    [SerializeField] GameObject noteFromWitch;
-    [SerializeField] GameObject noteFromClifford;
-    [SerializeField] GameObject witch;
+    [SerializeField] private GameObject noteFromWitch;
+    [SerializeField] private GameObject noteFromClifford;
+    [SerializeField] private GameObject witch;
 
-    bool activateNoteFromWitch = false;
+    private bool activateNoteFromWitch = false;
 
     //When game is started it looks for the game manager, inventory manager and makes sure that all quests have been reset to Inactive
     void Start()

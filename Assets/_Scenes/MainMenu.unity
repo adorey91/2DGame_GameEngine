@@ -2332,7 +2332,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: efe904ea3ca1a2a46913db2be9a13fcb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  audioSource: {fileID: 395451661}
+  mainAudioSource: {fileID: 395451661}
   mainMenu: {fileID: 8300000, guid: 7c71f8a4bc0960141927159ab440bde0, type: 3}
   gamePlay: {fileID: 8300000, guid: ed9e574b679e2524092bb425bdf3f3f1, type: 3}
   gameOver: {fileID: 8300000, guid: 9133f8793963103458ebf038603e4e8a, type: 3}
@@ -3721,10 +3721,10 @@ RectTransform:
   - {fileID: 4429050673792255010}
   m_Father: {fileID: 1584097425407957909}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 40.22}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 120, y: -62.443333}
+  m_SizeDelta: {x: 240, y: 40.22}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &738282168
 MonoBehaviour:
@@ -4550,10 +4550,10 @@ RectTransform:
   - {fileID: 7245322284807852464}
   m_Father: {fileID: 1584097425407957909}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 40.22}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 120, y: -84.666664}
+  m_SizeDelta: {x: 240, y: 40.22}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &897637142
 MonoBehaviour:
@@ -5780,10 +5780,10 @@ RectTransform:
   - {fileID: 648258735291158373}
   m_Father: {fileID: 1584097425407957909}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 40.22}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 120, y: -40.22}
+  m_SizeDelta: {x: 240, y: 40.22}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!114 &1168489700
 MonoBehaviour:
@@ -6414,12 +6414,8 @@ MonoBehaviour:
   _itemManager: {fileID: 622780335}
   _questManager: {fileID: 1891289501}
   _inventoryManager: {fileID: 2070416269}
-  spawnPoint: {fileID: 1197566148}
   player: {fileID: 748770489524771611}
-  interactKey: 32
-  runKey: 304
-  rollKey: 114
-  pauseKey: 27
+  spawnPoint: {fileID: 1197566148}
   interactText: {fileID: 6431004011547608460}
   pauseText: {fileID: 6940240041520284941}
 --- !u!4 &1284729950
@@ -6470,7 +6466,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1312534634
 RectTransform:
   m_ObjectHideFlags: 0
@@ -11161,6 +11157,7 @@ GameObject:
   - component: {fileID: 5964044575371966296}
   - component: {fileID: 3705596397626061137}
   - component: {fileID: 9132991921998660288}
+  - component: {fileID: 9132991921998660289}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -13119,12 +13116,6 @@ MonoBehaviour:
   gravelFootsteps: {fileID: 8300000, guid: eb5a7dec29c45294381892719ff883aa, type: 3}
   walkSpeed: 5
   _animator: {fileID: 8631038402782928742}
-  roadLayer:
-    serializedVersion: 2
-    m_Bits: 64
-  grassLayer:
-    serializedVersion: 2
-    m_Bits: 128
 --- !u!81 &3785955625963467174
 AudioListener:
   m_ObjectHideFlags: 0
@@ -16746,7 +16737,133 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   interactable: {fileID: 0}
   interactableObject: {fileID: 0}
-  canInteract: {fileID: 1320634935}
+  interactAnimation: {fileID: 1320634935}
+--- !u!114 &9132991921998660289
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 748770489524771611}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Actions: {fileID: -944628639613478452, guid: c597b355456439b47b5a6bfa0dc3280b, type: 3}
+  m_NotificationBehavior: 2
+  m_UIInputModule: {fileID: 0}
+  m_DeviceLostEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_DeviceRegainedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ControlsChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ActionEvents:
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3705596397626061137}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+        m_MethodName: Move
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 2f4a3ee8-82fb-4986-80fd-9352b26b9b77
+    m_ActionName: Player/Move[/Keyboard/w,/Keyboard/upArrow,/Keyboard/s,/Keyboard/downArrow,/Keyboard/a,/Keyboard/leftArrow,/Keyboard/d,/Keyboard/rightArrow]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3705596397626061137}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+        m_MethodName: Run
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 532c10e5-662a-48f3-89cc-cee1e327f1e9
+    m_ActionName: Player/Run[/Keyboard/leftShift]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 9132991921998660288}
+        m_TargetAssemblyTypeName: Interaction, Assembly-CSharp
+        m_MethodName: Interact
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 9a5ce503-ea41-4c1b-9712-643fab7433ed
+    m_ActionName: Player/Interact[/Keyboard/space]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3705596397626061137}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+        m_MethodName: Roll
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 9fa520cf-5c07-4db8-985f-1af9bcaa73d4
+    m_ActionName: Player/Roll[/Keyboard/r]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: 
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: a689d399-51c0-49c3-b522-6f2db2ec91be
+    m_ActionName: Player/Continue[/Mouse/leftButton]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3705596397626061137}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+        m_MethodName: Pause
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 0e4523e4-66fe-4ed2-9635-6270a984a4b5
+    m_ActionName: Player/Pause[/Keyboard/escape]
+  m_NeverAutoSwitchControlSchemes: 0
+  m_DefaultControlScheme: 
+  m_DefaultActionMap: Player
+  m_SplitScreenIndex: -1
+  m_Camera: {fileID: 0}
 --- !u!1 &9175360223539295885
 GameObject:
   m_ObjectHideFlags: 0

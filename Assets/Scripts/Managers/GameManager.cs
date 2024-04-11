@@ -18,7 +18,7 @@ public class GameManager : MonoBehaviour
     }
 
     public GameState gameState;
-    GameState currentState;
+    private GameState currentState;
     internal GameState stateBeforeOptions;
 
     [Header("Other Managers")]
@@ -29,43 +29,28 @@ public class GameManager : MonoBehaviour
     public QuestManager _questManager;
     public InventoryManager _inventoryManager;
 
-    public GameObject spawnPoint;
+    [Header("Player Settings")]
     public GameObject player;
+    public GameObject spawnPoint;
+    public Sprite currentSprite;
+    private Sprite lastSprite;
 
     [Header("Controls")]
-    public KeyCode interactKey = KeyCode.Space;
-    public KeyCode runKey = KeyCode.LeftShift;
-    public KeyCode rollKey = KeyCode.R;
-    public KeyCode pauseKey = KeyCode.Escape;
-    [SerializeField] TMP_Text interactText;
-    [SerializeField] TMP_Text pauseText;
+    [SerializeField] private TMP_Text interactText;
+    [SerializeField] private TMP_Text pauseText;
 
     internal bool isPaused = false;
-    bool volumeLowered = false;
+    private bool volumeLowered = false;
 
 
     public void Start()
     {
         gameState = GameState.MainMenu;
-        StateSwitch();
-
-        interactText.text = $"{interactKey}";
-        pauseText.text = $"{pauseKey}";
     }
 
-    public void Update()
+    private void StateSwitch(GameState state)
     {
-        if (Input.GetKeyDown(pauseKey))
-            EscapeState();
-
-        if (gameState != currentState)
-            StateSwitch();
-
-    }
-
-    public void StateSwitch()
-    {
-        switch (gameState)
+        switch (state)
         {
             case GameState.MainMenu: MainMenu(); break;
             case GameState.Gameplay: GamePlay(); break;
@@ -79,17 +64,6 @@ public class GameManager : MonoBehaviour
         currentState = gameState;
     }
 
-    void EscapeState()
-    {
-        if (currentState == GameState.Gameplay)
-            LoadState("Pause");
-        else if (currentState == GameState.Pause)
-            LoadState("Gameplay");
-        else if (currentState == GameState.Options)
-            LoadState(stateBeforeOptions.ToString());
-    }
-
-    #region LoadState/Quit
     public void LoadState(string state)
     {
         if (state == "Options")
@@ -117,16 +91,28 @@ public class GameManager : MonoBehaviour
             Debug.Log("State doesnt exist");
     }
 
+    public void EscapeState()
+    {
+        lastSprite = currentSprite;
+
+        if (currentState == GameState.Gameplay)
+            LoadState("Pause");
+        else if (currentState == GameState.Pause)
+            LoadState("Gameplay");
+        else if (currentState == GameState.Options)
+            LoadState(stateBeforeOptions.ToString());
+    }
+
     public void EndGame()
     {
         Application.Quit();
         Debug.Log("Quitting Game");
     }
-    #endregion
 
     #region StateUI-Update
     void MainMenu()
     {
+        isPaused = true;
         _uiManager.UI_MainMenu();
         _itemManager.ResetAllItems();
         _questManager.ResetAllQuests();
@@ -139,6 +125,7 @@ public class GameManager : MonoBehaviour
     {
         isPaused = false;
         _uiManager.UI_GamePlay();
+        currentSprite = lastSprite;
         _soundManager.GameplayAudio();
         volumeLowered = false;
     }
@@ -149,7 +136,7 @@ public class GameManager : MonoBehaviour
         _uiManager.UI_Pause();
         if (volumeLowered == false)
         {
-            _soundManager.audioSource.volume = _soundManager.audioSource.volume / 2;
+            _soundManager.mainAudioSource.volume /= 2;
             volumeLowered = true;
         }
     }
@@ -184,7 +171,7 @@ public class GameManager : MonoBehaviour
         _uiManager.UI_Dialogue();
         if (volumeLowered == false)
         {
-            _soundManager.audioSource.volume = _soundManager.audioSource.volume / 2;
+            _soundManager.mainAudioSource.volume /= 2;
             volumeLowered = true;
         }
     }
@@ -192,7 +179,7 @@ public class GameManager : MonoBehaviour
 
     public void MovePlayerToSpawnLocation(string spawn)
     {
-        if(spawn != "Gameplay_DarkCastle")
+        if (spawn != "Gameplay_DarkCastle")
             spawnPoint = GameObject.Find("SpawnPoint");
         else
             spawnPoint = GameObject.Find("SpawnPoint_ReturnFromDarkCastle");
