@@ -15,10 +15,11 @@ public class GameManager : MonoBehaviour
         GameComplete,
         Dialogue,
         Confirmation,
+        Controls
     }
 
     public GameState gameState;
-    public GameState stateBeforeOptions;
+    public GameState stateBeforeSettings;
 
     [Header("Other Managers")]
     public UIManager _uiManager;
@@ -31,8 +32,8 @@ public class GameManager : MonoBehaviour
     [Header("Player Settings")]
     public GameObject player;
     public GameObject spawnPoint;
-    public Sprite currentSprite;
-    private Sprite lastSprite;
+    //public Sprite currentSprite;
+    //private Sprite lastSprite;
 
     [Header("Controls")]
     [SerializeField] private TMP_Text interactText;
@@ -60,6 +61,7 @@ public class GameManager : MonoBehaviour
             case GameState.GameComplete: GameComplete(); break;
             case GameState.Options: Options(); break;
             case GameState.Credits: Credits(); break;
+            case GameState.Controls: Controls(); break;
             default: Debug.LogError("Unknown State: "+ state); break;
         }
     }
@@ -75,23 +77,20 @@ public class GameManager : MonoBehaviour
 
     private void LoadState(GameState state)
     {
-        if (state == GameState.Options)
-            stateBeforeOptions = gameState;
+        if (state == GameState.Options || state == GameState.Controls)
+            stateBeforeSettings = gameState;
 
         SetState(state);
     }
 
     public void EscapeState()
     {
-        lastSprite = currentSprite;
-        
-
         if (gameState == GameState.GamePlay)
             LoadState(GameState.Pause);
         else if (gameState == GameState.Pause)
             LoadState(GameState.GamePlay);
-        else if (gameState == GameState.Options)
-            LoadState(stateBeforeOptions);
+        else if (gameState == GameState.Options || gameState == GameState.Controls)
+            LoadState(stateBeforeSettings);
     }
 
     public void GameCompleted()
@@ -121,7 +120,6 @@ public class GameManager : MonoBehaviour
     {
         isPaused = false;
         _uiManager.UI_GamePlay();
-        currentSprite = lastSprite;
         _soundManager.GameplayAudio();
         volumeLowered = false;
     }
@@ -160,6 +158,12 @@ public class GameManager : MonoBehaviour
     {
         isPaused = true; // using this here to make sure player can't interact with things while on this screen
         _uiManager.UI_Options();
+    }
+
+    void Controls()
+    {
+        isPaused = true;
+        _uiManager.UI_Controls();
     }
 
     void Dialogue()

@@ -16,7 +16,16 @@ public class UIManager : MonoBehaviour
     public GameObject gameCompletedUI;
     public GameObject dialogueUI;
     public GameObject confirmationUI;
+    public GameObject controlsUI;
     public ButtonSelect buttonSelect;
+
+    [Header("Controls UI Objects")]
+    public GameObject keyboardBindings;
+    public GameObject gamepadBindings;
+    public Button keyboardButton;
+    public Button gamepadButton;
+    public TMP_Text controlsText;
+
 
     [Header("Player Settings")]
     public GameObject player;
@@ -117,6 +126,14 @@ public class UIManager : MonoBehaviour
         playerSprite.GetComponent<Animator>().enabled = false;
     }
 
+    public void UI_Controls()
+    {
+        buttonSelect.Change("Controls");
+        PlayerNGame(false, CursorLockMode.None, true, 0f);
+        SetUIActive(controlsUI);
+        KeyboardBindingsActive();
+    }
+
     void SetUIActive(GameObject activeUI)
     {
         menuUI.SetActive(false);
@@ -127,6 +144,7 @@ public class UIManager : MonoBehaviour
         gameCompletedUI.SetActive(false);
         dialogueUI.SetActive(false);
         confirmationUI.SetActive(false);
+        controlsUI.SetActive(false);
 
         activeUI.SetActive(true);
     }
@@ -158,5 +176,23 @@ public class UIManager : MonoBehaviour
 
             yield return null;
         }
+    }
+
+    public void GamepadBindingsActive()
+    {
+        keyboardBindings.SetActive(false);
+        keyboardButton.enabled = true;
+        gamepadBindings.SetActive(true);
+        gamepadButton.enabled = false;
+        controlsText.text = "Gamepad Controls";
+    }
+
+    public void KeyboardBindingsActive()
+    {
+        gamepadBindings.SetActive(false);
+        //gamepadButton.enabled = true;
+        keyboardBindings.SetActive(true);
+        keyboardButton.enabled = false;
+        controlsText.text = "Keyboard Controls";
     }
 }

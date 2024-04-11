@@ -68,6 +68,7 @@ public class InteractableObject : MonoBehaviour
     // will turn off all colliders and the currentSprite renderer
     public void Pickup()
     {
+        gameObject.GetComponent<AudioSource>().Play();
         _triggerCollider.enabled = false;
         colliderObject.SetActive(false);
         _spriteRenderer.enabled = false;
@@ -82,6 +83,7 @@ public class InteractableObject : MonoBehaviour
         if (itemToGive != null)
             itemToGive.isCollected = true;
     }
+
 
     IEnumerator ShowInfo(string message, float delay)
     {

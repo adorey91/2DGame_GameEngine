@@ -81,6 +81,13 @@ public class PlayerController : MonoBehaviour
             isRunning = false;
     }
 
+    public void SkipText(InputAction.CallbackContext context)
+    {
+        if(context.performed)
+        {
+            FindObjectOfType<DialogueManager>().skipText = true;
+        }
+    }
 
     public void Roll(InputAction.CallbackContext context)
     {

@@ -28,6 +28,8 @@ public class Interaction : MonoBehaviour
             interactionPressed = false;
         }
     }
+
+
     public void Interact(InputAction.CallbackContext context)
     {
         if (_canInteract && context.performed && _gameManager.isPaused == false && interactableObject != null)

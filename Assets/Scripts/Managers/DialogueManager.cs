@@ -95,9 +95,10 @@ public class DialogueManager : MonoBehaviour
 
         foreach (char letter in line.ToCharArray())
         {
-            if ((Input.GetKey(KeyCode.Mouse0) || NPCTalking == false) && _gameManager.isPaused == false)
+            if ((skipText || NPCTalking == false) && _gameManager.isPaused == false)
             {
                 dialogueText.text = line;
+                skipText = false;
                 break;
             }
 
