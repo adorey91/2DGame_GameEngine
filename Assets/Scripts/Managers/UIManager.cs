@@ -7,8 +7,6 @@ using System.Collections;
 
 public class UIManager : MonoBehaviour
 {
-    private GameManager _gameManager;
-
     [Header("UI Objects")]
     public GameObject menuUI;
     public GameObject pauseUI;
@@ -18,13 +16,13 @@ public class UIManager : MonoBehaviour
     public GameObject gameCompletedUI;
     public GameObject dialogueUI;
     public GameObject confirmationUI;
+    public ButtonSelect buttonSelect;
 
     [Header("Player Settings")]
     public GameObject player;
     public GameObject playerSprite;
     public Image playerThought;
     public TMP_Text playerThoughtText;
-    private PlayerController playerController;
     bool isThoughtEnabled;
 
     [Header("Inventory")]
@@ -36,7 +34,6 @@ public class UIManager : MonoBehaviour
 
     private void Awake()
     {
-        _gameManager = FindObjectOfType<GameManager>();
         canvGroup = dialogueUI.GetComponent<CanvasGroup>();
     }
 
@@ -46,6 +43,7 @@ public class UIManager : MonoBehaviour
         playerThought.enabled = false;
         playerThoughtText.enabled = false;
         SetUIActive(menuUI);
+        buttonSelect.Change("MainMenu");
     }
 
     public void UI_GamePlay()
@@ -71,13 +69,14 @@ public class UIManager : MonoBehaviour
             playerThought.enabled = false;
             playerThoughtText.enabled = false;
         }
-
+        buttonSelect.Change("Pause");
         PlayerNGame(false, CursorLockMode.None, true, 0f);
         SetUIActive(pauseUI);
     }
 
       public void UI_Credits()
     {
+        buttonSelect.Change("Credits");
         PlayerNGame(false, CursorLockMode.None, true, 0f);
         playerThought.enabled = false;
         playerThoughtText.enabled = false;
@@ -86,11 +85,13 @@ public class UIManager : MonoBehaviour
 
     public void UI_Confirmation()
     {
+        buttonSelect.Change("Confirmation");
         SetUIActive(confirmationUI);
     }
 
     public void UI_GameCompleted()
     {
+        buttonSelect.Change("GameComplete");
         PlayerNGame(false, CursorLockMode.None, true, 0f);
         playerThought.enabled = false;
         playerThoughtText.enabled = false;
@@ -99,12 +100,14 @@ public class UIManager : MonoBehaviour
 
     public void UI_Options()
     {
+        buttonSelect.Change("Options");
         PlayerNGame(false, CursorLockMode.None, true, 0f);
         SetUIActive(optionsUI);
     }
 
     public void UI_Dialogue()
     {
+        buttonSelect.Change("Dialogue");
         PlayerNGame(true, CursorLockMode.None, true, 1f);
         canvGroup.alpha = 0f;
         SetUIActive(dialogueUI);

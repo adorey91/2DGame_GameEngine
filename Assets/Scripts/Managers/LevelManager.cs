@@ -28,21 +28,13 @@ public class LevelManager : MonoBehaviour
         {
             SceneManager.sceneLoaded += OnSceneLoaded;
 
-            if (sceneName.StartsWith("MainMenu"))
+            switch(sceneName)
             {
-                _gameManager.LoadState(sceneName);
-            }
-            else if (sceneName.StartsWith("Gameplay"))
-                _gameManager.LoadState("Gameplay");
-            // Can load one of two panels with the game end scene.
-            else if (sceneName.StartsWith("GameEnd"))
-            {
-                if (sceneName.EndsWith("GameOver"))
-                    _gameManager.LoadState("GameOver");
-                else if (sceneName.EndsWith("GameWin"))
-                    _gameManager.LoadState("GameWin");
-
-                sceneName = "GameEnd";
+                case "MainMenu":
+                    _gameManager.LoadState("MainMenu"); break;
+                case string s when s.StartsWith("Gameplay") && !priorScene.StartsWith("Gameplay"):
+                    _gameManager.LoadState("GamePlay"); break;
+                default: break;
             }
             SceneManager.LoadScene(sceneName);
         });

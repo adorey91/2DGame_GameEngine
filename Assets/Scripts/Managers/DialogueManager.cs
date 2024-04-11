@@ -20,6 +20,7 @@ public class DialogueManager : MonoBehaviour
     public TMP_Text dialogueButtonText;
     private string endDialogue;
     Dialogue personTalking;
+    private PlayerController playerController;
 
 
     [Header("Typewriter Settings")]
@@ -28,12 +29,13 @@ public class DialogueManager : MonoBehaviour
     private Coroutine displayLineCoroutine;
     private bool isAddingRichText;
     bool NPCTalking = false;
+    internal bool skipText;
 
     public void Start()
     {
         _gameManager = FindObjectOfType<GameManager>();
         _questManager = FindObjectOfType<QuestManager>();
-
+        playerController = FindObjectOfType<PlayerController>();
         sentences = new Queue<string>();
     }
 
@@ -41,6 +43,7 @@ public class DialogueManager : MonoBehaviour
     // Starts dialogue, clears the previous sentences
     public void StartDialogue(Dialogue dialogue, InteractableObject interactableObject)
     {
+        playerController.noMoving = true;
         _gameManager.LoadState("Dialogue");
         sentences.Clear();
         NPCTalking = false;
@@ -125,8 +128,8 @@ public class DialogueManager : MonoBehaviour
         }
 
         sentences.Clear();
-
-        _gameManager.LoadState("Gameplay");
+        playerController.noMoving = false;
+        _gameManager.LoadState("GamePlay");
     }
 
     public void ChangeDialogue(Dialogue dialogue)
@@ -150,7 +153,6 @@ public class DialogueManager : MonoBehaviour
                 sentences.Enqueue(sentence);
             }
         }
-
         DisplayNextSentence();
     }
 }

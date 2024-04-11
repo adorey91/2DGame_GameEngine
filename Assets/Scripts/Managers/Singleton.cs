@@ -7,7 +7,9 @@ public class Singleton : MonoBehaviour
     private void Start()
     {
         if(instance != null)
+        {
             GameObject.Destroy(this.gameObject);
+        }
         else
         {
             GameObject.DontDestroyOnLoad(this.gameObject);

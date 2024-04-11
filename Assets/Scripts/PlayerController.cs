@@ -19,6 +19,8 @@ public class PlayerController : MonoBehaviour
     private bool isRunning;
     private bool isRolling;
 
+    internal bool noMoving = false;
+
     public void Awake()
     {
         _gameManager = FindAnyObjectByType<GameManager>();
@@ -27,8 +29,11 @@ public class PlayerController : MonoBehaviour
     }
     public void FixedUpdate()
     {
-        HandleMove();
-        HandleAnimation();
+        if (noMoving == false)
+        {
+            HandleMove();
+            HandleAnimation();
+        }
     }
 
     private void HandleMove()

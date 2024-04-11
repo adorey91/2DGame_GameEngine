@@ -11,6 +11,7 @@ public class Interaction : MonoBehaviour
     [SerializeField] GameObject interactAnimation;
     GameManager _gameManager;
     bool _canInteract = false;
+    bool interactionPressed = false;
 
     private void Start()
     {
@@ -19,10 +20,23 @@ public class Interaction : MonoBehaviour
     }
 
 
+    private void Update()
+    {
+        if (interactionPressed)
+        {
+            CheckInteraction();
+            interactionPressed = false;
+        }
+    }
     public void Interact(InputAction.CallbackContext context)
     {
         if (_canInteract && context.performed && _gameManager.isPaused == false && interactableObject != null)
-            CheckInteraction();
+        {
+            if (_gameManager.gameState != GameManager.GameState.Dialogue)
+            {
+                interactionPressed = true;
+            }
+        }
     }
 
 

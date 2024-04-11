@@ -8,7 +8,7 @@ public class GameManager : MonoBehaviour
     public enum GameState
     {
         MainMenu,
-        Gameplay,
+        GamePlay,
         Pause,
         Options,
         Credits,
@@ -18,8 +18,7 @@ public class GameManager : MonoBehaviour
     }
 
     public GameState gameState;
-    private GameState currentState;
-    internal GameState stateBeforeOptions;
+    public GameState stateBeforeOptions;
 
     [Header("Other Managers")]
     public UIManager _uiManager;
@@ -42,65 +41,62 @@ public class GameManager : MonoBehaviour
     internal bool isPaused = false;
     private bool volumeLowered = false;
 
-
-    public void Start()
+    private void Start()
     {
-        gameState = GameState.MainMenu;
+        SetState(GameState.MainMenu);
     }
 
-    private void StateSwitch(GameState state)
+    private void SetState(GameState state)
     {
+        gameState = state;
+        
         switch (state)
         {
             case GameState.MainMenu: MainMenu(); break;
-            case GameState.Gameplay: GamePlay(); break;
+            case GameState.GamePlay: GamePlay(); break;
             case GameState.Pause: Pause(); break;
-            case GameState.Options: Options(); break;
-            case GameState.GameComplete: GameComplete(); break;
-            case GameState.Credits: Credits(); break;
-            case GameState.Dialogue: Dialogue(); break;
             case GameState.Confirmation: Confirmation(); break;
+            case GameState.Dialogue: Dialogue(); break;
+            case GameState.GameComplete: GameComplete(); break;
+            case GameState.Options: Options(); break;
+            case GameState.Credits: Credits(); break;
+            default: Debug.LogError("Unknown State: "+ state); break;
         }
-        currentState = gameState;
     }
 
     public void LoadState(string state)
     {
-        if (state == "Options")
-        {
-            stateBeforeOptions = currentState;
-            gameState = GameState.Options;
-        }
-        else if (state == "MainMenu")
-            gameState = GameState.MainMenu;
-        else if (state == "Pause")
-            gameState = GameState.Pause;
-        else if (state == "Gameplay")
-            gameState = GameState.Gameplay;
-        else if (state == "Credits")
-            gameState = GameState.Credits;
-        else if (state == "GameComplete")
-            gameState = GameState.GameComplete;
-        else if (state == "BeforeOptions")
-            gameState = stateBeforeOptions;
-        else if (state == "Confirmation")
-            gameState = GameState.Confirmation;
-        else if (state == "Dialogue")
-            gameState = GameState.Dialogue;
+        if (Enum.TryParse(state, out GameState gameState))
+            LoadState(gameState);
         else
-            Debug.Log("State doesnt exist");
+            Debug.LogError("Invalid state: " + state);
+    }
+
+
+    private void LoadState(GameState state)
+    {
+        if (state == GameState.Options)
+            stateBeforeOptions = gameState;
+
+        SetState(state);
     }
 
     public void EscapeState()
     {
         lastSprite = currentSprite;
+        
 
-        if (currentState == GameState.Gameplay)
-            LoadState("Pause");
-        else if (currentState == GameState.Pause)
-            LoadState("Gameplay");
-        else if (currentState == GameState.Options)
-            LoadState(stateBeforeOptions.ToString());
+        if (gameState == GameState.GamePlay)
+            LoadState(GameState.Pause);
+        else if (gameState == GameState.Pause)
+            LoadState(GameState.GamePlay);
+        else if (gameState == GameState.Options)
+            LoadState(stateBeforeOptions);
+    }
+
+    public void GameCompleted()
+    {
+        LoadState(GameState.GameComplete);
     }
 
     public void EndGame()

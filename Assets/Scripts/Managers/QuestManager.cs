@@ -44,10 +44,10 @@ public class QuestManager : MonoBehaviour
 
         // If all quests are completed it will load the Game Complete state when the game is in gameplay only, NOT IN THE CASTLE.
         bool allQuestsCompleted = quests.All(quest => quest.State == QuestAsset.QuestState.Completed);
-        if(allQuestsCompleted && _gameManager.gameState == GameManager.GameState.Gameplay && SceneManager.GetActiveScene().name != "Gameplay_DarkCastle")
+        if(allQuestsCompleted && SceneManager.GetActiveScene().name == "Gameplay_field" && !_gameManager.isPaused)
         {
             Debug.Log("All quests completed");
-            _gameManager.LoadState("GameComplete");
+            _gameManager.GameCompleted();
         }
     }
 
