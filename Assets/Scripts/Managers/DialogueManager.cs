@@ -81,6 +81,7 @@ public class DialogueManager : MonoBehaviour
                 StopCoroutine(displayLineCoroutine);
 
             string sentence = sentences.Dequeue();
+            skipText = false;
             displayLineCoroutine = StartCoroutine(DisplayLine(sentence));
         }
     }

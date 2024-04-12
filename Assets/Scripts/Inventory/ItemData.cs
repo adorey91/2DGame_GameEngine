@@ -11,5 +11,11 @@ public class ItemData : ScriptableObject
     public Sprite Icon;
     public string Description;
     public int MaxStackSize;
-    public bool isCollected;
+    [SerializeField] private bool isCollected = false;
+
+    public bool IsCollected
+    {
+        get { return isCollected; }
+        set { isCollected = value; }
+    }
 }

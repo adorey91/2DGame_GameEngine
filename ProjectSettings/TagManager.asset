@@ -10,6 +10,7 @@ TagManager:
   - Coin
   - Food
   - GraveKey
+  - Frog
   layers:
   - Default
   - TransparentFX

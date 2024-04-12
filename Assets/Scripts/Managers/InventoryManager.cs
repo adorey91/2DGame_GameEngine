@@ -23,8 +23,6 @@ public class InventoryManager : MonoBehaviour
     {
         ItemSlot slot = FindAvailableItemSlot(item);
 
-        item.isCollected = true;
-
         if (slot != null)
         {
             slot.Quantity++;

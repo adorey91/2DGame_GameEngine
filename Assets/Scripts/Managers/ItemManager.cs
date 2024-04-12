@@ -1,23 +1,34 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class ItemManager : MonoBehaviour
 {
-    public ItemData[] allItems;
+    public InteractableObject[] Collectables;
 
-    //Resets all items to not collected
-    public void ResetAllItems()
+    public void Update()
     {
-        foreach (var item in allItems)
+        if (SceneManager.GetActiveScene().name == "Gameplay_field")
         {
-            item.isCollected = false;
+            Collectables = FindObjectsOfType<InteractableObject>();
+        }
+
+        foreach (InteractableObject co in Collectables)
+        {
+            if (co.GetComponent<InteractableObject>().IsCollected())
+            {
+                co.gameObject.SetActive(false);
+            }
         }
     }
 
-    // Used for when the scenes change. If an item is collected it won't be displayed.
-    public void CollectItem(ItemData item)
+    //Resets all Collectables to not collected
+    public void ResetAllItems()
     {
-        item.isCollected = true;
+        foreach (var item in Collectables)
+        {
+            item.GetComponent<InteractableObject>().SetCollected(false);
+        }
     }
 }

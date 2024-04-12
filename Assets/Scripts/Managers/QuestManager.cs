@@ -1,6 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Unity.Burst.CompilerServices;
+using Unity.VisualScripting;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -14,15 +17,21 @@ public class QuestManager : MonoBehaviour
     [SerializeField] private GameObject noteFromWitch;
     [SerializeField] private GameObject noteFromClifford;
     [SerializeField] private GameObject witch;
+    [SerializeField] private GameObject[] frogs;
+    [SerializeField] private GameObject graveyardKey;
 
     private bool activateNoteFromWitch = false;
+    private bool deactivateNoteFromClifford = false;
+    private bool activateKey = false;
+    private bool activateFrogs = false;
+    [SerializeField] private bool resetAll;
 
     //When game is started it looks for the game manager, inventory manager and makes sure that all quests have been reset to Inactive
     void Start()
     {
         _inventoryManager = FindObjectOfType<InventoryManager>();
         _gameManager = FindObjectOfType<GameManager>();
-
+        
         ResetAllQuests();
     }
 
@@ -31,22 +40,58 @@ public class QuestManager : MonoBehaviour
         // When this scene is loaded the quest manager needs to find these objects or quests won't work properly.
         if (SceneManager.GetActiveScene().name == "Gameplay_field")
         {
-            if (noteFromWitch == null)
-                noteFromWitch = GameObject.Find("Interactable - NoteFromWitch");
-            else if (witch == null)
-                witch = GameObject.Find("Interactable - Dialogue - Witch");
-            else if (noteFromClifford == null)
-                noteFromClifford = GameObject.Find("Interactable - NoteFromClifford");
-            else if (activateNoteFromWitch)
-                ActivateQuestHints(noteFromWitch, witch);
+            // Find the game objects if they are null
 
+            if (noteFromWitch == null || witch == null || noteFromClifford == null || graveyardKey == null || frogs == null)
+            {
+                noteFromWitch = GameObject.Find("Interactable - NoteFromWitch");
+                witch = GameObject.Find("Interactable - Dialogue - Witch");
+                noteFromClifford = GameObject.Find("Interactable - NoteFromClifford");
+                graveyardKey = GameObject.Find("Interactable - Pickupkey");
+                frogs = GameObject.FindGameObjectsWithTag("Frog");
+            }
+
+            // Reset all quest hints if needed
+            if (resetAll)
+            {
+                activateNoteFromWitch = false;
+                deactivateNoteFromClifford = false;
+                activateKey = false;
+                activateFrogs = false;
+                resetAll = false;
+            }
+
+            // Activate/deactivate Clifford quest hints based on flags
+            if (deactivateNoteFromClifford)
+                DeactivateQuestHints(noteFromClifford);
+            else
+                ActivateQuestHints(noteFromClifford);
+
+            //Activate/Deactivate Graveyardman quest hints based on flags
+            if (activateKey)
+            {
+                ActivateQuestHints(graveyardKey);
+                graveyardKey.GetComponent<SpriteRenderer>().enabled = false;
+            }
+            else
+                DeactivateQuestHints(graveyardKey);
+
+            // Activate/deactivate Witch quest hints based on flags
+            if (activateNoteFromWitch)
+                ActivateQuestHints(noteFromWitch, witch);
+            else
+                DeactivateQuestHints(noteFromWitch);
+
+            if (activateFrogs)
+                ActivateQuestHints(frogs);
+            else
+                DeactivateQuestHints(frogs);
         }
 
         // If all quests are completed it will load the Game Complete state when the game is in gameplay only, NOT IN THE CASTLE.
         bool allQuestsCompleted = quests.All(quest => quest.State == QuestAsset.QuestState.Completed);
         if(allQuestsCompleted && SceneManager.GetActiveScene().name == "Gameplay_field" && !_gameManager.isPaused)
         {
-            Debug.Log("All quests completed");
             _gameManager.GameCompleted();
         }
     }
@@ -58,6 +103,7 @@ public class QuestManager : MonoBehaviour
         {
             quest.State = QuestAsset.QuestState.Inactive;
         }
+        resetAll = true;
     }
 
 
@@ -66,15 +112,20 @@ public class QuestManager : MonoBehaviour
     {
         quest.State = QuestAsset.QuestState.InProgress;
 
-        if (quest.name == "HelpTheDuckKing")
-            activateNoteFromWitch = true;
         if (quest.name == "GetCliffordFood")
-            DeactivateQuestHints(noteFromClifford);
-        if (quest.name == "BringTheWitchFrogs")
-            DeactivateQuestHints(noteFromWitch);
+            deactivateNoteFromClifford = true;
+        else if(quest.name == "GetGraveyardKey")
+            activateKey = true;
+        else if (quest.name == "HelpTheDuckKing")
+            activateNoteFromWitch = true;
+        else if (quest.name == "BringTheWitchFrogs")
+        {
+            activateFrogs = true;
+            activateNoteFromWitch = false;
+        }
     }
    
-    // Checks if you have the items required to finish the active quest
+    // Checks if you have the Collectables required to finish the active quest
     public void CheckActiveQuest(QuestAsset quest)
     {
         if (_inventoryManager.GetItemQuantity(quest.QuestItemRequired) == quest.QuestAmountReq)
@@ -111,10 +162,13 @@ public class QuestManager : MonoBehaviour
     }
 
     // Deactivates quest hints. Only one is needed or I'd use the same function as above.
-    public void DeactivateQuestHints(GameObject hint)
+    public void DeactivateQuestHints(params GameObject[] hints)
     {
-        hint.GetComponent<SpriteRenderer>().enabled = false;
-        hint.GetComponent<CircleCollider2D>().enabled = false;
-        hint.GetComponentInChildren<BoxCollider2D>().enabled = false;
+        foreach (GameObject hint in hints)
+        {
+            hint.GetComponent<SpriteRenderer>().enabled = false;
+            hint.GetComponent<CircleCollider2D>().enabled = false;
+            hint.GetComponentInChildren<BoxCollider2D>().enabled = false;
+        }
     }
 }

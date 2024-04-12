@@ -53,10 +53,10 @@ public class InteractableObject : MonoBehaviour
             colliderObject = colliderTransform.gameObject;
         }
 
-
         // if the scene is reloaded this stops an item from respawning back into that scene.
-        if (itemToGive != null && itemToGive.isCollected)
+        if (itemToGive != null && IsCollected())
             gameObject.SetActive(false);
+
     }
 
     // used for information interactions. All will show up in a thought bubble.
@@ -73,15 +73,13 @@ public class InteractableObject : MonoBehaviour
         colliderObject.SetActive(false);
         _spriteRenderer.enabled = false;
         StartCoroutine(ShowInfo(infoMessage, delayTime));
+        SetCollected(true);
         _inventoryManager.AddItem(itemToGive);
     }
 
     public void Dialogue()
     {
         FindAnyObjectByType<DialogueManager>().StartDialogue(dialogue, this);
-
-        if (itemToGive != null)
-            itemToGive.isCollected = true;
     }
 
 
@@ -95,5 +93,15 @@ public class InteractableObject : MonoBehaviour
 
         infoText.text = null;
         bubble.enabled = false;
+    }
+
+    public void SetCollected(bool Collected)
+    {
+        itemToGive.IsCollected = Collected;
+    }
+
+    public bool IsCollected()
+    {
+        return itemToGive.IsCollected;
     }
 }

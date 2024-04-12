@@ -35,9 +35,7 @@ public class Interaction : MonoBehaviour
         if (_canInteract && context.performed && _gameManager.isPaused == false && interactableObject != null)
         {
             if (_gameManager.gameState != GameManager.GameState.Dialogue)
-            {
                 interactionPressed = true;
-            }
         }
     }
 

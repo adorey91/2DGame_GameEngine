@@ -6884,9 +6884,9 @@ MonoBehaviour:
   infoText: {fileID: 0}
   bubble: {fileID: 0}
   dialogue:
-    characterName: 
+    characterName: Gravemarker
     NonQuestDialogue:
-    - Here lies someone who doesn't doesnt deserve more than a rock for a mark
+    - Well, this is unexpected
     AssignedQuest: {fileID: 0}
     endDialogue: 
 --- !u!58 &487058513
@@ -41664,7 +41664,7 @@ MonoBehaviour:
   dialogue:
     characterName: 
     NonQuestDialogue:
-    - Here lies someone who took others food. At least he was well fed
+    - If you can read this, you're standing too close
     AssignedQuest: {fileID: 0}
     endDialogue: 
 --- !u!212 &979132327
@@ -48163,7 +48163,7 @@ Transform:
   m_GameObject: {fileID: 1455749668}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.37, y: -1.96, z: -0.056342237}
+  m_LocalPosition: {x: -11.58, y: -4.68, z: -0.056342237}
   m_LocalScale: {x: 0.5625, y: 0.5625, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -51190,7 +51190,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Interactable - Pickupkey
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8911514049886893437, guid: 90fc3c394fda7b144ba6aa262012be8b, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
