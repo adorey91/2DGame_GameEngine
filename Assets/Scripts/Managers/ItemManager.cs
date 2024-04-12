@@ -14,13 +14,7 @@ public class ItemManager : MonoBehaviour
             Collectables = FindObjectsOfType<InteractableObject>();
         }
 
-        foreach (InteractableObject co in Collectables)
-        {
-            if (co.GetComponent<InteractableObject>().IsCollected())
-            {
-                co.gameObject.SetActive(false);
-            }
-        }
+        CheckCollectedItems();
     }
 
     //Resets all Collectables to not collected
@@ -28,7 +22,24 @@ public class ItemManager : MonoBehaviour
     {
         foreach (var item in Collectables)
         {
-            item.GetComponent<InteractableObject>().SetCollected(false);
+            item.GetComponent<InteractableObject>().SetCollected("false");
+        }
+    }
+
+    public void CheckCollectedItems()
+    {
+        foreach (var item in Collectables)
+        {
+            if (item.IsCollected())
+            {
+                Debug.Log(item.gameObject.name + " is collected.");
+                item.enabled = false;
+            }
+            else
+            {
+                Debug.Log(item.gameObject.name + " is not collected.");
+                item.enabled = true;
+            }
         }
     }
 }

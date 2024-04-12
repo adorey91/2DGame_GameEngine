@@ -23,6 +23,7 @@ public class InteractableObject : MonoBehaviour
     private SpriteRenderer _spriteRenderer;
     private CircleCollider2D _triggerCollider;
     private GameObject colliderObject;
+    public bool _isCollected = false;
 
     [Header("Information")]
     public string infoMessage;
@@ -54,7 +55,7 @@ public class InteractableObject : MonoBehaviour
         }
 
         // if the scene is reloaded this stops an item from respawning back into that scene.
-        if (itemToGive != null && IsCollected())
+        if (itemToGive != null && _isCollected)
             gameObject.SetActive(false);
 
     }
@@ -73,7 +74,7 @@ public class InteractableObject : MonoBehaviour
         colliderObject.SetActive(false);
         _spriteRenderer.enabled = false;
         StartCoroutine(ShowInfo(infoMessage, delayTime));
-        SetCollected(true);
+        SetCollected("true");
         _inventoryManager.AddItem(itemToGive);
     }
 
@@ -95,13 +96,17 @@ public class InteractableObject : MonoBehaviour
         bubble.enabled = false;
     }
 
-    public void SetCollected(bool Collected)
+    public void SetCollected(string Collected)
     {
-        itemToGive.IsCollected = Collected;
+        PlayerPrefs.SetString("collectables." + gameObject.name, Collected);
     }
 
     public bool IsCollected()
     {
-        return itemToGive.IsCollected;
+        // Retrieve the collected status from PlayerPrefs
+        string collectedStatus = PlayerPrefs.GetString("collectables." + gameObject.name, "false");
+
+        // Convert the string to a boolean
+        return collectedStatus == "true";
     }
 }
