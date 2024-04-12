@@ -9,7 +9,7 @@ public class LevelManager : MonoBehaviour
     [Header("Manager")]
     public GameManager _gameManager;
     public Animator _animator;
-    private string priorScene;
+    internal string priorScene;
 
 
     // Callback function to be invoked after fade animation completes

@@ -179,6 +179,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   interactType: 1
   itemToGive: {fileID: 11400000, guid: fdb1ad0762ebfe047b411d71cb432fbc, type: 2}
+  _spriteRenderer: {fileID: 5165571239191477220}
+  _triggerCollider: {fileID: 7097265934879227443}
+  colliderObject: {fileID: 5154535712576870887}
   infoMessage: Picked up frog
   delayTime: 1
   infoUI: {fileID: 0}

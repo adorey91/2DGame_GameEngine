@@ -6,6 +6,13 @@ using UnityEngine.SceneManagement;
 public class ItemManager : MonoBehaviour
 {
     public InteractableObject[] Collectables;
+    LevelManager levelManager;
+    bool checkedForItems = false;
+
+    private void Start()
+    {
+        levelManager = FindObjectOfType<LevelManager>();
+    }
 
     public void Update()
     {
@@ -13,11 +20,17 @@ public class ItemManager : MonoBehaviour
         {
             Collectables = FindObjectsOfType<InteractableObject>();
         }
-
-        CheckCollectedItems();
+        if (levelManager.priorScene == "Gameplay_DarkCastle" && checkedForItems == false)
+        {
+            CheckCollectedItems();
+            checkedForItems = true;
+            
+        }
+        else if(SceneManager.GetActiveScene().name == "Gameplay_DarkCastle")
+            checkedForItems = false;
     }
 
-    //Resets all Collectables to not collected
+    //Resets all interactable objects to not collected
     public void ResetAllItems()
     {
         foreach (var item in Collectables)
@@ -26,19 +39,16 @@ public class ItemManager : MonoBehaviour
         }
     }
 
+    // checks if any collectable items have been collected and destroys them if so.
     public void CheckCollectedItems()
     {
-        foreach (var item in Collectables)
+        foreach (var item in FindObjectsOfType<InteractableObject>())
         {
             if (item.IsCollected())
             {
-                Debug.Log(item.gameObject.name + " is collected.");
-                item.enabled = false;
-            }
-            else
-            {
-                Debug.Log(item.gameObject.name + " is not collected.");
-                item.enabled = true;
+                Debug.Log("Deactivating collected item: " + item.gameObject.name);
+
+                item.gameObject.SetActive(false);
             }
         }
     }

@@ -6400,6 +6400,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   interactType: 2
   itemToGive: {fileID: 11400000, guid: f6043ad77e545364cb84e6e3354c7303, type: 2}
+  _spriteRenderer: {fileID: 0}
+  _triggerCollider: {fileID: 0}
+  colliderObject: {fileID: 0}
   infoMessage: 
   delayTime: 0
   infoUI: {fileID: 0}
@@ -6878,6 +6881,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   interactType: 2
   itemToGive: {fileID: 0}
+  _spriteRenderer: {fileID: 0}
+  _triggerCollider: {fileID: 0}
+  colliderObject: {fileID: 0}
   infoMessage: 
   delayTime: 0
   infoUI: {fileID: 0}
@@ -7211,6 +7217,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   interactType: 0
   itemToGive: {fileID: 0}
+  _spriteRenderer: {fileID: 0}
+  _triggerCollider: {fileID: 0}
+  colliderObject: {fileID: 0}
   infoMessage: Clifford's House... There's a smell coming from it..
   delayTime: 1.2
   infoUI: {fileID: 0}
@@ -41656,6 +41665,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   interactType: 2
   itemToGive: {fileID: 0}
+  _spriteRenderer: {fileID: 0}
+  _triggerCollider: {fileID: 0}
+  colliderObject: {fileID: 0}
   infoMessage: 
   delayTime: 0
   infoUI: {fileID: 0}
@@ -41855,6 +41867,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   interactType: 2
   itemToGive: {fileID: 0}
+  _spriteRenderer: {fileID: 0}
+  _triggerCollider: {fileID: 0}
+  colliderObject: {fileID: 0}
   infoMessage: New Quest Started
   delayTime: 1
   infoUI: {fileID: 0}
@@ -42300,6 +42315,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   interactType: 2
   itemToGive: {fileID: 0}
+  _spriteRenderer: {fileID: 0}
+  _triggerCollider: {fileID: 0}
+  colliderObject: {fileID: 0}
   infoMessage: 
   delayTime: 1
   infoUI: {fileID: 0}
@@ -48125,6 +48143,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   interactType: 2
   itemToGive: {fileID: 0}
+  _spriteRenderer: {fileID: 0}
+  _triggerCollider: {fileID: 0}
+  colliderObject: {fileID: 0}
   infoMessage: New Quest Started
   delayTime: 1
   infoUI: {fileID: 0}
@@ -48219,6 +48240,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   interactType: 2
   itemToGive: {fileID: 11400000, guid: f6043ad77e545364cb84e6e3354c7303, type: 2}
+  _spriteRenderer: {fileID: 0}
+  _triggerCollider: {fileID: 0}
+  colliderObject: {fileID: 0}
   infoMessage: 
   delayTime: 0
   infoUI: {fileID: 0}
@@ -48606,6 +48630,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 247988710}
     m_Modifications:
+    - target: {fileID: 558875989501140914, guid: 5ceeb3830b3fc50468ffe2e51d07133b, type: 3}
+      propertyPath: colliderObject
+      value: 
+      objectReference: {fileID: 1581958870}
+    - target: {fileID: 558875989501140914, guid: 5ceeb3830b3fc50468ffe2e51d07133b, type: 3}
+      propertyPath: _spriteRenderer
+      value: 
+      objectReference: {fileID: 1581958872}
+    - target: {fileID: 558875989501140914, guid: 5ceeb3830b3fc50468ffe2e51d07133b, type: 3}
+      propertyPath: _triggerCollider
+      value: 
+      objectReference: {fileID: 1581958871}
     - target: {fileID: 5165571239191477220, guid: 5ceeb3830b3fc50468ffe2e51d07133b, type: 3}
       propertyPath: m_SortingLayer
       value: 0
@@ -48670,6 +48706,21 @@ PrefabInstance:
 --- !u!4 &1581958869 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6563217593587710315, guid: 5ceeb3830b3fc50468ffe2e51d07133b, type: 3}
+  m_PrefabInstance: {fileID: 1581958868}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1581958870 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5154535712576870887, guid: 5ceeb3830b3fc50468ffe2e51d07133b, type: 3}
+  m_PrefabInstance: {fileID: 1581958868}
+  m_PrefabAsset: {fileID: 0}
+--- !u!58 &1581958871 stripped
+CircleCollider2D:
+  m_CorrespondingSourceObject: {fileID: 7097265934879227443, guid: 5ceeb3830b3fc50468ffe2e51d07133b, type: 3}
+  m_PrefabInstance: {fileID: 1581958868}
+  m_PrefabAsset: {fileID: 0}
+--- !u!212 &1581958872 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 5165571239191477220, guid: 5ceeb3830b3fc50468ffe2e51d07133b, type: 3}
   m_PrefabInstance: {fileID: 1581958868}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1596057127
@@ -48883,6 +48934,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   interactType: 2
   itemToGive: {fileID: 0}
+  _spriteRenderer: {fileID: 0}
+  _triggerCollider: {fileID: 0}
+  colliderObject: {fileID: 0}
   infoMessage: New Quest Started
   delayTime: 1
   infoUI: {fileID: 0}
@@ -50510,6 +50564,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   interactType: 2
   itemToGive: {fileID: 0}
+  _spriteRenderer: {fileID: 0}
+  _triggerCollider: {fileID: 0}
+  colliderObject: {fileID: 0}
   infoMessage: New Quest Started
   delayTime: 1
   infoUI: {fileID: 0}
@@ -50834,6 +50891,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   interactType: 0
   itemToGive: {fileID: 0}
+  _spriteRenderer: {fileID: 0}
+  _triggerCollider: {fileID: 0}
+  colliderObject: {fileID: 0}
   infoMessage: It's a rock.
   delayTime: 0.8
   infoUI: {fileID: 0}
@@ -51242,6 +51302,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   interactType: 2
   itemToGive: {fileID: 0}
+  _spriteRenderer: {fileID: 0}
+  _triggerCollider: {fileID: 0}
+  colliderObject: {fileID: 0}
   infoMessage: 
   delayTime: 1
   infoUI: {fileID: 0}
@@ -51273,6 +51336,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   interactType: 2
   itemToGive: {fileID: 0}
+  _spriteRenderer: {fileID: 0}
+  _triggerCollider: {fileID: 0}
+  colliderObject: {fileID: 0}
   infoMessage: 
   delayTime: 1
   infoUI: {fileID: 0}

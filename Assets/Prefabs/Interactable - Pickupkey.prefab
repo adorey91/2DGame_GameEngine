@@ -214,6 +214,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   interactType: 1
   itemToGive: {fileID: 11400000, guid: 6882c76441960a2418b9eafdd31fcc4b, type: 2}
+  _spriteRenderer: {fileID: 9131259069200931265}
+  _triggerCollider: {fileID: 5703189652387756843}
+  colliderObject: {fileID: 4945466845971308664}
   infoMessage: Found a key!
   delayTime: 1
   infoUI: {fileID: 0}

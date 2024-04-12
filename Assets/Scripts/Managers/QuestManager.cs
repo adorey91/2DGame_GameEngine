@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using Unity.Burst.CompilerServices;
 using Unity.VisualScripting;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -22,8 +21,6 @@ public class QuestManager : MonoBehaviour
 
     private bool activateNoteFromWitch = false;
     private bool deactivateNoteFromClifford = false;
-    private bool activateKey = false;
-    private bool activateFrogs = false;
     [SerializeField] private bool resetAll;
 
     //When game is started it looks for the game manager, inventory manager and makes sure that all quests have been reset to Inactive
@@ -54,10 +51,17 @@ public class QuestManager : MonoBehaviour
             // Reset all quest hints if needed
             if (resetAll)
             {
+                graveyardKey.GetComponent<CircleCollider2D>().enabled = false;
+                graveyardKey.GetComponentInChildren<BoxCollider2D>().enabled = false;
+
+                for(int i = 0; i < frogs.Length; i++)
+                {
+                    frogs[i].GetComponent<CircleCollider2D>().enabled = false;
+                    frogs[i].GetComponentInChildren<BoxCollider2D>().enabled = false;
+                }
+
                 activateNoteFromWitch = false;
                 deactivateNoteFromClifford = false;
-                activateKey = false;
-                activateFrogs = false;
                 resetAll = false;
             }
 
@@ -67,25 +71,12 @@ public class QuestManager : MonoBehaviour
             else
                 ActivateQuestHints(noteFromClifford);
 
-            //Activate/Deactivate Graveyardman quest hints based on flags
-            if (activateKey)
-            {
-                ActivateQuestHints(graveyardKey);
-                graveyardKey.GetComponent<SpriteRenderer>().enabled = false;
-            }
-            else
-                DeactivateQuestHints(graveyardKey);
-
             // Activate/deactivate Witch quest hints based on flags
             if (activateNoteFromWitch)
                 ActivateQuestHints(noteFromWitch, witch);
             else
                 DeactivateQuestHints(noteFromWitch);
 
-            if (activateFrogs)
-                ActivateQuestHints(frogs);
-            else
-                DeactivateQuestHints(frogs);
         }
 
         // If all quests are completed it will load the Game Complete state when the game is in gameplay only, NOT IN THE CASTLE.
@@ -115,12 +106,19 @@ public class QuestManager : MonoBehaviour
         if (quest.name == "GetCliffordFood")
             deactivateNoteFromClifford = true;
         else if(quest.name == "GetGraveyardKey")
-            activateKey = true;
+        {
+            graveyardKey.GetComponent<CircleCollider2D>().enabled = true;
+            graveyardKey.GetComponentInChildren<BoxCollider2D>().enabled = true;
+        }
         else if (quest.name == "HelpTheDuckKing")
             activateNoteFromWitch = true;
         else if (quest.name == "BringTheWitchFrogs")
         {
-            activateFrogs = true;
+            for (int i = 0; i < frogs.Length; i++)
+            {
+                frogs[i].GetComponent<CircleCollider2D>().enabled = true;
+                frogs[i].GetComponentInChildren<BoxCollider2D>().enabled = true;
+            }
             activateNoteFromWitch = false;
         }
     }

@@ -169,6 +169,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   interactType: 1
   itemToGive: {fileID: 11400000, guid: ad9b946cc662bda4095c6a84b0fe1fac, type: 2}
+  _spriteRenderer: {fileID: 5906257012776411201}
+  _triggerCollider: {fileID: 6695692573472777119}
+  colliderObject: {fileID: 2769108182218408274}
   infoMessage: Picked up plate of mush
   delayTime: 1
   infoUI: {fileID: 0}

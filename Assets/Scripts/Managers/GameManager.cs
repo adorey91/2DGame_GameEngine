@@ -114,6 +114,7 @@ public class GameManager : MonoBehaviour
         _inventoryManager.EmptyInventory();
         _soundManager.MainMenuAudio();
         volumeLowered = false;
+        PlayerPrefs.DeleteAll();
     }
 
     void GamePlay()

@@ -103,6 +103,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   interactType: 1
   itemToGive: {fileID: 11400000, guid: f95ea3f275808964da4b08992e42c22b, type: 2}
+  _spriteRenderer: {fileID: 4660123895875752770}
+  _triggerCollider: {fileID: 2885859398924441173}
+  colliderObject: {fileID: 1065249094153733722}
   infoMessage: Picked up coin
   delayTime: 0.5
   infoUI: {fileID: 0}

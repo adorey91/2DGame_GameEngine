@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class InteractableObject : MonoBehaviour
@@ -20,17 +21,17 @@ public class InteractableObject : MonoBehaviour
 
     [Header("Pickup Settings")]
     [SerializeField] private ItemData itemToGive;
-    private SpriteRenderer _spriteRenderer;
-    private CircleCollider2D _triggerCollider;
-    private GameObject colliderObject;
-    public bool _isCollected = false;
-
+    [SerializeField] private SpriteRenderer _spriteRenderer;
+    [SerializeField] private CircleCollider2D _triggerCollider;
+    [SerializeField] private GameObject colliderObject;
+   
     [Header("Information")]
     public string infoMessage;
     public float delayTime;
     public GameObject infoUI;
     [SerializeField] TMP_Text infoText; // player information text
     [SerializeField] Image bubble; //player information bubble
+    
     [Header("Dialogue Settings")]
     public Dialogue dialogue;
 
@@ -44,20 +45,6 @@ public class InteractableObject : MonoBehaviour
 
         bubble.enabled = false;
         infoText.text = null;
-
-        if (this.gameObject.GetComponent<SpriteRenderer>() != null && interactType == InteractType.Pickup)
-        {
-            _spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
-            _triggerCollider = gameObject.GetComponent<CircleCollider2D>();
-
-            Transform colliderTransform = transform.Find("collider");
-            colliderObject = colliderTransform.gameObject;
-        }
-
-        // if the scene is reloaded this stops an item from respawning back into that scene.
-        if (itemToGive != null && _isCollected)
-            gameObject.SetActive(false);
-
     }
 
     // used for information interactions. All will show up in a thought bubble.
@@ -69,13 +56,14 @@ public class InteractableObject : MonoBehaviour
     // will turn off all colliders and the currentSprite renderer
     public void Pickup()
     {
+        Debug.Log("Pickup method called for: " + gameObject.name);
         gameObject.GetComponent<AudioSource>().Play();
         _triggerCollider.enabled = false;
-        colliderObject.SetActive(false);
         _spriteRenderer.enabled = false;
+        colliderObject.SetActive(false);
         StartCoroutine(ShowInfo(infoMessage, delayTime));
-        SetCollected("true");
         _inventoryManager.AddItem(itemToGive);
+        SetCollected("true");
     }
 
     public void Dialogue()
@@ -98,15 +86,14 @@ public class InteractableObject : MonoBehaviour
 
     public void SetCollected(string Collected)
     {
-        PlayerPrefs.SetString("collectables." + gameObject.name, Collected);
+        string uniqueKey = SceneManager.GetActiveScene().name + "." + gameObject.name;
+        PlayerPrefs.SetString("collectables." + uniqueKey, Collected);
     }
 
     public bool IsCollected()
     {
-        // Retrieve the collected status from PlayerPrefs
-        string collectedStatus = PlayerPrefs.GetString("collectables." + gameObject.name, "false");
-
-        // Convert the string to a boolean
+        string sceneAndName = SceneManager.GetActiveScene().name + "." + gameObject.name;
+        string collectedStatus = PlayerPrefs.GetString("collectables." + sceneAndName, "false");
         return collectedStatus == "true";
     }
 }
