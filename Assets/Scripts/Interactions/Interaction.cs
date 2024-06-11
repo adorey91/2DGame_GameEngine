@@ -38,18 +38,8 @@ public class Interaction : MonoBehaviour
         if (interactableObject.interactType == InteractableObject.InteractType.Pickup)
         {
             animator.SetTrigger("isPickingUp");
-            animator.SetBool("Moving", false);
 
             interactableObject.Pickup();
-            if(pickUpAnimation.isPlaying)
-            {
-               playerInput.actions.FindAction("Move").Disable();
-            }
-            else
-            {
-                playerInput.actions.FindAction("Move").Enable();
-            }
-
         }
         else if (interactableObject.interactType == InteractableObject.InteractType.Info)
             interactableObject.Info();

@@ -14,11 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: The Potion for the Duck King
   Description: 
-  State: 0
+  State: 2
   prerequisite: {fileID: 11400000, guid: b9162fbded8c5914083424aab523528d, type: 2}
-  QuestItemRequired: {fileID: 0}
+  QuestItemRequired: {fileID: 11400000, guid: b5ed38a08d3a841408545a5c91b905a1, type: 2}
   QuestAmountReq: 1
-  GivenAfterCompleted: {fileID: 0}
+  GivenAfterCompleted: {fileID: 11400000, guid: 8813d63282369af4a8d9c6995e6cf4b7, type: 2}
   InactiveQuestDialogue:
   - 'Ah, you brought the frogs. '
   - However, to brew the potion, I need a herb that I believe can be found in a shrub.

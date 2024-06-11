@@ -21,7 +21,7 @@ public class DialogueManager : MonoBehaviour
     private string endDialogue;
     Dialogue personTalking;
     private PlayerController playerController;
-
+    bool startQuest = false;
 
     [Header("Typewriter Settings")]
     [SerializeField] float typingSpeed = 0.06f;
@@ -39,7 +39,7 @@ public class DialogueManager : MonoBehaviour
         sentences = new Queue<string>();
     }
 
-   
+
     // Starts dialogue, clears the previous sentences
     public void StartDialogue(Dialogue dialogue, InteractableObject interactableObject)
     {
@@ -54,8 +54,19 @@ public class DialogueManager : MonoBehaviour
 
         if (_questAsset != null)
         {
-            _questManager.CheckActiveQuest(_questAsset);
-            NPCTalking = true;
+            // Check if prerequisites are completed
+            if (_questAsset.prerequisite != null && _questAsset.prerequisite.State != QuestAsset.QuestState.Completed)
+            {
+                // Enqueue prerequisite dialogue
+                sentences.Enqueue("You need to complete a previous task. Come back later.");
+                NPCTalking = true;
+            }
+            else
+            {
+                startQuest = true;
+                _questManager.CheckActiveQuest(_questAsset);
+                NPCTalking = true;
+            }
         }
 
         dialogueName.text = dialogue.characterName;
@@ -123,10 +134,11 @@ public class DialogueManager : MonoBehaviour
 
     void EndDialogue()
     {
-        if (_questAsset != null && _questAsset.State == QuestAsset.QuestState.Inactive)
+        if (startQuest && _questAsset.State == QuestAsset.QuestState.Inactive)
         {
             _interactableObject.Info();
             _questManager.StartQuest(personTalking.AssignedQuest);
+            startQuest = false; 
         }
 
         sentences.Clear();
@@ -134,27 +146,27 @@ public class DialogueManager : MonoBehaviour
         _gameManager.LoadState("GamePlay");
     }
 
-    public void ChangeDialogue(Dialogue dialogue)
-    {
-        sentences.Clear();
+   public void ChangeDialogue(Dialogue dialogue)
+{
+    sentences.Clear();
 
-        if (_questAsset == null)
+    if (_questAsset == null || (_questAsset.prerequisite != null && _questAsset.prerequisite.State != QuestAsset.QuestState.Completed))
+    {
+        // Add non-quest related dialogue or prerequisite dialogue
+        foreach (string sentence in dialogue.NonQuestDialogue)
         {
-            // adds non quest related dialogue
-            foreach (string sentence in dialogue.NonQuestDialogue)
-            {
-                sentences.Enqueue(sentence);
-            }
+            sentences.Enqueue(sentence);
         }
-        else
-        {
-            // adds quest related dialogue
-            var dialogueLines = _questAsset.GetDialogueLines();
-            foreach (string sentence in dialogueLines)
-            {
-                sentences.Enqueue(sentence);
-            }
-        }
-        DisplayNextSentence();
     }
+    else
+    {
+        // Add quest-related dialogue
+        var dialogueLines = _questAsset.GetDialogueLines();
+        foreach (string sentence in dialogueLines)
+        {
+            sentences.Enqueue(sentence);
+        }
+    }
+    DisplayNextSentence();
+}
 }

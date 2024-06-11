@@ -111,11 +111,8 @@ public class QuestManager : MonoBehaviour
     // Checks if you have the Collectables required to finish the active quest
     public void CheckActiveQuest(QuestAsset quest)
     {
-        if (quest.name != "The Witch's Help")
-        {
-            if (_inventoryManager.GetItemQuantity(quest.QuestItemRequired) == quest.QuestAmountReq)
-                CompleteQuest(quest);
-        }
+        if (_inventoryManager.GetItemQuantity(quest.QuestItemRequired) == quest.QuestAmountReq)
+            CompleteQuest(quest);
     }
 
 
@@ -124,7 +121,9 @@ public class QuestManager : MonoBehaviour
     public void CompleteQuest(QuestAsset quest)
     {
         quest.State = QuestAsset.QuestState.Completed;
-        if (_inventoryManager.GetItemQuantity(quest.QuestItemRequired) == quest.QuestAmountReq)
+        Debug.Log(quest.name + "completed");
+
+        if (_inventoryManager.GetItemQuantity(quest.QuestItemRequired) == quest.QuestAmountReq && quest.name != "The Witch's Help")
         {
             for (int i = 0; i < quest.QuestAmountReq; i++)
                 _inventoryManager.RemoveItem(quest.QuestItemRequired);
