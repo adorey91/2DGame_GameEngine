@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "New Quest", menuName = "Quest/New Quest")]
@@ -8,14 +6,18 @@ public class QuestAsset : ScriptableObject
     public string Name;
     public string Description;
     public QuestState State;
+
+    public QuestAsset prerequisite;
     public ItemData QuestItemRequired;
     public int QuestAmountReq;
     public ItemData GivenAfterCompleted;
-    
+
     // This is being used so that I can change the quest dialogue without having to find the character the quest is tied to.
-    [TextArea(2, 10)]
+    [TextArea]
     public string[] InactiveQuestDialogue;
+    [TextArea]
     public string[] ActiveQuestDialogue;
+    [TextArea]
     public string[] CompletedQuestDialogue;
 
     // holds each state of the quests

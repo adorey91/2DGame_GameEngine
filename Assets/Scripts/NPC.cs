@@ -4,26 +4,38 @@ using UnityEngine;
 
 public class NPC : MonoBehaviour
 {
-    GameObject player;
-    SpriteRenderer spriteRenderer;
+    private GameObject player;
+    [SerializeField] private Animator animator;
+    private float amount;
 
     private void Awake()
     {
         player = GameObject.Find("Player");
-        spriteRenderer = GetComponent<SpriteRenderer>();
+        animator = GetComponent<Animator>();
     }
 
     private void Update()
     {
         if(player != null)
         {
-            spriteRenderer.flipX = GetTargetDirection().x < 0;
-
+            animator.SetFloat("TargetX", GetTargetDirection("TargetX"));
+            animator.SetFloat("TargetY", GetTargetDirection("TargetY"));
         }
     }
 
-    Vector2 GetTargetDirection()
+    float GetTargetDirection(string direction)
     {
-        return (player.transform.position - transform.position).normalized;
+        
+        switch(direction)
+        {
+            case "TargetX":
+                amount = player.transform.position.x - transform.position.x;
+                break;
+            case "TargetY":
+                amount = player.transform.position.y - transform.position.y;
+                break;
+        }
+
+        return amount;
     }
 }

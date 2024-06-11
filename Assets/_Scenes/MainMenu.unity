@@ -3477,13 +3477,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68919699d7adc14449505675de17ebf8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  allItems:
-  - {fileID: 11400000, guid: f95ea3f275808964da4b08992e42c22b, type: 2}
-  - {fileID: 11400000, guid: ac68b7bb6bfa6d0408e129a7313f3e36, type: 2}
-  - {fileID: 11400000, guid: ad9b946cc662bda4095c6a84b0fe1fac, type: 2}
-  - {fileID: 11400000, guid: fdb1ad0762ebfe047b411d71cb432fbc, type: 2}
-  - {fileID: 11400000, guid: 6882c76441960a2418b9eafdd31fcc4b, type: 2}
-  - {fileID: 11400000, guid: 8813d63282369af4a8d9c6995e6cf4b7, type: 2}
+  Collectables: []
 --- !u!1001 &623240755
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7148,8 +7142,8 @@ Transform:
   m_GameObject: {fileID: 1320634935}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.037, y: 0.545, z: 0}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_LocalPosition: {x: 0.5, y: 0.982, z: 0}
+  m_LocalScale: {x: 0.75, y: 0.75, z: 0.75}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 4830364575400857260}
@@ -7195,7 +7189,7 @@ SpriteRenderer:
   m_SortingLayerID: -387776023
   m_SortingLayer: 3
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: c86e84b4deb829a4d80d16ad6712bee2, type: 3}
+  m_Sprite: {fileID: 906369110, guid: d7057514a67e9644bb9d69276ce58582, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -9306,14 +9300,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   quests:
-  - {fileID: 11400000, guid: 9602e90940da9724288c4d83ae2af91e, type: 2}
-  - {fileID: 11400000, guid: 65d48e15cb7769a43bfe2d3d4b8d1f18, type: 2}
-  - {fileID: 11400000, guid: ad7d5de21ef50f0419a9dec1d7e44d30, type: 2}
-  - {fileID: 11400000, guid: 589cad120d5dace4096a7f1132ae6820, type: 2}
-  - {fileID: 11400000, guid: 98eabd42f1caa554d9c0f7acef193649, type: 2}
-  noteFromWitch: {fileID: 0}
-  noteFromClifford: {fileID: 0}
-  witch: {fileID: 0}
+  - {fileID: 11400000, guid: b9162fbded8c5914083424aab523528d, type: 2}
+  - {fileID: 11400000, guid: 1ea04c0026fc6cf46aa8bb38f2aac8f6, type: 2}
+  - {fileID: 11400000, guid: 8b4550e8385b6ea4b80a4920b2205dbd, type: 2}
+  - {fileID: 11400000, guid: 8a56f4930bcbd2541b55acef8dad4de2, type: 2}
+  - {fileID: 11400000, guid: c93c722d6a2cfcf4baef7e19eb0bbae0, type: 2}
+  frogs: []
+  potionHerb: {fileID: 0}
+  graveyardKey: {fileID: 0}
+  castleKey: {fileID: 0}
   resetAll: 0
 --- !u!1001 &1893179797
 PrefabInstance:
@@ -10944,7 +10939,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Whimsy Town Adventures
+  m_text: The Duck King's Remedy
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: b53a836cf8f938e47a16cf86dd03f6d6, type: 2}
   m_sharedMaterial: {fileID: -8050737118302375833, guid: b53a836cf8f938e47a16cf86dd03f6d6, type: 2}
@@ -13621,7 +13616,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.5, y: 1.5, z: 1}
+  m_LocalScale: {x: 0.8, y: 0.8, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 232084545}
@@ -14644,7 +14639,7 @@ RectTransform:
   m_AnchorMin: {x: 1, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
   m_AnchoredPosition: {x: -160, y: 0}
-  m_SizeDelta: {x: 940, y: 460}
+  m_SizeDelta: {x: 1025.8713, y: 460}
   m_Pivot: {x: 1, y: 0.5}
 --- !u!114 &6431004011547608460
 MonoBehaviour:
@@ -16113,12 +16108,12 @@ SpriteRenderer:
   m_SortingLayerID: -387776023
   m_SortingLayer: 3
   m_SortingOrder: 0
-  m_Sprite: {fileID: -712646077, guid: c0ae32edeba0edb4ab98964fb2f3ec05, type: 3}
+  m_Sprite: {fileID: -586028569, guid: 985bce07d03454a4294c7a1888ad516d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 1, y: 1.5}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -16645,7 +16640,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.0046686605, y: -0.20467782}
+  m_Offset: {x: 0.0076379776, y: -0.42004564}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -16656,7 +16651,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.29864776, y: 0.21130818}
+  m_Size: {x: 0.98782504, y: 0.6420439}
   m_EdgeRadius: 0
 --- !u!114 &9132991921998660288
 MonoBehaviour:
@@ -16673,6 +16668,8 @@ MonoBehaviour:
   interactable: {fileID: 0}
   interactableObject: {fileID: 0}
   interactAnimation: {fileID: 1320634935}
+  playerInput: {fileID: 9132991921998660289}
+  animator: {fileID: 8631038402782928742}
 --- !u!114 &9132991921998660289
 MonoBehaviour:
   m_ObjectHideFlags: 0

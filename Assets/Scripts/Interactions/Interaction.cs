@@ -11,7 +11,11 @@ public class Interaction : MonoBehaviour
     [SerializeField] GameObject interactAnimation;
     GameManager _gameManager;
     bool _canInteract = false;
-    bool interactionPressed = false;
+
+    public PlayerInput playerInput;
+
+    [SerializeField] private Animator animator;
+    Animation pickUpAnimation;
 
     private void Start()
     {
@@ -19,23 +23,12 @@ public class Interaction : MonoBehaviour
         interactAnimation.SetActive(false);
     }
 
-
-    private void Update()
-    {
-        if (interactionPressed)
-        {
-            CheckInteraction();
-            interactionPressed = false;
-        }
-    }
-
-
     public void Interact(InputAction.CallbackContext context)
     {
         if (_canInteract && context.performed && _gameManager.isPaused == false && interactableObject != null)
         {
             if (_gameManager.gameState != GameManager.GameState.Dialogue)
-                interactionPressed = true;
+                CheckInteraction();
         }
     }
 
@@ -43,7 +36,21 @@ public class Interaction : MonoBehaviour
     void CheckInteraction()
     {
         if (interactableObject.interactType == InteractableObject.InteractType.Pickup)
+        {
+            animator.SetTrigger("isPickingUp");
+            animator.SetBool("Moving", false);
+
             interactableObject.Pickup();
+            if(pickUpAnimation.isPlaying)
+            {
+               playerInput.actions.FindAction("Move").Disable();
+            }
+            else
+            {
+                playerInput.actions.FindAction("Move").Enable();
+            }
+
+        }
         else if (interactableObject.interactType == InteractableObject.InteractType.Info)
             interactableObject.Info();
         else if (interactableObject.interactType == InteractableObject.InteractType.Dialogue)

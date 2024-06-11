@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 717a0e7ee0dc60d4ea61e13b1f61a210, type: 3}
+  m_Name: Food for Clifford
+  m_EditorClassIdentifier: 
+  Name: Food For Clifford
+  Description: 
+  State: 0
+  prerequisite: {fileID: 11400000, guid: 1ea04c0026fc6cf46aa8bb38f2aac8f6, type: 2}
+  QuestItemRequired: {fileID: 11400000, guid: ad9b946cc662bda4095c6a84b0fe1fac, type: 2}
+  QuestAmountReq: 1
+  GivenAfterCompleted: {fileID: 11400000, guid: ac68b7bb6bfa6d0408e129a7313f3e36, type: 2}
+  InactiveQuestDialogue:
+  - You need the key to the Duck King's castle?
+  - ' I''ll give it to you, but first, fetch me my favorite food from the graveyard.'
+  ActiveQuestDialogue:
+  - '"I''m still waiting for my favorite food. Bring it to me, and I''ll give you
+    the key.'
+  CompletedQuestDialogue:
+  - 'Ah, you brought the food. '
+  - As promised, here is the key to the Duck King's castle.

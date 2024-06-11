@@ -43,10 +43,17 @@ public class LevelManager : MonoBehaviour
     // Moves player to the spawn location of the prior scene or to the main location in game.
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        _gameManager.MovePlayerToSpawnLocation(priorScene);
-
-        Fade("FadeIn"); // Start fade in after scene is loaded
-        SceneManager.sceneLoaded -= OnSceneLoaded;
+        if(scene.name == "MainMenu")
+        {
+            SceneManager.sceneLoaded -= OnSceneLoaded;
+            return;
+        }
+        else
+        {
+            _gameManager.MovePlayerToSpawnLocation(priorScene);
+            Fade("FadeIn"); // Start fade in after scene is loaded
+            SceneManager.sceneLoaded -= OnSceneLoaded;
+        }
     }
 
     // Controls the game scene fade in and out

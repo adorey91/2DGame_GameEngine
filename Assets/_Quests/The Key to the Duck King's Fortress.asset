@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 717a0e7ee0dc60d4ea61e13b1f61a210, type: 3}
+  m_Name: The Key to the Duck King's Fortress
+  m_EditorClassIdentifier: 
+  Name: The Key to the Duck King's Fortress
+  Description: 
+  State: 0
+  prerequisite: {fileID: 11400000, guid: 8b4550e8385b6ea4b80a4920b2205dbd, type: 2}
+  QuestItemRequired: {fileID: 11400000, guid: ac68b7bb6bfa6d0408e129a7313f3e36, type: 2}
+  QuestAmountReq: 2
+  GivenAfterCompleted: {fileID: 0}
+  InactiveQuestDialogue:
+  - Ah, you have the key from Clifford. Good, but to enter the Duck King's fortress,
+    you'll need two keys.
+  - One more is hidden somewhere in Elderglen. Find it, and then you can enter."
+  ActiveQuestDialogue:
+  - 'You have one key, but you need two to enter the Duck King''s fortress. '
+  - Find the second key hidden somewhere in Elderglen.
+  CompletedQuestDialogue:
+  - You found both keys! Now you can enter the Duck King's fortress and deliver the
+    potion to save him
