@@ -37,9 +37,7 @@ public class Interaction : MonoBehaviour
     {
         if (interactableObject.interactType == InteractableObject.InteractType.Pickup)
         {
-            animator.SetTrigger("isPickingUp");
-
-            interactableObject.Pickup();
+            StartCoroutine(HandlePickUp());
         }
         else if (interactableObject.interactType == InteractableObject.InteractType.Info)
             interactableObject.Info();
@@ -63,5 +61,16 @@ public class Interaction : MonoBehaviour
         interactAnimation.SetActive(false);
         interactable = null;
         interactableObject = null;
+    }
+
+    private IEnumerator HandlePickUp()
+    {
+        // turn movement off
+        animator.SetTrigger("isPickingUp");
+        
+        yield return new WaitForSeconds(animator.GetCurrentAnimatorStateInfo(0).length);
+
+        interactableObject.Pickup();
+        //turn movement back on
     }
 }

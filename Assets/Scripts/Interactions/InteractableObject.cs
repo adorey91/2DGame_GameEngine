@@ -56,7 +56,7 @@ public class InteractableObject : MonoBehaviour
     // will turn off all colliders and the currentSprite renderer
     public void Pickup()
     {
-        Debug.Log("Pickup method called for: " + gameObject.name);
+
         gameObject.GetComponent<AudioSource>().Play();
         _triggerCollider.enabled = false;
         _spriteRenderer.enabled = false;
