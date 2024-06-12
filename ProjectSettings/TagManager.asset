@@ -5,12 +5,10 @@ TagManager:
   serializedVersion: 2
   tags:
   - SpawnPoint
-  - Road
-  - Grass
-  - Coin
-  - Food
-  - GraveKey
   - Frog
+  - Confiner
+  - Bounds
+  - Pickup
   layers:
   - Default
   - TransparentFX
@@ -18,8 +16,8 @@ TagManager:
   - 
   - Water
   - UI
-  - Road
-  - Grass
+  - Bounds
+  - 
   - 
   - 
   - 

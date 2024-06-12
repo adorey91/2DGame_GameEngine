@@ -3,6 +3,7 @@ using TMPro;
 using UnityEngine.UI;
 using UnityEngine;
 using Unity.VisualScripting;
+using Cinemachine;
 
 public class LevelManager : MonoBehaviour
 {
@@ -10,6 +11,16 @@ public class LevelManager : MonoBehaviour
     public GameManager _gameManager;
     public Animator _animator;
     internal string priorScene;
+
+    [Header("Camera & Bounding")]
+    [SerializeField] private GameObject mainCamera;
+    [SerializeField] private Collider2D boundingShape;
+    [SerializeField] CinemachineConfiner2D confiner2D;
+
+    [Header("Player Spawn")]
+    [SerializeField] private GameObject player;
+    private Transform playerSpawn;
+
 
 
     // Callback function to be invoked after fade animation completes
@@ -50,7 +61,14 @@ public class LevelManager : MonoBehaviour
         }
         else
         {
-            _gameManager.MovePlayerToSpawnLocation(priorScene);
+            // used to find binding shape and set it to the virtual camera
+            boundingShape = null;
+            boundingShape = GameObject.FindWithTag("Confiner").GetComponent<Collider2D>();
+            confiner2D.m_BoundingShape2D = boundingShape;
+
+                playerSpawn = GameObject.Find("SpawnPoint").GetComponent<Transform>();
+            player.transform.position = playerSpawn.position;
+
             Fade("FadeIn"); // Start fade in after scene is loaded
             SceneManager.sceneLoaded -= OnSceneLoaded;
         }

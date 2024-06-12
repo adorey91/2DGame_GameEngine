@@ -14,5 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Icon: {fileID: 21300000, guid: b01f9e7b183ab8b43abfdb135ad380ab, type: 3}
   Description: Dark Castle Key
-  MaxStackSize: 1
-  collected: 0
+  MaxStackSize: 2

@@ -6,6 +6,7 @@ public class NPC : MonoBehaviour
 {
     private GameObject player;
     [SerializeField] private Animator animator;
+    [SerializeField] private SpriteRenderer spriteRenderer;
     private float amount;
 
     private void Awake()
@@ -16,11 +17,18 @@ public class NPC : MonoBehaviour
 
     private void Update()
     {
-        if(player != null)
+        if (player != null && animator != null)
         {
             animator.SetFloat("TargetX", GetTargetDirection("TargetX"));
             animator.SetFloat("TargetY", GetTargetDirection("TargetY"));
         }
+        if(animator == null)
+            spriteRenderer.flipX = GetTargetDirection().x < 0;
+    }
+
+    Vector2 GetTargetDirection()
+    {
+        return (player.transform.position - transform.position).normalized;
     }
 
     float GetTargetDirection(string direction)

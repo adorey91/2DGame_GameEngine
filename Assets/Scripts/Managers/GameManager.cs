@@ -177,14 +177,4 @@ public class GameManager : MonoBehaviour
         }
     }
     #endregion
-
-    public void MovePlayerToSpawnLocation(string spawn)
-    {
-        if (spawn != "Gameplay_DarkCastle")
-            spawnPoint = GameObject.Find("SpawnPoint");
-        else
-            spawnPoint = GameObject.Find("SpawnPoint_ReturnFromDarkCastle");
-
-        player.transform.position = spawnPoint.transform.position;
-    }
 }

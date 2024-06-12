@@ -1,4 +1,6 @@
+using System.Collections.Generic;
 using System.Linq;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -8,15 +10,20 @@ public class QuestManager : MonoBehaviour
     private InventoryManager _inventoryManager;
     private GameManager _gameManager;
 
+    [Header("Quest List")]
+    [SerializeField] private Dictionary<string, GameObject> activeQuests = new Dictionary<string, GameObject>();
+    [SerializeField] private GameObject questNameUI;
+    [SerializeField] private GameObject questHolder;
+
+
+
     [Header("Hints/QuestNPCs")]
     [SerializeField] private GameObject[] frogs;
-
     [SerializeField] private GameObject potionHerb;
-
     [SerializeField] private GameObject graveyardKey;
     [SerializeField] private GameObject castleKey;
 
-    [SerializeField] private bool resetAll;
+    [SerializeField] private bool resetAll = false;
 
     //When game is started it looks for the game manager, inventory manager and makes sure that all quests have been reset to Inactive
     void Start()
@@ -34,19 +41,18 @@ public class QuestManager : MonoBehaviour
         {
             // Find the game objects if they are null
 
-            if (graveyardKey == null || frogs == null || castleKey == null)
+            if (graveyardKey == null || frogs == null || castleKey == null || potionHerb == null)
             {
                 castleKey = GameObject.Find("Interactable - CastleKey");
                 graveyardKey = GameObject.Find("Interactable - GraveyardKey");
+                potionHerb = GameObject.Find("Interactable - PickupHerb");
                 frogs = GameObject.FindGameObjectsWithTag("Frog");
             }
 
             // Reset all quest hints if needed
             if (resetAll)
             {
-                //potionHerb.GetComponent<CircleCollider2D>().enabled = false;
-                //potionHerb.GetComponentInChildren<BoxCollider2D>().enabled = false;
-
+                DeactivateQuestHints(potionHerb);
                 DeactivateQuestHints(graveyardKey);
                 DeactivateQuestHints(castleKey);
 
@@ -83,12 +89,20 @@ public class QuestManager : MonoBehaviour
     {
         quest.State = QuestAsset.QuestState.InProgress;
 
-        switch (quest.name)
+        if(quest.name == "The Witch's Help")
+        {
+            AddQuest(quests[5]);
+        }
+
+        AddQuest(quest);
+
+        // Activate relevant quest hints based on quest name
+        switch (quest.Name)
         {
             case "The Witch's Help":
-                for (int i = 0; i < frogs.Length; i++)
+                foreach (var frog in frogs)
                 {
-                    ActivateQuestHints(frogs[i]);
+                    ActivateQuestHints(frog);
                 }
                 break;
             case "The Potion for the Duck King":
@@ -96,8 +110,7 @@ public class QuestManager : MonoBehaviour
                 {
                     _inventoryManager.RemoveItem(quest.prerequisite.QuestItemRequired);
                 }
-                //potionHerb.GetComponent<CircleCollider2D>().enabled = false;
-                //potionHerb.GetComponentInChildren<BoxCollider2D>().enabled = false;
+                ActivateQuestHints(potionHerb);
                 break;
             case "The Graveyard Keeper's Key":
                 ActivateQuestHints(graveyardKey);
@@ -122,6 +135,12 @@ public class QuestManager : MonoBehaviour
     {
         quest.State = QuestAsset.QuestState.Completed;
         Debug.Log(quest.name + "completed");
+
+        if (activeQuests.TryGetValue(quest.name, out GameObject foundQuest))
+        {
+            Object.Destroy(foundQuest);
+            activeQuests.Remove(quest.name);
+        }
 
         if (_inventoryManager.GetItemQuantity(quest.QuestItemRequired) == quest.QuestAmountReq && quest.name != "The Witch's Help")
         {
@@ -152,5 +171,29 @@ public class QuestManager : MonoBehaviour
             hint.GetComponent<CircleCollider2D>().enabled = false;
             hint.GetComponentInChildren<BoxCollider2D>().enabled = false;
         }
+    }
+
+    public void AddQuest(QuestAsset quest)
+    {
+        // Instantiate the quest UI element
+        GameObject questObject = Instantiate(questNameUI, questHolder.transform);
+
+        // Get the TextMeshProUGUI component from the newly instantiated object
+        TextMeshProUGUI questNameText = questObject.GetComponent<TextMeshProUGUI>();
+
+        // Check if questNameText is not null before assigning the quest name
+        if (questNameText != null)
+        {
+            questNameText.text = "- " + quest.Name;
+        }
+        else
+        {
+            Debug.LogWarning("TextMeshProUGUI component not found in questNameUI prefab.");
+        }
+
+        Debug.Log(quest.Name);
+
+        string word = quest.Name;
+        activeQuests.Add(word, questObject);
     }
 }
