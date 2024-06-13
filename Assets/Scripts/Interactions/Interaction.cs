@@ -68,10 +68,9 @@ public class Interaction : MonoBehaviour
         // turn movement off
         playerInput.actions.FindAction("Move").Disable();
         animator.SetTrigger("isPickingUp");
-        
-        yield return new WaitForSeconds(animator.GetCurrentAnimatorStateInfo(0).length);
-
+        yield return new WaitForSeconds(0.2f);
         interactableObject.Pickup();
+        yield return new WaitForSeconds(animator.GetCurrentAnimatorStateInfo(0).length);
         //turn movement back on
         playerInput.actions.FindAction("Move").Enable();
     }

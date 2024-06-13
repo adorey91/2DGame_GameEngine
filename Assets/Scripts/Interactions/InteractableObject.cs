@@ -77,7 +77,7 @@ public class InteractableObject : MonoBehaviour
         bubble.enabled = true;
         infoText.enabled = true;
         infoText.text = message;
-
+        
         yield return new WaitForSeconds(delay);
 
         infoText.text = null;
