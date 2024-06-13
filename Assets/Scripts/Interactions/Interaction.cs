@@ -66,11 +66,13 @@ public class Interaction : MonoBehaviour
     private IEnumerator HandlePickUp()
     {
         // turn movement off
+        playerInput.actions.FindAction("Move").Disable();
         animator.SetTrigger("isPickingUp");
         
         yield return new WaitForSeconds(animator.GetCurrentAnimatorStateInfo(0).length);
 
         interactableObject.Pickup();
         //turn movement back on
+        playerInput.actions.FindAction("Move").Enable();
     }
 }
