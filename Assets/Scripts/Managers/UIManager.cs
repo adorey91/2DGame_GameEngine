@@ -30,7 +30,7 @@ public class UIManager : MonoBehaviour
     [Header("Player Settings")]
     public GameObject player;
     public GameObject playerSprite;
-    public Image playerThought;
+    public SpriteRenderer playerThought;
     public TMP_Text playerThoughtText;
     bool isThoughtEnabled;
 

@@ -29,8 +29,8 @@ public class InteractableObject : MonoBehaviour
     public string infoMessage;
     public float delayTime;
     public GameObject infoUI;
-    [SerializeField] TMP_Text infoText; // player information text
-    [SerializeField] Image bubble; //player information bubble
+    [SerializeField] private TMP_Text infoText; // player information text
+    [SerializeField] private SpriteRenderer bubble; //player information bubble
     
     [Header("Dialogue Settings")]
     public Dialogue dialogue;
@@ -41,7 +41,7 @@ public class InteractableObject : MonoBehaviour
 
         infoUI = GameObject.Find("InfoUI");
         infoText = GameObject.Find("InfoText").GetComponent<TMP_Text>();
-        bubble = GameObject.Find("Bubble").GetComponent<Image>();
+        bubble = GameObject.Find("Bubble").GetComponent<SpriteRenderer>();
 
         bubble.enabled = false;
         infoText.text = null;
