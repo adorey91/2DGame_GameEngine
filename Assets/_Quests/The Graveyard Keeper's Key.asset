@@ -9,21 +9,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 717a0e7ee0dc60d4ea61e13b1f61a210, type: 3}
+  m_Script: {fileID: 11500000, guid: a8656a4ff914f4b46a5edfb1650d88d7, type: 3}
   m_Name: The Graveyard Keeper's Key
   m_EditorClassIdentifier: 
   Name: The Graveyard Keeper's Key
   Description: 
-  State: 1
-  prerequisite: {fileID: 11400000, guid: 1ea04c0026fc6cf46aa8bb38f2aac8f6, type: 2}
-  QuestItemRequired: {fileID: 11400000, guid: 6882c76441960a2418b9eafdd31fcc4b, type: 2}
-  QuestAmountReq: 1
-  GivenAfterCompleted: {fileID: 0}
-  InactiveQuestDialogue:
-  - Looking for something in the graveyard? I lost the key to the gates.
-  - Help me find it, and I'll open the gates for you
-  ActiveQuestDialogue:
-  - Have you found the key yet? Without it, I can't open the gates
-  - <color=#636363>I may have left it around the tree...</color
-  CompletedQuestDialogue:
-  - You found the key! The gates are now open. Find what you need.
+  State: 0
+  prerequisite: {fileID: 0}
+  questItemRequired: {fileID: 0}
+  questAmountRequired: 0
+  itemGiven: {fileID: 0}
+  InactiveQuestDialogue: []
+  ActiveQuestDialogue: []
+  CompletedQuestDialogue: []

@@ -9,9 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7b2c84880fb2b414aa1a93e59a0d7c26, type: 3}
+  m_Script: {fileID: 11500000, guid: bbc01b2a95de92f42937968f67691099, type: 3}
   m_Name: Herb
   m_EditorClassIdentifier: 
   Icon: {fileID: -1099103677, guid: 739bbc83ed2e3ab43939c486fd75f657, type: 3}
-  Description: herb
+  Description: Herb
   MaxStackSize: 5

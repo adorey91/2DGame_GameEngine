@@ -15,27 +15,9 @@
                     "initialStateCheck": true
                 },
                 {
-                    "name": "Run",
-                    "type": "Button",
-                    "id": "532c10e5-662a-48f3-89cc-cee1e327f1e9",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
                     "name": "Interact",
                     "type": "Button",
                     "id": "9a5ce503-ea41-4c1b-9712-643fab7433ed",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "Roll",
-                    "type": "Button",
-                    "id": "9fa520cf-5c07-4db8-985f-1af9bcaa73d4",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -151,28 +133,6 @@
                 },
                 {
                     "name": "",
-                    "id": "11e51d3a-bca2-4053-a7e6-64698dc4410f",
-                    "path": "<Keyboard>/leftShift",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Keyboard&Mouse",
-                    "action": "Run",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "57389e82-7c19-489c-9980-e757beeca69e",
-                    "path": "<Gamepad>/leftTrigger",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Gamepad",
-                    "action": "Run",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "0f0610e3-dd86-4970-8ca8-12f13c9c6da0",
                     "path": "<Keyboard>/space",
                     "interactions": "",
@@ -190,28 +150,6 @@
                     "processors": "",
                     "groups": "Gamepad",
                     "action": "Interact",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "225c9b6b-8fab-4eca-83e3-9df75cf9b012",
-                    "path": "<Keyboard>/r",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Keyboard&Mouse",
-                    "action": "Roll",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "61eab59b-cdfc-4734-a72d-307070322b72",
-                    "path": "<Gamepad>/rightShoulder",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Gamepad",
-                    "action": "Roll",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },

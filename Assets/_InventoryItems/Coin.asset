@@ -9,9 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7b2c84880fb2b414aa1a93e59a0d7c26, type: 3}
+  m_Script: {fileID: 11500000, guid: bbc01b2a95de92f42937968f67691099, type: 3}
   m_Name: Coin
   m_EditorClassIdentifier: 
   Icon: {fileID: 1331935516, guid: c0f3512da526d7b4396e43109237429a, type: 3}
-  Description: gold coin
+  Description: A gold coin
   MaxStackSize: 10

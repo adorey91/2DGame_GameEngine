@@ -9,10 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7b2c84880fb2b414aa1a93e59a0d7c26, type: 3}
+  m_Script: {fileID: 11500000, guid: bbc01b2a95de92f42937968f67691099, type: 3}
   m_Name: GraveyardKey
   m_EditorClassIdentifier: 
   Icon: {fileID: 21300000, guid: 0e96fde9cf2c8d84793d3d15ba6e16fa, type: 3}
   Description: Graveyard key
-  MaxStackSize: 1
-  collected: 0
+  MaxStackSize: 2

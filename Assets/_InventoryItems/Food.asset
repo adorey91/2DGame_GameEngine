@@ -9,10 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7b2c84880fb2b414aa1a93e59a0d7c26, type: 3}
+  m_Script: {fileID: 11500000, guid: bbc01b2a95de92f42937968f67691099, type: 3}
   m_Name: Food
   m_EditorClassIdentifier: 
   Icon: {fileID: 1697416438, guid: ac36e9458382b9d40931954d70515d29, type: 3}
-  Description: Plate of mush..
-  MaxStackSize: 1
-  collected: 0
+  Description: A plate of mush
+  MaxStackSize: 5

@@ -9,23 +9,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 717a0e7ee0dc60d4ea61e13b1f61a210, type: 3}
+  m_Script: {fileID: 11500000, guid: a8656a4ff914f4b46a5edfb1650d88d7, type: 3}
   m_Name: The Potion for the Duck King
   m_EditorClassIdentifier: 
   Name: The Potion for the Duck King
   Description: 
-  State: 2
-  prerequisite: {fileID: 11400000, guid: b9162fbded8c5914083424aab523528d, type: 2}
-  QuestItemRequired: {fileID: 11400000, guid: b5ed38a08d3a841408545a5c91b905a1, type: 2}
-  QuestAmountReq: 1
-  GivenAfterCompleted: {fileID: 11400000, guid: 8813d63282369af4a8d9c6995e6cf4b7, type: 2}
-  InactiveQuestDialogue:
-  - 'Ah, you brought the frogs. '
-  - However, to brew the potion, I need a herb that I believe can be found in a shrub.
-    Prove your worth and retrieve it for me
-  ActiveQuestDialogue:
-  - The herb is crucial. Bring it to me if you wish to save the Duck King.
-  CompletedQuestDialogue:
-  - 'You have the herb! Now I can brew the potion. '
-  - 'Take it to the Duck King, but beware, his castle is locked. '
-  - Seek Clifford's help
+  State: 0
+  prerequisite: {fileID: 0}
+  questItemRequired: {fileID: 0}
+  questAmountRequired: 0
+  itemGiven: {fileID: 0}
+  InactiveQuestDialogue: []
+  ActiveQuestDialogue: []
+  CompletedQuestDialogue: []

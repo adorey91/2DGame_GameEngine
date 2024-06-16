@@ -4,11 +4,13 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - SpawnPoint
   - Frog
   - Confiner
   - Bounds
   - Pickup
+  - GraveKey
+  - Coin
+  - Spawn
   layers:
   - Default
   - TransparentFX
