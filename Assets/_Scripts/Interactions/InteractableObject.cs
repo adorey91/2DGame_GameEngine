@@ -9,23 +9,29 @@ public class InteractableObject : MonoBehaviour
     public enum Interactable { None, Info, Pickup, Dialogue, }
     public Interactable interactableType;
 
+    [Header("Managers")]
+    [SerializeField] private InventoryManager inventoryManager;
 
+    [SerializeField] private PlayerUI playerUI;
+    [SerializeField] private InteractableObjectUI interactableObjectUI;
     [Header("Info Objects")]
     [SerializeField] private string infoMessage;
     [SerializeField] private float delayTime;
-    [SerializeField] private GameObject infoUI;
     [SerializeField] private TMP_Text infoText;
-    [SerializeField] private SpriteRenderer thoughtBubble;
 
     [Header("Pickup Objects")]
     [SerializeField] private ItemData itemGivenToPlayer;
-    [SerializeField] private SpriteRenderer spriteRenderer;
-    [SerializeField] private CircleCollider2D triggerCollider;
-    [SerializeField] private GameObject colliderObject;
+   
 
     [Header("Dialogue")]
     public Dialogue dialogue;
 
+    public void Awake()
+    {
+        inventoryManager = FindObjectOfType<InventoryManager>();
+
+        infoText = GameObject.Find("InfoText").GetComponent<TMP_Text>();
+    }
 
     // used for information interactions. All will show up in a thought bubble.
     public void Info()
@@ -36,14 +42,11 @@ public class InteractableObject : MonoBehaviour
     // will turn off all colliders and the currentSprite renderer
     public void Pickup()
     {
-
-        gameObject.GetComponent<AudioSource>().Play();
-        triggerCollider.enabled = false;
-        spriteRenderer.enabled = false;
-        colliderObject.SetActive(false);
+        interactableObjectUI.ToggleInteractable(false);
+        FindObjectOfType<PlayerUI>().TogglePlayerInteract(false);
         StartCoroutine(ShowInfo(infoMessage, delayTime));
         //inventory manager add item
-        //inventoryManager.AddItem(itemToGive);
+        inventoryManager.AddItem(itemGivenToPlayer);
         SetCollected("true");
     }
 
@@ -54,14 +57,16 @@ public class InteractableObject : MonoBehaviour
 
     private IEnumerator ShowInfo(string message, float delay)
     {
-        thoughtBubble.enabled = true;
+        playerUI = FindAnyObjectByType<PlayerUI>();
+        infoText = GameObject.Find("InfoText").GetComponent<TMP_Text>();
+
+        playerUI.TogglePlayerThoughts(true, message);
         infoText.enabled = true;
         infoText.text = message;
 
         yield return new WaitForSeconds(delay);
 
-        infoText.text = null;
-        thoughtBubble.enabled = false;
+        playerUI.TogglePlayerThoughts(false, null);
     }
 
     public void SetCollected(string collected)

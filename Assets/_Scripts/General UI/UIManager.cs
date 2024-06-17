@@ -4,6 +4,7 @@ using System.Collections;
 public class UIManager : MonoBehaviour
 {
     [SerializeField] private PlayerUI playerUI;
+    [SerializeField] private PlayerController controller;
     [SerializeField] private InventoryUIManager inventoryUIManager;
     [SerializeField] private ControlBindingsManager controlBindingsManager;
 

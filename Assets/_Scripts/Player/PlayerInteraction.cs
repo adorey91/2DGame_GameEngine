@@ -12,6 +12,7 @@ public class PlayerInteraction : MonoBehaviour
     private bool canInteract = false;
 
     [SerializeField] private PlayerInput playerInput;
+    [SerializeField] private PlayerUI playerUI;
     [SerializeField] private Animator animator;
     [SerializeField] private Animation pickUpAnimation;
 
@@ -56,12 +57,12 @@ public class PlayerInteraction : MonoBehaviour
         interactable = collision.gameObject;
         interactableObject = interactable.GetComponent<InteractableObject>();
         if (interactableObject != null)
-            interactAnimation.SetActive(true);
+            playerUI.TogglePlayerInteract(true);
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        interactAnimation.SetActive(false);
+        playerUI.TogglePlayerInteract(false);
         interactable = null;
         interactableObject = null;
     }

@@ -10,6 +10,9 @@ public class UIButtons : MonoBehaviour
     [SerializeField] private LevelManager levelManager;
     [SerializeField] private UIManager uiManager;
 
+    [Header("scripts")]
+    [SerializeField] private ControlBindingsManager controlBindingsManager;
+
     [Header("Buttons for MainMenu")]
     [SerializeField] private Button playButton;
     [SerializeField] private Button optionsButton;
@@ -50,10 +53,10 @@ public class UIButtons : MonoBehaviour
 
     private void SetButtons()
     {
-        //    // buttons for main menu
+        // buttons for main menu
         playButton.onClick.AddListener(() => levelManager.LoadScene("Gameplay_field"));
-    //    optionsButton.onClick.AddListener(() => uiManager.SetActiveUI());
-    //    quitButton.onClick.AddListener(() => uiManager.SetActiveUI());
+        optionsButton.onClick.AddListener(() => uiManager.UI_Options());
+        quitButton.onClick.AddListener(() => uiManager.UI_Confirmation());
 
     //    // buttons for pause menu
     //    resumePauseButton.onClick.AddListener(() => uiManager.SetActiveUI());
@@ -61,20 +64,20 @@ public class UIButtons : MonoBehaviour
     //    mainMenuPauseButton.onClick.AddListener(() => uiManager.SetActiveUI());
     //    quitPauseButton.onClick.AddListener(() => uiManager.SetActiveUI());
 
-    //    // buttons for options
-    //    returnOptionsButton.onClick.AddListener(() => uiManager.SetActiveUI());
-    //    controlsOptionsButton.onClick.AddListener(() => uiManager.SetActiveUI());
+        // buttons for options
+        returnOptionsButton.onClick.AddListener(() => uiManager.UI_MainMenu());
+        controlsOptionsButton.onClick.AddListener(() => uiManager.UI_Controls());
 
-    //    // buttons for controls
-    //    resetAllControlsButton.onClick.AddListener(() => uiManager.SetActiveUI());
-    //    backControlsButton.onClick.AddListener(() => uiManager.SetActiveUI());
+        // buttons for controls
+        resetAllControlsButton.onClick.AddListener(() => controlBindingsManager.ResetAllBindings());
+        backControlsButton.onClick.AddListener(() => uiManager.UI_Options());
 
-    //    // button for credits
-    //    continueCreditsButton.onClick.AddListener(() => uiManager.SetActiveUI());
+        //    // button for credits
+        //    continueCreditsButton.onClick.AddListener(() => uiManager.SetActiveUI());
 
-    //    // buttons for end game
-    //    menuEndGameButton.onClick.AddListener(() => uiManager.SetActiveUI());
-    //    quitEndGameButton.onClick.AddListener(() => uiManager.SetActiveUI());
+        //    // buttons for end game
+        //    menuEndGameButton.onClick.AddListener(() => uiManager.SetActiveUI());
+        //    quitEndGameButton.onClick.AddListener(() => uiManager.SetActiveUI());
     }
 
     public void SetConfirmation(string word)

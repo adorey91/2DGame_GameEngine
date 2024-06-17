@@ -14,6 +14,7 @@ public class QuestManager : MonoBehaviour
     [SerializeField] private GameObject potionHerb;
     [SerializeField] private GameObject graveyardKey;
     [SerializeField] private GameObject castleKey;
+    public bool resetAll = false;
 
 
     // Start is called before the first frame update
@@ -139,6 +140,20 @@ public class QuestManager : MonoBehaviour
             graveyardKey = GameObject.Find("Interactable - GraveyardKey");
             potionHerb = GameObject.Find("Interactable - PickupHerb");
             frogs = GameObject.FindGameObjectsWithTag("Frog");
+        }
+
+        if(resetAll)
+        {
+            DeactivateQuestHints(potionHerb);
+            DeactivateQuestHints(graveyardKey);
+            DeactivateQuestHints(castleKey);
+
+            for (int i = 0; i < frogs.Length; i++)
+            {
+                DeactivateQuestHints(frogs[i]);
+            }
+
+            resetAll = false;
         }
     }
 }

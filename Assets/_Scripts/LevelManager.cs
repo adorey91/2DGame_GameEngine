@@ -74,6 +74,9 @@ public class LevelManager : MonoBehaviour
             
             fadeAnimator = gameObject.GetComponent<Animator>();
 
+            if (scene.name.StartsWith("Gameplay"))
+                FindAnyObjectByType<QuestManager>().FindItems();
+
             Fade("FadeIn");
             SceneManager.sceneLoaded -= OnSceneLoaded;
         }

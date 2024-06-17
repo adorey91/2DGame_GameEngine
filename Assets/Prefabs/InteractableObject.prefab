@@ -79,6 +79,7 @@ GameObject:
   - component: {fileID: 5165571239191477220}
   - component: {fileID: 558875989501140914}
   - component: {fileID: 7097265934879227443}
+  - component: {fileID: 1721721217479341108}
   m_Layer: 0
   m_Name: InteractableObject
   m_TagString: Frog
@@ -167,15 +168,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interactableType: 0
+  inventoryManager: {fileID: 0}
+  playerUI: {fileID: 0}
+  interactableObjectUI: {fileID: 1721721217479341108}
   infoMessage: 
   delayTime: 0
-  infoUI: {fileID: 0}
   infoText: {fileID: 0}
-  thoughtBubble: {fileID: 0}
   itemGivenToPlayer: {fileID: 0}
-  spriteRenderer: {fileID: 5165571239191477220}
-  triggerCollider: {fileID: 7097265934879227443}
-  colliderObject: {fileID: 5154535712576870887}
   dialogue:
     characterName: 
     assignedQuest: {fileID: 0}
@@ -215,3 +214,18 @@ CircleCollider2D:
   m_Offset: {x: 0.29337645, y: 0}
   serializedVersion: 2
   m_Radius: 0.79337645
+--- !u!114 &1721721217479341108
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7317356310466774627}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b70544062ac5124d9f56663cb2fd8f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spriteRenderer: {fileID: 5165571239191477220}
+  triggerCollider: {fileID: 7097265934879227443}
+  colliderObject: {fileID: 5154535712576870887}

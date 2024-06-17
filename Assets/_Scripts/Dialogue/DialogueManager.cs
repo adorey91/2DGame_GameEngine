@@ -157,7 +157,6 @@ public class DialogueManager : MonoBehaviour
         }
 
         sentences.Clear();
-        playerController.noMoving = false;
-        gameManager.LoadState("GamePlay");
+        gameManager.LoadState("Gameplay");
     }
 }

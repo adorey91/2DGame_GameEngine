@@ -48,7 +48,7 @@ public class GameManager : MonoBehaviour
         if (Enum.TryParse(state, out Gamestate gamestate))
             LoadState(gamestate);
         else
-            Debug.Log("Invalid StateL " + state);
+            Debug.Log("Invalid State " + state);
     }
 
     private void LoadState(Gamestate state)

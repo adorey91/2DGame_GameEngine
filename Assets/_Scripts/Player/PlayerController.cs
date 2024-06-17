@@ -5,47 +5,28 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
-    [SerializeField] private GameManager gameManager;
-
     [SerializeField] private Rigidbody2D rb;
     private Vector2 movement;
-
-    internal bool noMoving = false;
-
     [SerializeField] private float walkSpeed = 5f;
-    [SerializeField] private Animator animator;
 
+    private bool noMoving;
 
     private void Awake()
     {
-        gameManager = FindObjectOfType<GameManager>();
         rb = GetComponent<Rigidbody2D>();
-        animator = GetComponentInChildren<Animator>();
     }
 
-    public void FixedUpdate()
+    private void FixedUpdate()
     {
-        if(noMoving == false)
-        {
-            HandleMove();
-            HandleAnimation();
-        }
+        HandleMove();
     }
 
     private void HandleMove()
     {
-        rb.MovePosition(rb.position + movement.normalized * walkSpeed * Time.fixedDeltaTime);
-    }
-
-    private void HandleAnimation()
-    {
-        if (movement != Vector2.zero)
+        if (!noMoving)
         {
-            animator.SetFloat("MoveInputX", movement.x);
-            animator.SetFloat("MoveInputY", movement.y);
+            rb.MovePosition(rb.position + movement.normalized * walkSpeed * Time.fixedDeltaTime);
         }
-        else
-            animator.SetBool("Moving", false);
     }
 
     public void Move(InputAction.CallbackContext context)
@@ -58,9 +39,28 @@ public class PlayerController : MonoBehaviour
         // should this be here?
     }
 
-
     public void Pause(InputAction.CallbackContext context)
     {
         // used for pause. should this be here?
+    }
+
+    public void PlayerMovement(string action)
+    {
+        switch (action)
+        {
+            case "MainMenu":
+            case "Pause":
+            case "Dialogue":
+                noMoving = true;
+                break;
+            case "Move":
+                noMoving = false;
+                break;
+        }
+    }
+
+    public Vector2 GetMovement()
+    {
+        return movement;
     }
 }
