@@ -4,6 +4,9 @@ using UnityEngine.InputSystem;
 
 public class PlayerInteraction : MonoBehaviour
 {
+    InventoryManager inventoryManager;
+    [SerializeField] private ItemData[] itemData;
+
     [SerializeField] private GameObject interactable = null;
     [SerializeField] private InteractableObject interactableObject = null;
     [SerializeField] private GameObject interactAnimation;
@@ -18,8 +21,26 @@ public class PlayerInteraction : MonoBehaviour
 
     private void Start()
     {
+        inventoryManager = FindObjectOfType<InventoryManager>();
         gameManager = FindObjectOfType<GameManager>();
         interactAnimation.SetActive(false);
+    }
+
+    private void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            inventoryManager.AddItem(itemData[0]);
+        }
+        if(Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            inventoryManager.AddItem(itemData[1]);
+        }
+        if(Input.GetKeyDown(KeyCode.Alpha3))
+        {
+            inventoryManager.AddItem(itemData[2]);
+        }
+
     }
 
     public void Interact(InputAction.CallbackContext context)
@@ -34,28 +55,24 @@ public class PlayerInteraction : MonoBehaviour
     private void CheckInteraction()
     {
         if (interactableObject.interactableType == InteractableObject.Interactable.None)
-        {
             Debug.Log("This is set to none. Nothing will happen");
-        }
+        
         if (interactableObject.interactableType == InteractableObject.Interactable.Info)
-        {
             interactableObject.Info();
-        }
+        
         if (interactableObject.interactableType == InteractableObject.Interactable.Pickup)
-        {
             StartCoroutine(HandlePickUp());
-        }
+     
         if (interactableObject.interactableType == InteractableObject.Interactable.Dialogue)
-        {
             interactableObject.Dialogue();
-        }
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerEnter2D(Collider2D other)
     {
         canInteract = true;
-        interactable = collision.gameObject;
+        interactable = other.gameObject;
         interactableObject = interactable.GetComponent<InteractableObject>();
+        
         if (interactableObject != null)
             playerUI.TogglePlayerInteract(true);
     }

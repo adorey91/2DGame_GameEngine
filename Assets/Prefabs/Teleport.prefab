@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8489361949612555644}
   - component: {fileID: 7609671813679607771}
   - component: {fileID: 2929288563316953176}
-  - component: {fileID: 2006938183927919922}
+  - component: {fileID: 6984467568875396671}
   m_Layer: 0
   m_Name: Teleport
   m_TagString: Untagged
@@ -73,10 +73,10 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1585666415
-  m_SortingLayer: 2
+  m_SortingLayer: 1
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 0, g: 1, b: 0.092921734, a: 0.34901962}
+  m_Color: {r: 0, g: 1, b: 0.092921734, a: 0.08627451}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -131,7 +131,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &2006938183927919922
+--- !u!114 &6984467568875396671
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -140,7 +140,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 2938092184927616708}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 48b50838011f91743a6a6568ddac6fac, type: 3}
+  m_Script: {fileID: 11500000, guid: 7a772ccd3e5f17b449f27447c50765a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  levelName: 

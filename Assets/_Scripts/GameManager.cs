@@ -9,7 +9,7 @@ public class GameManager : MonoBehaviour
         Gameplay,
         Pause,
         Options,
-        EndGame,
+        GameEnd,
         Dialogue,
     }
 
@@ -37,10 +37,20 @@ public class GameManager : MonoBehaviour
             case Gamestate.Gameplay: Gameplay(); break;
             case Gamestate.Pause: Pause(); break;
             case Gamestate.Options: Options(); break;
-            case Gamestate.EndGame: GameCompleted(); break;
+            case Gamestate.GameEnd: GameCompleted(); break;
             case Gamestate.Dialogue: Dialogue(); break;
         }
 
+    }
+
+    public void EscapeState()
+    {
+        switch(gameState)
+        {
+            case Gamestate.Gameplay: LoadState(Gamestate.Pause); break;
+            case Gamestate.Options: LoadState(stateBeforeOptions); break;
+            case Gamestate.Pause: LoadState(Gamestate.Gameplay); break;
+        }
     }
 
     public void LoadState(string state)

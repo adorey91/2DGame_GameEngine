@@ -10,15 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a8656a4ff914f4b46a5edfb1650d88d7, type: 3}
-  m_Name: Food for Clifford
+  m_Name: 0. Cure The Duck King
   m_EditorClassIdentifier: 
-  Name: Food for Clifford
-  Description: 
-  State: 0
+  NameOfQuest: Cure The Duck King
+  State: 2
   prerequisite: {fileID: 0}
-  questItemRequired: {fileID: 0}
-  questAmountRequired: 0
+  questItemRequired: {fileID: 11400000, guid: 8813d63282369af4a8d9c6995e6cf4b7, type: 2}
+  questAmountRequired: 1
   itemGiven: {fileID: 0}
   InactiveQuestDialogue: []
   ActiveQuestDialogue: []
-  CompletedQuestDialogue: []
+  CompletedQuestDialogue:
+  - Quack! Quack!

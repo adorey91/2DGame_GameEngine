@@ -4,7 +4,7 @@ using UnityEngine.UIElements;
 [CreateAssetMenu(fileName = "New Quest", menuName = "Quest/New Quest")]
 public class QuestAsset : ScriptableObject
 {
-    public string Name;
+    public string NameOfQuest;
     public QuestState State;
 
     public QuestAsset prerequisite;

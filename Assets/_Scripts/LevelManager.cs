@@ -1,7 +1,5 @@
 using Cinemachine;
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -9,7 +7,9 @@ public class LevelManager : MonoBehaviour
 {
     [Header("Managers")]
     [SerializeField] private GameManager gameManager;
-    
+    [SerializeField] private QuestManager questManager;
+    [SerializeField] private Singleton singleton;
+
     [Header("Camera & Bounding shape")]
     [SerializeField] private GameObject mainCamera;
     [SerializeField] private Collider2D foundBoundingShape;
@@ -22,8 +22,10 @@ public class LevelManager : MonoBehaviour
     [Header("Scene Fade")]
     [SerializeField] private Animator fadeAnimator;
 
+    private string previousScene;
+    private bool isLoadingScene = false;
 
-    // callback function to be invoked after fade animation completes
+    // Callback function to be invoked after fade animation completes
     private System.Action fadeCallback;
 
     private void Start()
@@ -35,51 +37,62 @@ public class LevelManager : MonoBehaviour
 
     public void LoadScene(string sceneName)
     {
+        if (isLoadingScene) return;
+
+        isLoadingScene = true;
+        previousScene = SceneManager.GetActiveScene().name;
+
         Fade("FadeOut", () =>
         {
             SceneManager.sceneLoaded += OnSceneLoaded;
 
-            switch(sceneName)
+            switch (sceneName)
             {
                 case "MainMenu":
                     gameManager.LoadState("MainMenu");
+                    singleton.ClearInstance();
                     break;
                 case string name when name.StartsWith("Gameplay"):
                     gameManager.LoadState("Gameplay");
                     break;
                 case "GameEnd":
-
+                    gameManager.LoadState("GameEnd");
                     break;
             }
             SceneManager.LoadScene(sceneName);
-       });
+        });
     }
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        if(scene.name == "MainMenu")
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+
+        if (scene.name == "MainMenu")
         {
-            SceneManager.sceneLoaded -= OnSceneLoaded;
+            isLoadingScene = false;
             return;
         }
-        else
-        {
-            foundBoundingShape = null;
-            foundBoundingShape = GameObject.FindWithTag("Confiner").GetComponent<Collider2D>();
+
+        foundBoundingShape = GameObject.FindWithTag("Confiner")?.GetComponent<Collider2D>();
+        if (foundBoundingShape != null)
             confiner2D.m_BoundingShape2D = foundBoundingShape;
-            
-            player = GameObject.FindWithTag("Player");
-            playerSpawn = GameObject.Find("SpawnPoint").GetComponent<Transform>();
+
+        player = GameObject.FindWithTag("Player");
+
+        if (previousScene == "Gameplay_DarkCastle")
+            playerSpawn = GameObject.Find("SpawnPoint_ReturnFromDarkCastle")?.GetComponent<Transform>();
+        else
+            playerSpawn = GameObject.Find("SpawnPoint")?.GetComponent<Transform>();
+
+        if (playerSpawn != null)
             player.transform.position = playerSpawn.position;
-            
-            fadeAnimator = gameObject.GetComponent<Animator>();
 
-            if (scene.name.StartsWith("Gameplay"))
-                FindAnyObjectByType<QuestManager>().FindItems();
+        if (scene.name.EndsWith("field"))
+            FindAnyObjectByType<QuestUI>().FindItems();
+        if (scene.name.EndsWith("DarkCastle"))
+            FindAnyObjectByType<QuestUI>().FindDuckKing();
 
-            Fade("FadeIn");
-            SceneManager.sceneLoaded -= OnSceneLoaded;
-        }
+        Fade("FadeIn", () => isLoadingScene = false);
     }
 
     private void Fade(string fadeDir, System.Action callback = null)
@@ -91,5 +104,6 @@ public class LevelManager : MonoBehaviour
     public void FadeAnimationComplete()
     {
         fadeCallback?.Invoke();
+        fadeCallback = null; // Clear the callback to prevent it from being invoked again
     }
 }

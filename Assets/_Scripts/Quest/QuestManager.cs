@@ -7,22 +7,28 @@ public class QuestManager : MonoBehaviour
     [SerializeField] private QuestAsset[] quests;
     [SerializeField] private QuestUI questUI;
     private InventoryManager inventoryManager;
+    LevelManager levelManager;
 
-
-    [Header("Quest Hints")]
-    [SerializeField] private GameObject[] frogs;
-    [SerializeField] private GameObject potionHerb;
-    [SerializeField] private GameObject graveyardKey;
-    [SerializeField] private GameObject castleKey;
     public bool resetAll = false;
 
 
     // Start is called before the first frame update
     void Start()
     {
+        levelManager = FindObjectOfType<LevelManager>();
         inventoryManager = FindObjectOfType<InventoryManager>();
-
         ResetAllQuests();
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Alpha5))
+        {
+            foreach (QuestAsset quest in quests)
+                quest.State = QuestAsset.QuestState.Complete;
+        }
+
+        AllQuestsComplete();
     }
 
     #region Quest_Status
@@ -30,30 +36,30 @@ public class QuestManager : MonoBehaviour
     {
         quest.State = QuestAsset.QuestState.InProgress;
 
-        if (quest.name == "The Witch's Help")
-            questUI.AddQuestUI(quests[5]);
+        if (quest.NameOfQuest == "The Witch's Help")
+        {
+            quests[1].State = QuestAsset.QuestState.InProgress;
+            questUI.AddQuestUI(quests[1]);
+        }
 
         questUI.AddQuestUI(quest);
 
-        switch (quest.Name)
+        switch (quest.NameOfQuest)
         {
             case "The Witch's Help":
-                foreach (var frog in frogs)
-                {
-                    ActivateQuestHints(frog);
-                }
+                questUI.ActivatePickup("Frog");
                 break;
-            case "The Potion for the Duck King":
+            case "Herbs for the Potion":
                 for (int i = 0; i < quest.prerequisite.questAmountRequired; i++)
-                {
-                    // inventory manager remove item
-                }
+                    inventoryManager.RemoveItem(quest.prerequisite.questItemRequired);
+
+                questUI.ActivatePickup("Herb");
                 break;
             case "The Graveyard Keeper's Key":
-                ActivateQuestHints(graveyardKey);
+                questUI.ActivatePickup("GraveyardKey");
                 break;
             case "The Key to the Duck King's Fortress":
-                ActivateQuestHints(castleKey);
+                questUI.ActivatePickup("CastleKey");
                 break;
         }
     }
@@ -63,12 +69,14 @@ public class QuestManager : MonoBehaviour
         // Check if quest is completed first.
         if (inventoryManager.GetItemQuantity(quest.questItemRequired) == quest.questAmountRequired)
             CompleteQuest(quest);
+    }
 
+    private void AllQuestsComplete()
+    {
         // If all quests are completed it will load the Game Complete state when the game is in gameplay only, NOT IN THE CASTLE.
         bool allQuestsCompleted = quests.All(quest => quest.State == QuestAsset.QuestState.Complete);
         if (allQuestsCompleted && SceneManager.GetActiveScene().name == "Gameplay_field")
-            Debug.Log("do something here");
-        //       gameManager.GameComplete();
+            levelManager.LoadScene("GameEnd");
     }
 
     public void CompleteQuest(QuestAsset quest)
@@ -78,82 +86,28 @@ public class QuestManager : MonoBehaviour
         questUI.RemoveQuestUI(quest);
 
         // remove item from inventory
-        if (inventoryManager.GetItemQuantity(quest.questItemRequired) == quest.questAmountRequired && quest.name != "The Witch's Help")
+        if (inventoryManager.GetItemQuantity(quest.questItemRequired) == quest.questAmountRequired && quest.NameOfQuest != "The Witch's Help")
         {
             for (int i = 0; i < quest.questAmountRequired; i++)
-            {
                 inventoryManager.RemoveItem(quest.questItemRequired);
-            }
         }
+
+        if (quest.NameOfQuest == "Cure The Duck King")
+            questUI.ChangeKing();
 
         // add item to inventory if suppose to be given
         if (quest.State == QuestAsset.QuestState.Complete && quest.itemGiven != null)
+        {
             inventoryManager.AddItem(quest.itemGiven);
+        }
     }
 
     #endregion
 
-    #region Reset_Activate_Deactivate_Quests
     // Resets all quests
     public void ResetAllQuests()
     {
-        if(potionHerb!= null)
-            DeactivateQuestHints(potionHerb);
-        if(graveyardKey != null)
-            DeactivateQuestHints(graveyardKey);
-        if(castleKey != null)
-            DeactivateQuestHints(castleKey);
-
-        for (int i = 0; i < frogs.Length; i++)
-        {
-            if (frogs[i] != null)
-                DeactivateQuestHints(frogs[i]);
-        }
-    }
-
-    public void ActivateQuestHints(params GameObject[] hints)
-    {
-        foreach (GameObject hint in hints)
-        {
-            hint.GetComponent<CircleCollider2D>().enabled = true;
-            hint.GetComponentInChildren<BoxCollider2D>().enabled = true;
-        }
-    }
-
-    // Deactivates quest hints. Only one is needed or I'd use the same function as above.
-    public void DeactivateQuestHints(params GameObject[] hints)
-    {
-        foreach (GameObject hint in hints)
-        {
-            hint.GetComponent<SpriteRenderer>().enabled = false;
-            hint.GetComponent<CircleCollider2D>().enabled = false;
-            hint.GetComponentInChildren<BoxCollider2D>().enabled = false;
-        }
-    }
-    #endregion
-
-    public void FindItems()
-    {
-        if (graveyardKey == null || frogs == null || potionHerb == null || castleKey == null)
-        {
-            castleKey = GameObject.Find("Interactable - CastleKey");
-            graveyardKey = GameObject.Find("Interactable - GraveyardKey");
-            potionHerb = GameObject.Find("Interactable - PickupHerb");
-            frogs = GameObject.FindGameObjectsWithTag("Frog");
-        }
-
-        if(resetAll)
-        {
-            DeactivateQuestHints(potionHerb);
-            DeactivateQuestHints(graveyardKey);
-            DeactivateQuestHints(castleKey);
-
-            for (int i = 0; i < frogs.Length; i++)
-            {
-                DeactivateQuestHints(frogs[i]);
-            }
-
-            resetAll = false;
-        }
+        foreach (QuestAsset quest in quests)
+            quest.State = QuestAsset.QuestState.Inactive;
     }
 }

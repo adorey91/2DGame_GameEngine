@@ -14,6 +14,7 @@ public class InteractableObject : MonoBehaviour
 
     [SerializeField] private PlayerUI playerUI;
     [SerializeField] private InteractableObjectUI interactableObjectUI;
+
     [Header("Info Objects")]
     [SerializeField] private string infoMessage;
     [SerializeField] private float delayTime;
@@ -22,14 +23,13 @@ public class InteractableObject : MonoBehaviour
     [Header("Pickup Objects")]
     [SerializeField] private ItemData itemGivenToPlayer;
    
-
     [Header("Dialogue")]
     public Dialogue dialogue;
 
     public void Awake()
     {
         inventoryManager = FindObjectOfType<InventoryManager>();
-
+        interactableObjectUI = GetComponent<InteractableObjectUI>();
         infoText = GameObject.Find("InfoText").GetComponent<TMP_Text>();
     }
 

@@ -5,6 +5,7 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
+    [SerializeField] private GameManager gameManager;
     [SerializeField] private Rigidbody2D rb;
     private Vector2 movement;
     [SerializeField] private float walkSpeed = 5f;
@@ -36,12 +37,16 @@ public class PlayerController : MonoBehaviour
 
     public void SkipText(InputAction.CallbackContext context)
     {
-        // should this be here?
+        if (context.performed)
+        {
+            FindObjectOfType<DialogueManager>().skipText = true;
+        }
     }
 
     public void Pause(InputAction.CallbackContext context)
     {
-        // used for pause. should this be here?
+        if (context.performed)
+            gameManager.EscapeState();
     }
 
     public void PlayerMovement(string action)

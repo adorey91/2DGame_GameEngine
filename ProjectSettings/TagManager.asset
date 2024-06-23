@@ -8,9 +8,9 @@ TagManager:
   - Confiner
   - Bounds
   - Pickup
-  - GraveKey
-  - Coin
   - Spawn
+  - Herb
+  - SpawnPoint
   layers:
   - Default
   - TransparentFX
@@ -45,6 +45,12 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Ground
+    uniqueID: 945462839
+    locked: 0
+  - name: Obstacles
+    uniqueID: 1250336923
+    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0
@@ -56,7 +62,4 @@ TagManager:
     locked: 0
   - name: Player
     uniqueID: 3907191273
-    locked: 0
-  - name: opening
-    uniqueID: 3824164283
     locked: 0

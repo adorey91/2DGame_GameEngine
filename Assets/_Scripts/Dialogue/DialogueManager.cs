@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class DialogueManager : MonoBehaviour
 {
@@ -33,6 +34,9 @@ public class DialogueManager : MonoBehaviour
     private bool NPCtalking = false;
     internal bool skipText;
 
+    // player
+    [SerializeField] private PlayerInput playerInput;
+
     private void Start()
     {
         gameManager = FindObjectOfType<GameManager>();
@@ -44,6 +48,7 @@ public class DialogueManager : MonoBehaviour
     public void StartDialogue(Dialogue dialogue, InteractableObject _interactableObject)
     {
         gameManager.LoadState("Dialogue");
+        playerInput.actions.FindAction("Move").Disable();
         sentences.Clear();
         NPCtalking = false;
         interactableObject = _interactableObject;
@@ -56,19 +61,31 @@ public class DialogueManager : MonoBehaviour
             if (questAsset.prerequisite != null && questAsset.prerequisite.State != QuestAsset.QuestState.Complete)
             {
                 sentences.Enqueue("You need to complete a previous task. Come back later.");
+                dialogueName.text = dialogue.characterName;
                 NPCtalking = true;
+                DisplayNextSentence(); // Display the prerequisite message directly
+            }
+            if(questAsset.State == QuestAsset.QuestState.Complete)
+            {
+                sentences.Enqueue(dialogue.NonQuestDialogue[0]);
+                dialogueName.text = dialogue.characterName;
+                NPCtalking = true;
+                DisplayNextSentence(); // Display the message directly
             }
             else
             {
                 startQuest = true;
                 questManager.CheckActiveQuest(questAsset);
                 NPCtalking = true;
+                dialogueName.text = dialogue.characterName;
+                ChangeDialogue(dialogue);
             }
         }
-
-        dialogueName.text = dialogue.characterName;
-
-        ChangeDialogue(dialogue);
+        else
+        {
+            dialogueName.text = dialogue.characterName;
+            ChangeDialogue(dialogue);
+        }
     }
 
     public void ChangeDialogue(Dialogue dialogue)
@@ -113,39 +130,52 @@ public class DialogueManager : MonoBehaviour
     }
 
     private IEnumerator DisplayLine(string line)
+{
+    dialogueText.text = "";
+    dialogueButton.SetActive(false);
+
+    canContinueToNextLine = false;
+    isAddingRichText = false;
+    skipText = false;
+
+    List<char> richTextBuffer = new List<char>();
+
+    for (int i = 0; i < line.Length; i++)
     {
-        //empty text
-        dialogueText.text = "";
-        dialogueButton.SetActive(false);
-
-        canContinueToNextLine = false;
-
-        foreach (char letter in line.ToCharArray())
+        char letter = line[i];
+        if (letter == '<')
         {
-            if (skipText || NPCtalking == false)
-            {
-                dialogueText.text = line;
-                skipText = false;
-                break;
-            }
+            isAddingRichText = true;
+        }
 
-            if (letter == '<' || isAddingRichText)
+        if (isAddingRichText)
+        {
+            richTextBuffer.Add(letter);
+            if (letter == '>')
             {
-                isAddingRichText = true;
-                dialogueText.text += letter;
-
-                if (letter == '>')
-                    isAddingRichText = false;
-            }
-            else
-            {
-                dialogueText.text += letter;
-                yield return new WaitForSeconds(typingSpeed);
+                isAddingRichText = false;
+                dialogueText.text += new string(richTextBuffer.ToArray());
+                richTextBuffer.Clear();
             }
         }
-        canContinueToNextLine = true;
-        dialogueButton.SetActive(true);
+        else
+        {
+            dialogueText.text += letter;
+            yield return new WaitForSeconds(typingSpeed);
+        }
+
+        if (skipText)
+        {
+            dialogueText.text = line;
+            break;
+        }
     }
+
+    canContinueToNextLine = true;
+    dialogueButton.SetActive(true);
+}
+
+
 
     void EndDialogue()
     {
@@ -157,6 +187,7 @@ public class DialogueManager : MonoBehaviour
         }
 
         sentences.Clear();
+        playerInput.actions.FindAction("Move").Enable();
         gameManager.LoadState("Gameplay");
     }
 }
