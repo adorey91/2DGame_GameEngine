@@ -16,11 +16,14 @@ public class GameManager : MonoBehaviour
     public Gamestate gameState;
     public Gamestate stateBeforeOptions;
 
+    public event Action<Gamestate> OnStateChanged;
+
     [Header("Managers")]
     [SerializeField] private UIManager uiManager;
     [SerializeField] private LevelManager levelManager;
     [SerializeField] private QuestManager questManager;
     [SerializeField] private InventoryManager inventoryManager;
+    [SerializeField] private SoundManager soundManager;
 
     private void Start()
     {
@@ -30,6 +33,7 @@ public class GameManager : MonoBehaviour
     private void SetState(Gamestate state)
     {
         gameState = state;
+        OnStateChanged?.Invoke(state);
 
         switch (state)
         {
@@ -74,6 +78,7 @@ public class GameManager : MonoBehaviour
     {
         questManager.ResetAllQuests();
         inventoryManager.EmptyInventory();
+        soundManager.PlayAudio("Menu");
 
         uiManager.UI_MainMenu();
         // sound manager main menu audio
@@ -81,6 +86,7 @@ public class GameManager : MonoBehaviour
 
     private void Gameplay()
     {
+        soundManager.PlayAudio("Gameplay");
         uiManager.UI_Gameplay();
     }
 

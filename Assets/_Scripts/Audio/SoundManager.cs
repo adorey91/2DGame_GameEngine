@@ -4,53 +4,140 @@ using UnityEngine.UI;
 
 public class SoundManager : MonoBehaviour
 {
-    [Header("Audio Mixer Groups")]
-    [SerializeField] private AudioMixer gameMixer;
-    [SerializeField] private AudioMixerGroup mainAudio;
-    [SerializeField] private AudioMixerGroup musicAudio;
-    [SerializeField] private AudioMixerGroup SFXAudio;
+    [Header("Manager")]
+    [SerializeField] private GameManager gameManager;
+    [SerializeField] private SoundUI soundUI;
 
-    [Header("Audio Level Sliders")]
-    [SerializeField] private Slider mainSlider;
-    [SerializeField] private Slider musicSlider;
-    [SerializeField] private Slider sfxSlider;
+    [Header("Audio Mixer & Audio Sources")]
+    public AudioMixer gameMixer;
+    [SerializeField] private AudioSource backgroundAudio;
+    [SerializeField] private AudioSource sfxAudio;
+    [SerializeField] private AudioSource playerAudio;
 
-    [Header("Audio Image Settings")]
-    [SerializeField] private Image mainImage;
-    [SerializeField] private Image musicImage;
-    [SerializeField] private Image sfxImage;
-    [SerializeField] private Gradient gradient;
+    [Header("Audio Clips for Background")]
+    [SerializeField] private AudioClip mainClip;
+    [SerializeField] private AudioClip gameplayClip;
+
+    [Header("Audio Clips for SFX")]
+    [SerializeField] private AudioClip pickupSFX;
+    [SerializeField] private AudioClip frogSFX;
+    [SerializeField] private AudioClip footstepsClip;
+
+
+    private string previousAudio;
+    private float originalVolume;
+    private bool isVolumeReduced = false;
+    [SerializeField] private float volumeReductionFactor = 0.67f;
 
     private void Start()
     {
-        SetVolume(mainSlider);
-        SetVolume(musicSlider);
-        SetVolume(sfxSlider);
+        gameManager.OnStateChanged += HandleStateChanged;
+
+        SetInitialVolume(mainSlider, mainImage, 0f);
+        SetInitialVolume(musicSlider, musicImage, 0f);
+        SetInitialVolume(sfxSlider, sfxImage, 0f);
     }
 
-
-    public void SetVolume(Slider slider)
+    private void OnDestroy()
     {
-        switch(slider.name)
+        gameManager.OnStateChanged -= HandleStateChanged;
+    }
+
+    private void HandleStateChanged(GameManager.Gamestate newState)
+    {
+       // if (newState == GameManager.Gamestate.MainMenu || newState == GameManager.Gamestate.Gameplay || newState == GameManager.Gamestate.Options)
+        if (newState == GameManager.Gamestate.MainMenu || newState == GameManager.Gamestate.Gameplay)
+            RestoreVolume();
+        else
+            ReduceVolume();
+    }
+
+    public void PlayAudio(string audio)
+    {
+        if (previousAudio != audio)
         {
-            case "Main":
-                SetVolume(slider, mainImage);
-                break;
-            case "Music":
-                SetVolume(slider, musicImage);
-                break;
-            case "SFX":
-                SetVolume(slider, sfxImage);
-                break;
+            switch (audio)
+            {
+                case "Menu": backgroundAudio.clip = mainClip; break;
+                case "Gameplay": backgroundAudio.clip = gameplayClip; break;
+            }
+
+            previousAudio = audio;
+            backgroundAudio.loop = true;
+            backgroundAudio.Play();
         }
     }
 
-    private void SetVolume(Slider slider, Image sliderFill)
+    public void PlayClip(string audio)
     {
-        //if (slider.value < 1)
-        //    slider.value = 0.001f;
+        switch (audio)
+        {
+            case "frog": sfxAudio.PlayOneShot(frogSFX); break;
+            case "pickup": sfxAudio.PlayOneShot(pickupSFX); break;
+        }
+    }
 
-        gameMixer.SetFloat(slider.name, Mathf.Log10(slider.value) * 20);
-        sliderFill.color = gradient.Evaluate(sliderFill.fillAmount);
+    public void PlayPlayerSFX()
+    {
+        playerAudio.PlayOneShot(footstepsClip);
+    }
+
+    private void ReduceVolume()
+    {
+        if (!isVolumeReduced)
+        {
+            gameMixer.GetFloat("Music", out originalVolume);
+            float reducedVolume = originalVolume + Mathf.Log10(volumeReductionFactor) * 20;
+            gameMixer.SetFloat("Music", reducedVolume);
+            SetSliderAndImage(musicSlider, musicImage, reducedVolume);
+            isVolumeReduced = true;
+        }
+    }
+
+    private void RestoreVolume()
+    {
+        if (isVolumeReduced)
+        {
+            gameMixer.SetFloat("Music", originalVolume);
+            SetSliderAndImage(musicSlider, musicImage, originalVolume);
+            isVolumeReduced = false;
+        }
+    }
+
+    private void SetSliderAndImage(Slider slider, Image image, float volume)
+    {
+        float normalizedVolume = Mathf.InverseLerp(-80f, 20f, volume); // Updated range
+        slider.value = normalizedVolume;
+        image.color = gradient.Evaluate(normalizedVolume);
+    }
+
+    private void SetInitialVolume(Slider slider, Image image, float initialVolume)
+    {
+        float normalizedVolume = Mathf.InverseLerp(-80f, 20f, initialVolume); // Updated range
+        slider.value = normalizedVolume;
+        gameMixer.SetFloat(slider.name, initialVolume);
+        image.color = gradient.Evaluate(normalizedVolume);
+    }
+
+    public void SetVolume(Slider slider)
+    {
+        Image sliderImage = null;
+
+        switch (slider.name)
+        {
+            case "Main":
+                sliderImage = mainImage;
+                break;
+            case "Music":
+                sliderImage = musicImage;
+                break;
+            case "SFX":
+                sliderImage = sfxImage;
+                break;
+        }
+
+        float volume = Mathf.Lerp(-80f, 20f, slider.value); // Updated range
+        gameMixer.SetFloat(slider.name, volume);
+        sliderImage.color = gradient.Evaluate(slider.value);
     }
 }
