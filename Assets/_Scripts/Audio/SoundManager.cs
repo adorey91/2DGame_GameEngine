@@ -6,7 +6,7 @@ public class SoundManager : MonoBehaviour
 {
     [Header("Manager")]
     [SerializeField] private GameManager gameManager;
-    [SerializeField] private SoundUI soundUI;
+    [SerializeField] private SoundUIController soundUIController;
 
     [Header("Audio Mixer & Audio Sources")]
     public AudioMixer gameMixer;
@@ -23,6 +23,12 @@ public class SoundManager : MonoBehaviour
     [SerializeField] private AudioClip frogSFX;
     [SerializeField] private AudioClip footstepsClip;
 
+    [SerializeField] private Image main;
+    [SerializeField] private Image music;
+    [SerializeField] private Image sfx;
+
+    private string mixer;
+
 
     private string previousAudio;
     private float originalVolume;
@@ -33,9 +39,12 @@ public class SoundManager : MonoBehaviour
     {
         gameManager.OnStateChanged += HandleStateChanged;
 
-        SetInitialVolume(mainSlider, mainImage, 0f);
-        SetInitialVolume(musicSlider, musicImage, 0f);
-        SetInitialVolume(sfxSlider, sfxImage, 0f);
+        SetVolume(main, main.fillAmount);
+        SetVolume(music, music.fillAmount);
+        SetVolume(sfx, sfx.fillAmount);
+        //SetInitialVolume(mainSlider, mainImage, 0f);
+        //SetInitialVolume(musicSlider, musicImage, 0f);
+        //SetInitialVolume(sfxSlider, sfxImage, 0f);
     }
 
     private void OnDestroy()
@@ -45,11 +54,11 @@ public class SoundManager : MonoBehaviour
 
     private void HandleStateChanged(GameManager.Gamestate newState)
     {
-       // if (newState == GameManager.Gamestate.MainMenu || newState == GameManager.Gamestate.Gameplay || newState == GameManager.Gamestate.Options)
-        if (newState == GameManager.Gamestate.MainMenu || newState == GameManager.Gamestate.Gameplay)
-            RestoreVolume();
-        else
-            ReduceVolume();
+        // if (newState == GameManager.Gamestate.MainMenu || newState == GameManager.Gamestate.Gameplay || newState == GameManager.Gamestate.Options)
+        //if (newState == GameManager.Gamestate.MainMenu || newState == GameManager.Gamestate.Gameplay)
+        //    RestoreVolume();
+        //else
+        //    ReduceVolume();
     }
 
     public void PlayAudio(string audio)
@@ -82,62 +91,47 @@ public class SoundManager : MonoBehaviour
         playerAudio.PlayOneShot(footstepsClip);
     }
 
-    private void ReduceVolume()
+    public void SetVolume(Image image, float amount)
     {
-        if (!isVolumeReduced)
+        image.fillAmount += amount;
+        Debug.Log(image.fillAmount);
+        // Clamp fillAmount between 0 and 1
+        image.fillAmount = Mathf.Clamp01(image.fillAmount);
+
+        // Map fillAmount (0 to 1) to volume (-60 to +0)
+        float mappedVolume = Mathf.Lerp(-60f, 0f, image.fillAmount);
+
+        // Clamp mappedVolume between -60 and +0
+        float volume = Mathf.Clamp(mappedVolume, -60f, 0f);
+
+        string mixer = "";
+        switch (image.name)
         {
-            gameMixer.GetFloat("Music", out originalVolume);
-            float reducedVolume = originalVolume + Mathf.Log10(volumeReductionFactor) * 20;
-            gameMixer.SetFloat("Music", reducedVolume);
-            SetSliderAndImage(musicSlider, musicImage, reducedVolume);
-            isVolumeReduced = true;
-        }
-    }
-
-    private void RestoreVolume()
-    {
-        if (isVolumeReduced)
-        {
-            gameMixer.SetFloat("Music", originalVolume);
-            SetSliderAndImage(musicSlider, musicImage, originalVolume);
-            isVolumeReduced = false;
-        }
-    }
-
-    private void SetSliderAndImage(Slider slider, Image image, float volume)
-    {
-        float normalizedVolume = Mathf.InverseLerp(-80f, 20f, volume); // Updated range
-        slider.value = normalizedVolume;
-        image.color = gradient.Evaluate(normalizedVolume);
-    }
-
-    private void SetInitialVolume(Slider slider, Image image, float initialVolume)
-    {
-        float normalizedVolume = Mathf.InverseLerp(-80f, 20f, initialVolume); // Updated range
-        slider.value = normalizedVolume;
-        gameMixer.SetFloat(slider.name, initialVolume);
-        image.color = gradient.Evaluate(normalizedVolume);
-    }
-
-    public void SetVolume(Slider slider)
-    {
-        Image sliderImage = null;
-
-        switch (slider.name)
-        {
-            case "Main":
-                sliderImage = mainImage;
+            case "Img_Fill_Main":
+                mixer = "Main";
                 break;
-            case "Music":
-                sliderImage = musicImage;
+            case "Img_Fill_Music":
+                mixer = "Music";
                 break;
-            case "SFX":
-                sliderImage = sfxImage;
+            case "Img_Fill_Sfx":
+                mixer = "SFX";
                 break;
+            default:
+                Debug.LogWarning("Unknown image name: " + image.name);
+                return;
         }
 
-        float volume = Mathf.Lerp(-80f, 20f, slider.value); // Updated range
-        gameMixer.SetFloat(slider.name, volume);
-        sliderImage.color = gradient.Evaluate(slider.value);
+        gameMixer.SetFloat(mixer, volume);
+    }
+
+
+    public void VolumeDown(Image image)
+    {
+        SetVolume(image, -0.025f);
+    }
+
+    public void VolumeUp(Image image)
+    {
+        SetVolume(image, 0.025f);
     }
 }
