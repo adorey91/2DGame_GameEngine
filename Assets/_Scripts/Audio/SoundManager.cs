@@ -38,14 +38,7 @@ public class SoundManager : MonoBehaviour
     private void Start()
     {
         gameManager.OnStateChanged += HandleStateChanged;
-
-        SetVolume(main, main.fillAmount);
-        SetVolume(music, music.fillAmount);
-        SetVolume(sfx, sfx.fillAmount);
-        //SetInitialVolume(mainSlider, mainImage, 0f);
-        //SetInitialVolume(musicSlider, musicImage, 0f);
-        //SetInitialVolume(sfxSlider, sfxImage, 0f);
-    }
+     }
 
     private void OnDestroy()
     {
@@ -91,21 +84,21 @@ public class SoundManager : MonoBehaviour
         playerAudio.PlayOneShot(footstepsClip);
     }
 
-    public void SetVolume(Image image, float amount)
+    public void SetVolume(Slider slider, float amount)
     {
-        image.fillAmount += amount;
-        Debug.Log(image.fillAmount);
+        slider.value += amount;
+        Debug.Log(slider.value);
         // Clamp fillAmount between 0 and 1
-        image.fillAmount = Mathf.Clamp01(image.fillAmount);
+        slider.value = Mathf.Clamp01(slider.value);
 
         // Map fillAmount (0 to 1) to volume (-60 to +0)
-        float mappedVolume = Mathf.Lerp(-60f, 0f, image.fillAmount);
+        float mappedVolume = Mathf.Lerp(-60f, 0f, slider.value);
 
         // Clamp mappedVolume between -60 and +0
         float volume = Mathf.Clamp(mappedVolume, -60f, 0f);
 
         string mixer = "";
-        switch (image.name)
+        switch (slider.name)
         {
             case "Img_Fill_Main":
                 mixer = "Main";
@@ -117,7 +110,7 @@ public class SoundManager : MonoBehaviour
                 mixer = "SFX";
                 break;
             default:
-                Debug.LogWarning("Unknown image name: " + image.name);
+                Debug.LogWarning("Unknown slider name: " + slider.name);
                 return;
         }
 
@@ -125,13 +118,13 @@ public class SoundManager : MonoBehaviour
     }
 
 
-    public void VolumeDown(Image image)
+    public void VolumeDown(Slider slider)
     {
-        SetVolume(image, -0.025f);
+        SetVolume(slider, -0.025f);
     }
 
-    public void VolumeUp(Image image)
+    public void VolumeUp(Slider slider)
     {
-        SetVolume(image, 0.025f);
+        SetVolume(slider, 0.025f);
     }
 }
