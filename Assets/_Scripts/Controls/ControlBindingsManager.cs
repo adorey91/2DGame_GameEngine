@@ -10,29 +10,41 @@ public class ControlBindingsManager : MonoBehaviour
     [Header("UI for Controls Page")]
     [SerializeField] private GameObject keyboardBindings;
     [SerializeField] private GameObject gamepadBindings;
-    [SerializeField] private Button keyboardButton;
-    [SerializeField] private Button gamepadButton;
-    [SerializeField] private TMP_Text controlsText;
+    [SerializeField] private Button bindingButton;
+    [SerializeField] private TMP_Text activeBindingText;
 
 
     [Header("Input action for control reset")]
     [SerializeField] private InputActionAsset _inputActions;
 
+    private void SwitchBindings(bool isGamepad)
+    {
+        bindingButton.onClick.RemoveAllListeners();
+        keyboardBindings.SetActive(!isGamepad);
+        gamepadBindings.SetActive(isGamepad);
+
+        if (isGamepad)
+        {
+            activeBindingText.text = "Gamepad Controls";
+            bindingButton.GetComponentInChildren<TMP_Text>().text = "Keyboard";
+            bindingButton.onClick.AddListener(() => SwitchBindings(false));
+        }
+        else
+        {
+            activeBindingText.text = "Keyboard & Mouse Controls";
+            bindingButton.GetComponentInChildren<TMP_Text>().text = "Gamepad";
+            bindingButton.onClick.AddListener(() => SwitchBindings(true));
+        }
+    }
+
     public void GamepadBindingsActive()
     {
-        keyboardBindings.SetActive(false);
-        keyboardButton.enabled = true;
-        gamepadBindings.SetActive(true);
-        gamepadButton.enabled = false;
-        controlsText.text = "Gamepad Controls";
+        SwitchBindings(true);
     }
 
     public void KeyboardBindingsActive()
     {
-        gamepadBindings.SetActive(false);
-        keyboardBindings.SetActive(true);
-        keyboardButton.enabled = false;
-        controlsText.text = "Keyboard Controls";
+        SwitchBindings(false);
     }
 
     public void ResetAllBindings()

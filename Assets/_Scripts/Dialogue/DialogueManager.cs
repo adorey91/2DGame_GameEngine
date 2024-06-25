@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -23,7 +22,6 @@ public class DialogueManager : MonoBehaviour
     [SerializeField] private TMP_Text dialogueName;
     [SerializeField] private TMP_Text dialogueText;
     private Dialogue personTalking;
-    private PlayerController playerController;
     private bool startQuest = false;
 
     [Header("Typewriter Settings")]
@@ -31,7 +29,6 @@ public class DialogueManager : MonoBehaviour
     private bool canContinueToNextLine = true;
     private Coroutine displayLineCoroutine;
     private bool isAddingRichText;
-    private bool NPCtalking = false;
     internal bool skipText;
 
     // player
@@ -50,7 +47,6 @@ public class DialogueManager : MonoBehaviour
         gameManager.LoadState("Dialogue");
         playerInput.actions.FindAction("Move").Disable();
         sentences.Clear();
-        NPCtalking = false;
         interactableObject = _interactableObject;
 
         personTalking = dialogue;
@@ -62,21 +58,18 @@ public class DialogueManager : MonoBehaviour
             {
                 sentences.Enqueue("You need to complete a previous task. Come back later.");
                 dialogueName.text = dialogue.characterName;
-                NPCtalking = true;
                 DisplayNextSentence(); // Display the prerequisite message directly
             }
-            if(questAsset.State == QuestAsset.QuestState.Complete)
+            if (questAsset.State == QuestAsset.QuestState.Complete)
             {
                 sentences.Enqueue(dialogue.NonQuestDialogue[0]);
                 dialogueName.text = dialogue.characterName;
-                NPCtalking = true;
                 DisplayNextSentence(); // Display the message directly
             }
             else
             {
                 startQuest = true;
                 questManager.CheckActiveQuest(questAsset);
-                NPCtalking = true;
                 dialogueName.text = dialogue.characterName;
                 ChangeDialogue(dialogue);
             }
@@ -130,50 +123,50 @@ public class DialogueManager : MonoBehaviour
     }
 
     private IEnumerator DisplayLine(string line)
-{
-    dialogueText.text = "";
-    dialogueButton.SetActive(false);
-
-    canContinueToNextLine = false;
-    isAddingRichText = false;
-    skipText = false;
-
-    List<char> richTextBuffer = new List<char>();
-
-    for (int i = 0; i < line.Length; i++)
     {
-        char letter = line[i];
-        if (letter == '<')
-        {
-            isAddingRichText = true;
-        }
+        dialogueText.text = "";
+        dialogueButton.SetActive(false);
 
-        if (isAddingRichText)
+        canContinueToNextLine = false;
+        isAddingRichText = false;
+        skipText = false;
+
+        List<char> richTextBuffer = new();
+
+        for (int i = 0; i < line.Length; i++)
         {
-            richTextBuffer.Add(letter);
-            if (letter == '>')
+            char letter = line[i];
+            if (letter == '<')
             {
-                isAddingRichText = false;
-                dialogueText.text += new string(richTextBuffer.ToArray());
-                richTextBuffer.Clear();
+                isAddingRichText = true;
+            }
+
+            if (isAddingRichText)
+            {
+                richTextBuffer.Add(letter);
+                if (letter == '>')
+                {
+                    isAddingRichText = false;
+                    dialogueText.text += new string(richTextBuffer.ToArray());
+                    richTextBuffer.Clear();
+                }
+            }
+            else
+            {
+                dialogueText.text += letter;
+                yield return new WaitForSeconds(typingSpeed);
+            }
+
+            if (skipText)
+            {
+                dialogueText.text = line;
+                break;
             }
         }
-        else
-        {
-            dialogueText.text += letter;
-            yield return new WaitForSeconds(typingSpeed);
-        }
 
-        if (skipText)
-        {
-            dialogueText.text = line;
-            break;
-        }
+        canContinueToNextLine = true;
+        dialogueButton.SetActive(true);
     }
-
-    canContinueToNextLine = true;
-    dialogueButton.SetActive(true);
-}
 
 
 

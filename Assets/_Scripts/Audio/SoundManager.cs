@@ -23,17 +23,7 @@ public class SoundManager : MonoBehaviour
     [SerializeField] private AudioClip frogSFX;
     [SerializeField] private AudioClip footstepsClip;
 
-    [SerializeField] private Image main;
-    [SerializeField] private Image music;
-    [SerializeField] private Image sfx;
-
-    private string mixer;
-
-
     private string previousAudio;
-    private float originalVolume;
-    private bool isVolumeReduced = false;
-    [SerializeField] private float volumeReductionFactor = 0.67f;
 
     private void Start()
     {
@@ -84,10 +74,8 @@ public class SoundManager : MonoBehaviour
         playerAudio.PlayOneShot(footstepsClip);
     }
 
-    public void SetVolume(Slider slider, float amount)
+    public void SetVolume(Slider slider)
     {
-        slider.value += amount;
-        Debug.Log(slider.value);
         // Clamp fillAmount between 0 and 1
         slider.value = Mathf.Clamp01(slider.value);
 
@@ -97,16 +85,16 @@ public class SoundManager : MonoBehaviour
         // Clamp mappedVolume between -60 and +0
         float volume = Mathf.Clamp(mappedVolume, -60f, 0f);
 
-        string mixer = "";
+        string mixer;
         switch (slider.name)
         {
-            case "Img_Fill_Main":
+            case "Master_Slider":
                 mixer = "Main";
                 break;
-            case "Img_Fill_Music":
+            case "Music_Slider":
                 mixer = "Music";
                 break;
-            case "Img_Fill_Sfx":
+            case "SFX_Slider":
                 mixer = "SFX";
                 break;
             default:
@@ -115,16 +103,5 @@ public class SoundManager : MonoBehaviour
         }
 
         gameMixer.SetFloat(mixer, volume);
-    }
-
-
-    public void VolumeDown(Slider slider)
-    {
-        SetVolume(slider, -0.025f);
-    }
-
-    public void VolumeUp(Slider slider)
-    {
-        SetVolume(slider, 0.025f);
     }
 }

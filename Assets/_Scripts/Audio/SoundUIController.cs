@@ -43,21 +43,16 @@ public class SoundUIController : MonoBehaviour
 
     private void OnSfxVolumeChange(float value)
     {
-        soundManager.SetVolume(sfxSlider, value);
+        soundManager.SetVolume(sfxSlider);
     }
 
     private void OnMusicVolumeChange(float value)
     {
-        soundManager.SetVolume(musicSlider, value);
+        soundManager.SetVolume(musicSlider);
     }
 
     private void OnMainVolumeChange(float value)
     {
-        soundManager.SetVolume(mainSlider, value);
-    }
-
-    public void UpdateSliderValue(Slider slider, float value)
-    {
-        slider.value = value;
+        soundManager.SetVolume(mainSlider);
     }
 }

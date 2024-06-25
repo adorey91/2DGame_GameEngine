@@ -7,6 +7,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] private PlayerController controller;
     [SerializeField] private InventoryUIManager inventoryUIManager;
     [SerializeField] private ControlBindingsManager controlBindingsManager;
+    [SerializeField] private UIButtons uiButtons;
 
     [Header("UI GameStates")]
     [SerializeField] private GameObject mainMenuUI;
@@ -34,10 +35,18 @@ public class UIManager : MonoBehaviour
     public void UI_Gameplay() => SetActiveUI(gameplayUI);
     public void UI_Pause() => SetActiveUI(pauseUI);
     public void UI_Options() => SetActiveUI(optionsUI);
-    public void UI_GameCompleted() => SetActiveUI(gameCompletedUI);
+    public void UI_GameCompleted()
+    {
+        SetActiveUI(gameCompletedUI);
+        uiButtons.QuitCreditsButton(true);
+    }
 
     // Non state UI
-    public void UI_Credits() => SetActiveUI(creditsUI);
+    public void UI_Credits()
+    {
+        SetActiveUI(creditsUI);
+        uiButtons.QuitCreditsButton(false);
+    }
     public void UI_Confirmation(string where)
     {
         SetActiveUI(confirmationUI);
