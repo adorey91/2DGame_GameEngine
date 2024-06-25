@@ -6113,9 +6113,10 @@ MonoBehaviour:
   infoText: {fileID: 0}
   itemGivenToPlayer: {fileID: 0}
   dialogue:
-    characterName: 
+    characterName: Unknown
     assignedQuest: {fileID: 0}
-    NonQuestDialogue: []
+    NonQuestDialogue:
+    - Now I know something that you don't
 --- !u!1 &404083172
 GameObject:
   m_ObjectHideFlags: 0
@@ -6406,9 +6407,10 @@ MonoBehaviour:
   infoText: {fileID: 0}
   itemGivenToPlayer: {fileID: 0}
   dialogue:
-    characterName: 
+    characterName: Ben Better
     assignedQuest: {fileID: 0}
-    NonQuestDialogue: []
+    NonQuestDialogue:
+    - I told you I was sick
 --- !u!1001 &495853581
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -46644,9 +46646,10 @@ MonoBehaviour:
   infoText: {fileID: 0}
   itemGivenToPlayer: {fileID: 0}
   dialogue:
-    characterName: 
+    characterName: Gary Jones
     assignedQuest: {fileID: 0}
-    NonQuestDialogue: []
+    NonQuestDialogue:
+    - I was hoping for a pyramid
 --- !u!1 &1019128812
 GameObject:
   m_ObjectHideFlags: 0
@@ -59081,7 +59084,13 @@ MonoBehaviour:
   dialogue:
     characterName: 
     assignedQuest: {fileID: 0}
-    NonQuestDialogue: []
+    NonQuestDialogue:
+    - 'North - Castle
+
+      South - Graveyard'
+    - 'East - Woods / Cliffords House
+
+      West - Pond'
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

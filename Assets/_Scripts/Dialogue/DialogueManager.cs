@@ -62,9 +62,8 @@ public class DialogueManager : MonoBehaviour
             }
             if (questAsset.State == QuestAsset.QuestState.Complete)
             {
-                sentences.Enqueue(dialogue.NonQuestDialogue[0]);
                 dialogueName.text = dialogue.characterName;
-                DisplayNextSentence(); // Display the message directly
+                ChangeDialogue(dialogue);    
             }
             else
             {
