@@ -1846,7 +1846,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 144
-        y: 96
+        y: 97
         width: 16
         height: 16
       alignment: 0
@@ -1866,10 +1866,10 @@ TextureImporter:
       name: tileset_82
       rect:
         serializedVersion: 2
-        x: 160
-        y: 96
-        width: 16
-        height: 16
+        x: 162
+        y: 93
+        width: 12
+        height: 12
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2253,7 +2253,7 @@ TextureImporter:
         x: 160
         y: 80
         width: 16
-        height: 16
+        height: 10
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}

@@ -25,8 +25,13 @@ public class Singleton : MonoBehaviour
         instance = this;
         DontDestroyOnLoad(gameObject);
     }
+
     public void ClearInstance()
     {
-        instance = null;
+        if (instance != null)
+        {
+            Destroy(instance.gameObject);
+            instance = null;
+        }
     }
 }

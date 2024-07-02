@@ -14,45 +14,46 @@ public class SoundUIController : MonoBehaviour
     [SerializeField] private Slider sfxSlider;
     [SerializeField] private Gradient gradient;
 
+    [Header("UI Image Elements")]
+    [SerializeField] private Image mainFill;
+    [SerializeField] private Image musicFill;
+    [SerializeField] private Image sfxFill;
+
+
     private void Start()
     {
         soundManager = FindObjectOfType<SoundManager>();
-        
-        gradient = new Gradient();
-
-        // Blend color from red at 0% to blue at 100%
-        var colors = new GradientColorKey[3];
-        colors[0] = new GradientColorKey(Color.green, 0.0f);
-        colors[1] = new GradientColorKey(Color.yellow, 0.5f);
-        colors[2] = new GradientColorKey(Color.red, 1.0f);
-
-        // Blend alpha from opaque at 0% to transparent at 100%
-        var alphas = new GradientAlphaKey[2];
-        alphas[0] = new GradientAlphaKey(1.0f, 0.0f);
-        alphas[1] = new GradientAlphaKey(1.0f, 1.0f);
-
-        gradient.SetKeys(colors, alphas);
 
         // Subscribe to slider events
         mainSlider.onValueChanged.AddListener(OnMainVolumeChange);
         musicSlider.onValueChanged.AddListener(OnMusicVolumeChange);
         sfxSlider.onValueChanged.AddListener(OnSfxVolumeChange);
 
-        // Initialize sliders to current volume levels
+
+        OnSfxVolumeChange(0.8f);
+        OnMusicVolumeChange(0.8f);
+        OnMainVolumeChange(0.8f);
+
+        soundManager.SetVolume(sfxSlider);
+        soundManager.SetVolume(mainSlider);
+        soundManager.SetVolume(musicSlider);
     }
 
     private void OnSfxVolumeChange(float value)
     {
         soundManager.SetVolume(sfxSlider);
+        sfxFill.color = gradient.Evaluate(sfxFill.fillAmount);
     }
 
     private void OnMusicVolumeChange(float value)
     {
         soundManager.SetVolume(musicSlider);
+        musicFill.color = gradient.Evaluate(musicFill.fillAmount);
     }
 
     private void OnMainVolumeChange(float value)
     {
         soundManager.SetVolume(mainSlider);
+        mainFill.color = gradient.Evaluate(mainFill.fillAmount);
     }
 }

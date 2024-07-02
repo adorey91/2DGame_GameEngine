@@ -39,6 +39,7 @@ public class UIManager : MonoBehaviour
     {
         SetActiveUI(gameCompletedUI);
         uiButtons.QuitCreditsButton(true);
+        playerUI.TogglePlayer(false);
     }
 
     // Non state UI

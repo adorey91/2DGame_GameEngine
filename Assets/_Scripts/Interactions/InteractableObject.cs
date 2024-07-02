@@ -11,6 +11,7 @@ public class InteractableObject : MonoBehaviour
 
     [Header("Managers")]
     [SerializeField] private InventoryManager inventoryManager;
+    [SerializeField] private SoundManager soundManager;
 
     [SerializeField] private PlayerUI playerUI;
     [SerializeField] private InteractableObjectUI interactableObjectUI;
@@ -28,6 +29,7 @@ public class InteractableObject : MonoBehaviour
 
     public void Awake()
     {
+        soundManager = FindObjectOfType<SoundManager>();
         inventoryManager = FindObjectOfType<InventoryManager>();
         interactableObjectUI = GetComponent<InteractableObjectUI>();
         infoText = GameObject.Find("InfoText").GetComponent<TMP_Text>();
@@ -42,12 +44,17 @@ public class InteractableObject : MonoBehaviour
     // will turn off all colliders and the currentSprite renderer
     public void Pickup()
     {
+        if (this.tag == "Frog")
+            soundManager.PlayClip("frog");
+        else
+            soundManager.PlayClip("pickup");
+
         interactableObjectUI.ToggleInteractable(false);
         FindObjectOfType<PlayerUI>().TogglePlayerInteract(false);
         StartCoroutine(ShowInfo(infoMessage, delayTime));
+
         //inventory manager add item
         inventoryManager.AddItem(itemGivenToPlayer);
-        SetCollected("true");
     }
 
     public void Dialogue()
@@ -55,7 +62,7 @@ public class InteractableObject : MonoBehaviour
         FindAnyObjectByType<DialogueManager>().StartDialogue(dialogue, this);
     }
 
-    private IEnumerator ShowInfo(string message, float delay)
+    public IEnumerator ShowInfo(string message, float delay)
     {
         playerUI = FindAnyObjectByType<PlayerUI>();
         infoText = GameObject.Find("InfoText").GetComponent<TMP_Text>();
@@ -67,18 +74,5 @@ public class InteractableObject : MonoBehaviour
         yield return new WaitForSeconds(delay);
 
         playerUI.TogglePlayerThoughts(false, null);
-    }
-
-    public void SetCollected(string collected)
-    {
-        string uniqueKey = SceneManager.GetActiveScene().name + "." + gameObject.name;
-        PlayerPrefs.SetString("collectables." + uniqueKey, collected);
-    }
-
-    public bool IsCollected()
-    {
-        string sceneAndName = SceneManager.GetActiveScene().name + "." + gameObject.name;
-        string collectedStatus = PlayerPrefs.GetString("collectables." + sceneAndName, "false");
-        return collectedStatus == "true";
     }
 }

@@ -14,7 +14,6 @@ public class NPC_UI : MonoBehaviour
         if (player == null)
             player = GameObject.Find("Player");
 
-
         if (gameObject.name == "Dialogue - DuckKing" || gameObject.name == "Dialogue - CastleProtector")
             spriteRenderer.flipX = GetTargetDirection().x < 0;
         else

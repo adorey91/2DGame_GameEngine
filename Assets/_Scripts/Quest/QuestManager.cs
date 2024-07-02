@@ -6,6 +6,7 @@ public class QuestManager : MonoBehaviour
 {
     [SerializeField] private QuestAsset[] quests;
     [SerializeField] private QuestUI questUI;
+    [SerializeField] private PlayerUI playerUI;
     private InventoryManager inventoryManager;
     LevelManager levelManager;
 
@@ -22,11 +23,12 @@ public class QuestManager : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Alpha5))
-        {
-            foreach (QuestAsset quest in quests)
-                quest.State = QuestAsset.QuestState.Complete;
-        }
+        // Used for debugging purposes
+        //if (Input.GetKeyDown(KeyCode.Alpha5))
+        //{
+        //    foreach (QuestAsset quest in quests)
+        //        quest.State = QuestAsset.QuestState.Complete;
+        //}
 
         AllQuestsComplete();
     }
@@ -35,7 +37,7 @@ public class QuestManager : MonoBehaviour
     public void StartQuest(QuestAsset quest)
     {
         quest.State = QuestAsset.QuestState.InProgress;
-
+   
         if (quest.NameOfQuest == "The Witch's Help")
         {
             quests[1].State = QuestAsset.QuestState.InProgress;
@@ -64,11 +66,16 @@ public class QuestManager : MonoBehaviour
         }
     }
 
-    public void CheckActiveQuest(QuestAsset quest)
+    public bool CheckActiveQuest(QuestAsset quest)
     {
         // Check if quest is completed first.
         if (inventoryManager.GetItemQuantity(quest.questItemRequired) == quest.questAmountRequired)
+        {
             CompleteQuest(quest);
+            return true;
+        }
+        else
+            return false;
     }
 
     private void AllQuestsComplete()

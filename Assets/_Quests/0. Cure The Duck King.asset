@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 0. Cure The Duck King
   m_EditorClassIdentifier: 
   NameOfQuest: Cure The Duck King
-  State: 2
+  State: 0
   prerequisite: {fileID: 0}
   questItemRequired: {fileID: 11400000, guid: 8813d63282369af4a8d9c6995e6cf4b7, type: 2}
   questAmountRequired: 1

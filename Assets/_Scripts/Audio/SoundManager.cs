@@ -79,11 +79,11 @@ public class SoundManager : MonoBehaviour
         // Clamp fillAmount between 0 and 1
         slider.value = Mathf.Clamp01(slider.value);
 
-        // Map fillAmount (0 to 1) to volume (-60 to +0)
-        float mappedVolume = Mathf.Lerp(-60f, 0f, slider.value);
+        // Map fillAmount (0 to 1) to volume (-60 to +10)
+        float mappedVolume = Mathf.Lerp(-60f, 10f, slider.value);
 
         // Clamp mappedVolume between -60 and +0
-        float volume = Mathf.Clamp(mappedVolume, -60f, 0f);
+        float volume = Mathf.Clamp(mappedVolume, -60f, 10f);
 
         string mixer;
         switch (slider.name)

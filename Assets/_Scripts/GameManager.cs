@@ -30,6 +30,11 @@ public class GameManager : MonoBehaviour
         SetState(Gamestate.MainMenu);
     }
 
+    private void Update()
+    {
+        SetState(gameState);
+    }
+
     private void SetState(Gamestate state)
     {
         gameState = state;
@@ -108,5 +113,11 @@ public class GameManager : MonoBehaviour
     private void Options()
     {
         uiManager.UI_Options();
+        Debug.Log("options gamestate");
+    }
+
+    public void QuitGame()
+    {
+        Application.Quit();
     }
 }

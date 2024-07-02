@@ -1,3 +1,4 @@
+using System.Collections;
 using TMPro;
 using UnityEngine;
 
@@ -41,7 +42,6 @@ public class PlayerUI : MonoBehaviour
 
     public void TogglePlayerThoughts(bool thoughtEnabled, string text)
     {
-        //TogglePlayerInteract(!thoughtEnabled);
         playerThought.enabled = thoughtEnabled;
         playerThoughtText.enabled = thoughtEnabled;
         playerThoughtText.text = text;
@@ -54,5 +54,16 @@ public class PlayerUI : MonoBehaviour
     public void TogglePlayerInteract(bool interactEnabled)
     {
         interactAnimation.SetActive(interactEnabled);
+    }
+
+    public IEnumerator ShowThoughtBubble(string message, float delay)
+    {
+        TMP_Text infoText = GameObject.Find("InfoText").GetComponent<TMP_Text>();
+        TogglePlayerThoughts(true, message);
+        infoText.enabled = true;
+        infoText.text = message;
+        yield return new WaitForSeconds(delay);
+        TogglePlayerThoughts(false, null);
+
     }
 }
