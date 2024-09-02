@@ -13,15 +13,15 @@ MonoBehaviour:
   m_Name: 1. The Witch's Help
   m_EditorClassIdentifier: 
   NameOfQuest: The Witch's Help
-  State: 2
+  State: 0
   prerequisite: {fileID: 0}
   questItemRequired: {fileID: 11400000, guid: fdb1ad0762ebfe047b411d71cb432fbc, type: 2}
   questAmountRequired: 5
   itemGiven: {fileID: 0}
   InactiveQuestDialogue:
-  - Greetings, traveler. The Duck King is gravely ill. There is a witch who could
-    help.
-  - But we need frogs first! Can you bring me 5 frogs?
+  - Greetings, traveler. The Duck King is gravely ill but I've heard there is a witch
+    who could help.
+  - From what I gather they need frogs first! Can you bring me 5 frogs?
   ActiveQuestDialogue:
   - Have you found the 5 frogs yet? They're probably around the pond
   CompletedQuestDialogue:

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 5. The Graveyard Keeper's Key
   m_EditorClassIdentifier: 
   NameOfQuest: The Graveyard Keeper's Key
-  State: 2
+  State: 0
   prerequisite: {fileID: 11400000, guid: 1ea04c0026fc6cf46aa8bb38f2aac8f6, type: 2}
   questItemRequired: {fileID: 11400000, guid: 6882c76441960a2418b9eafdd31fcc4b, type: 2}
   questAmountRequired: 1
@@ -23,5 +23,6 @@ MonoBehaviour:
   - Help me find it, and I'll open the gates for you.
   ActiveQuestDialogue:
   - Have you found the key yet? Without it, I can't open the gates.
+  - Last time I saw it was while I was trimming trees..
   CompletedQuestDialogue:
   - You found the key! The gates are now open. Find what you need.

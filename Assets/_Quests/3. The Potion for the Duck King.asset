@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 3. The Potion for the Duck King
   m_EditorClassIdentifier: 
   NameOfQuest: Herbs for the Potion
-  State: 2
+  State: 0
   prerequisite: {fileID: 11400000, guid: b9162fbded8c5914083424aab523528d, type: 2}
   questItemRequired: {fileID: 11400000, guid: b5ed38a08d3a841408545a5c91b905a1, type: 2}
   questAmountRequired: 5
@@ -27,4 +27,5 @@ MonoBehaviour:
   - Bring them to me if you want me to save the Duck King!
   CompletedQuestDialogue:
   - You have the herbs! Now I can brew the potion.
-  - Take it to the Duck King, but beware, his castle is locked. Seek Clifford's help.
+  - "Take it to the Duck King, but beware, his castle is locked. \nSeek Clifford's
+    help."

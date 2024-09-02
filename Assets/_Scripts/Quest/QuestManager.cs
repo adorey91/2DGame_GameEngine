@@ -24,10 +24,27 @@ public class QuestManager : MonoBehaviour
     private void Update()
     {
         // Used for debugging purposes
-        //if (Input.GetKeyDown(KeyCode.Alpha5))
+        //switch (Event.current.keyCode)
         //{
-        //    foreach (QuestAsset quest in quests)
-        //        quest.State = QuestAsset.QuestState.Complete;
+        //    case KeyCode.Alpha1:
+        //        quests[0].State = QuestAsset.QuestState.Complete;
+        //        break;
+        //    case KeyCode.Alpha2:
+        //        quests[1].State = QuestAsset.QuestState.Complete;
+        //        break;
+        //    case KeyCode.Alpha3:
+        //        quests[2].State = QuestAsset.QuestState.Complete;
+        //        break;
+        //    case KeyCode.Alpha4:
+        //        quests[3].State = QuestAsset.QuestState.Complete;
+        //        break;
+        //    case KeyCode.Alpha5:
+        //        quests[4].State = QuestAsset.QuestState.Complete;
+        //        break;
+        //    case KeyCode.Alpha6:
+        //        foreach(QuestAsset quest in quests)
+        //            quest.State = QuestAsset.QuestState.Complete;
+        //        break;
         //}
 
         AllQuestsComplete();
@@ -37,7 +54,7 @@ public class QuestManager : MonoBehaviour
     public void StartQuest(QuestAsset quest)
     {
         quest.State = QuestAsset.QuestState.InProgress;
-   
+
         if (quest.NameOfQuest == "The Witch's Help")
         {
             quests[1].State = QuestAsset.QuestState.InProgress;

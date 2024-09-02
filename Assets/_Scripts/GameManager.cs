@@ -27,13 +27,14 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        SetState(Gamestate.MainMenu);
+        SetState(Gamestate.MainMenu);   // sets main menu at beginning
     }
 
     private void Update()
     {
-        SetState(gameState);
+        //SetState(gameState);   // used for testing 
     }
+
 
     private void SetState(Gamestate state)
     {
@@ -52,6 +53,7 @@ public class GameManager : MonoBehaviour
 
     }
 
+    // Used as a pause method. Called from player controller
     public void EscapeState()
     {
         switch(gameState)
@@ -62,6 +64,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    // Called from other scripts switches string into the gamestate
     public void LoadState(string state)
     {
         if (Enum.TryParse(state, out Gamestate gamestate))
@@ -70,6 +73,7 @@ public class GameManager : MonoBehaviour
             Debug.Log("Invalid State " + state);
     }
 
+    // Sets loads state and saves the state prior to options
     private void LoadState(Gamestate state)
     {
         if (state == Gamestate.Options)
@@ -84,9 +88,7 @@ public class GameManager : MonoBehaviour
         questManager.ResetAllQuests();
         inventoryManager.EmptyInventory();
         soundManager.PlayAudio("Menu");
-
         uiManager.UI_MainMenu();
-        // sound manager main menu audio
     }
 
     private void Gameplay()

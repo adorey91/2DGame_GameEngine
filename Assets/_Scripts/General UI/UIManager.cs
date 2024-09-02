@@ -43,6 +43,7 @@ public class UIManager : MonoBehaviour
     }
 
     // Non state UI
+    public void UI_Controls() => SetActiveUI(controlsUI);
     public void UI_Credits()
     {
         SetActiveUI(creditsUI);
@@ -53,7 +54,6 @@ public class UIManager : MonoBehaviour
         SetActiveUI(confirmationUI);
         GetComponentInChildren<UIButtons>().SetConfirmation(where);
     }
-    public void UI_Controls() => SetActiveUI(controlsUI);
 
     public void UI_Dialogue()
     {
